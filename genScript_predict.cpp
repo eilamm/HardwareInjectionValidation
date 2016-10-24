@@ -26,11 +26,14 @@ inline bool exists(const string pathname) {
 }
 
 // Discards x lines in file "file" from current position in file
+// For some reason sometimes getline doesn't work for the first iteration
+// of the loop. This happens everytime I call discardLines except for the
+// first time. My guess is that because I also use the file << line 1 << ...
+// method, it messes up the first call of getline. Haven't tested.
 inline void discardLines(ifstream &file, int x) {
 	string temp = "";
 	for (int i = 0; i < x; ++i) {
 		getline(file, temp);
-		cout << i << " " << "< " << x << " " << temp << endl;
 	}
 }
 
