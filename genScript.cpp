@@ -32,19 +32,20 @@ int main (void) {
 	cout << "Pulsar: ";
 	cin >> PULSAR_NUM;
 	int FIRST_FOLDER = 11324;
-	int LAST_FOLDER = 11369;
+	int LAST_FOLDER = 11360;
 
 	string path_to_folders = "/archive/frames/O1/pulsar/sfts/tukeywin/LHO_C01/H-1_H1_1800SFT_O1_C01-";
 	string datafiles = "";
 	
-	for (int i = FIRST_FOLDER; i < LAST_FOLDER; ++i){
+	for (int i = FIRST_FOLDER; i <= LAST_FOLDER; ++i){
 		string folder_name = path_to_folders + toString(i) + "/"; 
 		if (exists(folder_name)) {
-			datafiles = datafiles + folder_name + "*.sft;";
+			// Last folder should not have a semicolon at the end of the command
+			if (i == LAST_FOLDER) datafiles = datafiles + folder_name + "*.sft";	
+			else datafiles = datafiles + folder_name + "*.sft;";
 		}
 	}	
-	// Last folder should not have a semicolon at the end of the command
-	datafiles = datafiles + path_to_folders + toString(LAST_FOLDER) + "/*.sft";
+	
     string earthpath = "/home/eilam.morag/opt/lalsuite/share/lalpulsar/earth00-19-DE405.dat.gz";
     string sunpath = "/home/eilam.morag/opt/lalsuite/share/lalpulsar/sun00-19-DE405.dat.gz";
 
