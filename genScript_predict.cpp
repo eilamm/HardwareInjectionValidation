@@ -114,14 +114,13 @@ int main (void) {
 	outFile <<  "ASCENSION=\"" + ASCENSION + "\"\n";
 	outFile <<  "DECLINATION=\"" + DECLINATION + "\"\n";
 
-	outFile <<  "FDOT=\"" + FDOT + "\"\n";
-	outFile <<  "REFTIME=\"" + REFTIME + "\"\n\n";
+	outFile <<  "APLUS=\"" + APLUS + "\"\n";
+	outFile <<  "ACROSS=\"" + ACROSS + "\"\n";
+	outFile <<  "PSI=\"" + PSI"\"\n\n";
 	
 	
-	string hist = "FstatHist_" + toString(PULSAR_NUM) + ".txt";
-	string loud = "FstatLoudest_" + toString(PULSAR_NUM) + ".txt";
-	string val = "FstatValues_" + toString(PULSAR_NUM) + ".txt";
-	outFile <<  "lalapps_ComputeFstatistic_v2 --DataFiles \"$DATAFILES\" --ephemEarth \"$EARTH_PATH\" --ephemSun \"$SUN_PATH\" --Freq=$F0 --FreqBand=$FREQBAND --Alpha=$ASCENSION --Delta=$DECLINATION --f1dot=$FDOT --refTime=$REFTIME --IFO \"H1\" --FstatMethod \"ResampBest\" --outputLoudest " << loud << " --outputFstat " << val << " --outputFstatHist " << hist;
+	string outputFstat = "FstatPredicted_" + toString(PULSAR_NUM) + ".txt";
+	outFile <<  "lalapps_ComputeFstatistic_v2 --DataFiles \"$DATAFILES\" --ephemEarth \"$EARTH_PATH\" --ephemSun \"$SUN_PATH\" --Freq=$F0 --Alpha=$ASCENSION --Delta=$DECLINATION --aPlus=$APLUS --aCross=$ACROSS --psi=$PSI --IFO \"H1\" --outputFstat " << outputFstat;
 	outFile.close();
 
 	string genScript = "chmod u+x " + outFilename;	
