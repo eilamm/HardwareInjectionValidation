@@ -1,14 +1,28 @@
 #include <iostream>
 #include <string>
+#include <sys/stat.h> // For stat() in exists()
 #include <fstream>
 #include <sstream>
 #include <cstdlib>
 using namespace std;
 
+// Converts an integer to a string 
 string toString(int num) {
 	ostringstream oss;
 	oss << num;
 	return oss.str();
+}
+
+// Returns true if the folder exists, false otherwise
+inline bool exists(const string pathname) {
+	struct stat sb;
+
+	if (stat(pathname, &sb) == 0 && S_ISDIR(sb.st_mode))
+	{
+		cout << "Folder " << pathname << " exists\n";
+	    return true;
+	}
+	return false;
 }
 
 int main (void) {
@@ -18,13 +32,16 @@ int main (void) {
 	cout << "Pulsar: ";
 	cin >> PULSAR_NUM;
 	int FIRST_FOLDER = 11324;
-	int LAST_FOLDER = 11325;
+	int LAST_FOLDER = 11369;
 
 	string path_to_folders = "/archive/frames/O1/pulsar/sfts/tukeywin/LHO_C01/H-1_H1_1800SFT_O1_C01-";
 	string datafiles = "";
 	
 	for (int i = FIRST_FOLDER; i < LAST_FOLDER; ++i){
-		datafiles = datafiles + path_to_folders + toString(i) + "/*.sft;";
+		folder_name = path_to_folders + toString(i) + "/"; 
+		if (exists(folder_name)) {
+			datafiles = datafiles + folder_name + "*.sft;";
+		}
 	}	
 	// Last folder should not have a semicolon at the end of the command
 	datafiles = datafiles + path_to_folders + toString(LAST_FOLDER) + "/*.sft";
