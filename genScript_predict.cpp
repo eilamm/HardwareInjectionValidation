@@ -85,7 +85,7 @@ int main (void) {
     	discardLines(file, 3+1);
     	file >> line1 >> APLUS >> line3;
     	file >> line1 >> ACROSS >> line3;
-    	discardLines(file, 2+1);
+    	discardLines(file, 4+1);
     	file >> line1 >> PSI >> line3;
     	// Discard the lines we don't need (lines 5-12)
     	discardLines(file, 2+1);
