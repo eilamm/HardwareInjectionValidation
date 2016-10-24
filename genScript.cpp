@@ -87,7 +87,7 @@ int main (void) {
     
 
 	ofstream outFile;
-	string outFilename = "recover_pulsar" + toString(PULSAR_NUM) + ".sh"; 
+	string outFilename = "recover_pulsar" + toString(PULSAR_NUM); 
 	outFile.open(outFilename.c_str(), std::fstream::out);
 	outFile << "#!/bin/bash\n\n";
 
