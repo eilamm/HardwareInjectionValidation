@@ -30,6 +30,7 @@ void discardLines(ifstream &file, int x) {
 	string temp = "";
 	for (int i = 0; i < x; ++i) {
 		getline(file, temp);
+		cout << temp << endl;
 	}
 }
 
