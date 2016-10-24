@@ -80,13 +80,15 @@ int main (void) {
 		}
 		discardLines(file, 1);
     	file >> line1 >> F0 >> line3;
-    	discardLines(file, 3);
+    	//All the calls to discard that have a +1 in the second argument are like that
+    	//because for some reason getline doesn't work the first time...
+    	discardLines(file, 3+1);
     	file >> line1 >> APLUS >> line3;
     	file >> line1 >> ACROSS >> line3;
-    	discardLines(file, 2);
+    	discardLines(file, 2+1);
     	file >> line1 >> PSI >> line3;
     	// Discard the lines we don't need (lines 5-12)
-    	discardLines(file, 2);
+    	discardLines(file, 2+1);
   //   	for (int j = 0; j <= 11; ++j) {
   //   		getline(file, line1);
 		// }
