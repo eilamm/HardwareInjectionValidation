@@ -120,7 +120,7 @@ int main (void) {
 	
 	
 	string outputFstat = "FstatPredicted_" + toString(PULSAR_NUM) + ".txt";
-	outFile <<  "lalapps_ComputeFstatistic_v2 --DataFiles \"$DATAFILES\" --ephemEarth \"$EARTH_PATH\" --ephemSun \"$SUN_PATH\" --Freq=$F0 --Alpha=$ASCENSION --Delta=$DECLINATION --aPlus=$APLUS --aCross=$ACROSS --psi=$PSI --IFO \"H1\" --outputFstat " << outputFstat;
+	outFile <<  "lalapps_PredictFstat --DataFiles \"$DATAFILES\" --ephemEarth \"$EARTH_PATH\" --ephemSun \"$SUN_PATH\" --Freq=$F0 --Alpha=$ASCENSION --Delta=$DECLINATION --aPlus=$APLUS --aCross=$ACROSS --psi=$PSI --IFO \"H1\" --outputFstat " << outputFstat;
 	outFile.close();
 
 	string genScript = "chmod u+x " + outFilename;	
