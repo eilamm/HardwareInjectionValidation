@@ -19,9 +19,9 @@ inline bool exists(const string pathname) {
 
 	if (stat(pathname.c_str(), &sb) == 0 && S_ISDIR(sb.st_mode))
 	{
-		cout << "Folder " << pathname << " exists\n";
 	    return true;
 	}
+	cout << "Datapath folder " << pathname << " does not exist and will be skipped.\n";
 	return false;
 }
 
