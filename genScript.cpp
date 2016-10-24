@@ -38,7 +38,7 @@ int main (void) {
 	string datafiles = "";
 	
 	for (int i = FIRST_FOLDER; i < LAST_FOLDER; ++i){
-		folder_name = path_to_folders + toString(i) + "/"; 
+		string folder_name = path_to_folders + toString(i) + "/"; 
 		if (exists(folder_name)) {
 			datafiles = datafiles + folder_name + "*.sft;";
 		}
