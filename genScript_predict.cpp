@@ -28,7 +28,7 @@ inline bool exists(const string pathname) {
 // Discards x lines in file "file" from current position in file
 void discardLines(ifstream &file, int x) {
 	string temp = "";
-	for (int i = 0; i <= x; ++i) {
+	for (int i = 0; i < x; ++i) {
 		getline(file, temp);
 	}
 }
@@ -41,7 +41,7 @@ int main (void) {
 	// First decide how many folders we want to go through
 	int FIRST_FOLDER = 11324;
 	int LAST_FOLDER = 11360;
-
+							  /archive/frames/O1/pulsar/sfts/tukeywin/LHO_C01/H-1_H1_1800SFT_O1_C01-11324/
 	string path_to_folders = "/archive/frames/O1/pulsar/sfts/tukeywin/LHO_C01/H-1_H1_1800SFT_O1_C01-";
 	string datafiles = "";
 	
