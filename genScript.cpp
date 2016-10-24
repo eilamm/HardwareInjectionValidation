@@ -17,7 +17,7 @@ string toString(int num) {
 inline bool exists(const string pathname) {
 	struct stat sb;
 
-	if (stat(pathname, &sb) == 0 && S_ISDIR(sb.st_mode))
+	if (stat(pathname.c_str(), &sb) == 0 && S_ISDIR(sb.st_mode))
 	{
 		cout << "Folder " << pathname << " exists\n";
 	    return true;
