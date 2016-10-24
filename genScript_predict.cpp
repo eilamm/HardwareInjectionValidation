@@ -26,7 +26,7 @@ inline bool exists(const string pathname) {
 }
 
 // Discards x lines in file "file" from current position in file
-void discardLines(ifstream &file, int x) {
+inline void discardLines(ifstream &file, int x) {
 	string temp = "";
 	for (int i = 0; i < x; ++i) {
 		getline(file, temp);
