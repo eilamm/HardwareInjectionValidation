@@ -27,10 +27,10 @@ inline bool exists(const string pathname) {
 
 int main (void) {
 
-	// First decide how many folders we want to go through
 	int PULSAR_NUM;
 	cout << "Pulsar: ";
 	cin >> PULSAR_NUM;
+	// First decide how many folders we want to go through
 	int FIRST_FOLDER = 11324;
 	int LAST_FOLDER = 11360;
 
