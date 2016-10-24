@@ -116,7 +116,7 @@ int main (void) {
 
 	outFile <<  "APLUS=\"" + APLUS + "\"\n";
 	outFile <<  "ACROSS=\"" + ACROSS + "\"\n";
-	outFile <<  "PSI=\"" + PSI"\"\n\n";
+	outFile <<  "PSI=\"" + PSI + "\"\n\n";
 	
 	
 	string outputFstat = "FstatPredicted_" + toString(PULSAR_NUM) + ".txt";
