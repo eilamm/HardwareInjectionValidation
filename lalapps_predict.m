@@ -20,7 +20,7 @@ function lalapps_predict(p, datafiles)
     across = [' --aCross=', num2str(p.across)];
     psi = [' --psi=', num2str(p.psi)];
     
-    last = [' --IFO "H1" --FstatMethod "ResampBest" --outputFstat ', val];
+    last = [' --IFO "H1" --outputFstat ', val];
     cmd = sprintf('%s', 'lalapps_PredictFstat --DataFiles "', ...
         datafiles, earth, sun, Freq, alpha, delta, aplus, across, psi, last);
     
