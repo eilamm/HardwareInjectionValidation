@@ -11,10 +11,10 @@ disp('Inputted pulsars: ');
 disp(pulsar_list_IDs);
 
 % Use the list of IDs to create pulsar objects
-pulsar_list@Pulsar = [];
-for i = 1:1:length(pulsar_list_IDs)
-    pulsar_list(i) = Pulsar(pulsar_list_IDs(i));
-end
+% pulsar_list@Pulsar = [];
+% for i = 1:1:length(pulsar_list_IDs)
+    pulsar_list = Pulsar(pulsar_list_IDs);
+% end
 
 % Find all the relevant datafiles
 datafiles = findDatafiles();

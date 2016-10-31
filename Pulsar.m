@@ -31,7 +31,7 @@ classdef Pulsar
         function p = getData(p, fileID)
             % Each injection has 20 lines of data, starting at line 25. sod
             % is start of useful data
-            sod = 24 + p.id*20;
+            sod = 24 + p.id.*20;
             discardLines(fileID, sod);
             id_in = parseData(fileID);
             if (id_in ~= p.id)
