@@ -11,6 +11,7 @@ disp('Inputted pulsars: ');
 disp(pulsar_list_IDs);
 
 % Use the list of IDs to create pulsar objects
+pulsar_list = [];
 for i = 1:1:length(pulsar_list)
     pulsar_list(i) = Pulsar(pulsar_list_IDs(i));
 end
