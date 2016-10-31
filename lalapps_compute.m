@@ -25,6 +25,14 @@ function lalapps_compute(p, datafiles)
         '--outputLoudest ', loud, ' --outputFstat ', val, ...
         ' --outputFstatHist ', hist);
     
-    [~, output] = system(cmd);
+    filename = ['recover_pulsarx', num2str(p.id)];
+    disp(['Creating file ', filename]);
+    fileID = fopen(filename, 'w');
+    fprintf(fileID, cmd);
+    fclose(fileID);
+    
+    file2script = ['chmod u+x ', filename];
+    system(file2script);
+    [~, output] = system(['./', filename]);
     disp(output);
 end
