@@ -10,11 +10,13 @@ pulsar_list_IDs = inputPulsars();
 disp('Inputted pulsars: ');
 disp(pulsar_list_IDs);
 
-% Use the list of IDs to create pulsar objects
-% pulsar_list@Pulsar = [];
-% for i = 1:1:length(pulsar_list_IDs)
-    pulsar_list = Pulsar(pulsar_list_IDs);
-% end
+% Use the list of IDs to create pulsar objects. Initialize pulsar list with
+% pulsar ID 0 everytime just to give it a data type. This pulsar will be
+% overwritten anyway.
+pulsar_list = [Pulsar(0)];
+for i = 1:1:length(pulsar_list_IDs)
+    pulsar_list(i) = Pulsar(pulsar_list_IDs(i));
+end
 
 % Find all the relevant datafiles
 datafiles = findDatafiles();
