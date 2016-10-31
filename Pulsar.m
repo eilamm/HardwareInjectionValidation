@@ -51,22 +51,7 @@ classdef Pulsar
             discardLines(fileID, 2);
             p.delta = parseData(fileID);
             p.alpha = parseData(fileID);
-        end
-        
-        % parseData: grabs a line from the file, splits it by white space,
-        % grabs the middle value (the data), and returns it as a double.
-        function data = parseData(fileID)
-            line = strsplit(fgetl(fileID));
-            data = str2double(line(2));
-        end
-        
-        % discardLines: discards n numberr of lines while reading a
-        % text file
-        function discardLines(fileID, n)
-            for i=0:1:n
-                fgetl(fileID);
-            end
-        end
+        end        
         
         % init: initializes the pulsar injection parameters.  
         function p = init(p)
