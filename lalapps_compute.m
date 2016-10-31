@@ -33,6 +33,6 @@ function lalapps_compute(p, datafiles)
     
     file2script = ['chmod u+x ', filename];
     system(file2script);
-    [~, output] = system(['./', filename]);
-    disp(output);
+%     [~, output] = system(['./', filename]);
+%     disp(output);
 end
