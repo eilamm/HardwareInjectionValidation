@@ -4,6 +4,6 @@
 % text file
 function discardLines(fileID, n)
     for i=0:1:n
-        fgetl(fileID);
+        temp = fgetl(fileID)
     end
 end
