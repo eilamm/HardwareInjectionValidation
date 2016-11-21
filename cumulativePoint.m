@@ -4,7 +4,10 @@
 % to date B
 
 function sfts = cumulativeCalcPoint(A, B, pulsar_list)
+    % Initializations
     date = A;
+    sfts = '';
+    % Iterate over dates in range from A to B
     while date <= B
         d = date.day;
         m = date.month;
@@ -12,14 +15,15 @@ function sfts = cumulativeCalcPoint(A, B, pulsar_list)
         filenames_date = read_data(d, m, y);
         % Add the sfts for the current date (in filenames_date) to the list
         % of all sfts in the date range so far (in sfts)
-        sfts = [sfts filenames_date];
+        
+        sfts = [sfts, filenames_date];
         
         % Increment the date
         date = date.next_day();
     end
     
-    % Run the lalapps compute and predict functions on these pulsars
-    str = [B.date2str_nospace, '_clative'];
+    % Get rid of last semicolon in the list of sfts
+    sfts = sfts(1:end-1);
     
     
     
