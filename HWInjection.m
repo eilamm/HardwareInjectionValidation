@@ -23,14 +23,14 @@ today = Date([1, 17, 2016]);
 
 sfts_cumulative = cumulativePoint(start, today, pulsar_list);
 for pulsar = pulsar_list
-    lalapps_compute(pulsar, sfts_cumulative, 1);
-    lalapps_predict(pulsar, sfts_cumulative, 1);
+    lalapps_compute(pulsar, sfts_cumulative, today, 1);
+    lalapps_predict(pulsar, sfts_cumulative, today, 1);
 end
 
 sfts_daily = dailyPoint(today, pulsar_list);
 for pulsar = pulsar_list
-        lalapps_compute(pulsar, sfts_daily, 0);
-        lalapps_predict(pulsar, sfts_daily, 0);
+    lalapps_compute(pulsar, sfts_daily, today, 0);
+    lalapps_predict(pulsar, sfts_daily, today, 0);
 end
 % Find all the relevant datafiles
 % datafiles = findDatafiles();

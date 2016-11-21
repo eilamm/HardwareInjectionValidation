@@ -4,7 +4,7 @@
 % lalapps_PredictFstat --DataFiles \"$DATAFILES\" --ephemEarth \"$EARTH_PATH\" 
 % --ephemSun \"$SUN_PATH\" --Freq=$F0 --Alpha=$ASCENSION --Delta=$DECLINATION 
 % --aPlus=$APLUS --aCross=$ACROSS --psi=$PSI --IFO \"H1\" --outputFstat " << outputFstat;
-function lalapps_predict(p, datafiles, cumulative)
+function lalapps_predict(p, datafiles, date, cumulative)
     val = sprintf('%s%i%s', 'FstatValues_', p.id, '.txt');
     
     earthpath = '/home/eilam.morag/opt/lalsuite/share/lalpulsar/earth00-19-DE405.dat.gz';
@@ -25,9 +25,9 @@ function lalapps_predict(p, datafiles, cumulative)
         datafiles, earth, sun, Freq, alpha, delta, aplus, across, psi, last);
     
     if (cumulative == 1)
-        filename = ['predict_pulsarx', num2str(p.id), '_cumulative'];
+        filename = ['predict_pulsarx', num2str(p.id), date.date2str_nospace, '_cumulative'];
     elseif (cumulative == 0)
-        filename = ['predict_pulsarx', num2str(p.id), '_daily'];
+        filename = ['predict_pulsarx', num2str(p.id), date.date2str_nospace, '_daily'];
     end
     disp(['Creating file ', filename]);
     fileID = fopen(filename, 'w');
