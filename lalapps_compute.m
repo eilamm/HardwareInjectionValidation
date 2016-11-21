@@ -7,7 +7,7 @@
 % --f1dot=$FDOT --refTime=$REFTIME --IFO \"H1\" --FstatMethod 
 % \"ResampBest\" --outputLoudest " << loud << " --outputFstat " << 
 % val << " --outputFstatHist " << hist
-function lalapps_compute(p, datafiles, cumulative)
+function lalapps_compute(p, datafiles, date, cumulative)
     loud = sprintf('%s%i%s', 'FstatLoudest_', p.id, '.txt');
     val = sprintf('%s%i%s', 'FstatValues_', p.id, '.txt');
     hist = sprintf('%s%i%s', 'FstatHist_', p.id, '.txt');
