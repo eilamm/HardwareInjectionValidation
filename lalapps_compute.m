@@ -8,9 +8,15 @@
 % \"ResampBest\" --outputLoudest " << loud << " --outputFstat " << 
 % val << " --outputFstatHist " << hist
 function lalapps_compute(p, datafiles, date, cumulative)
-    loud = sprintf('%s%i%s', 'FstatLoudest_', p.id, '.txt');
-    val = sprintf('%s%i%s', 'FstatValues_', p.id, '.txt');
-    hist = sprintf('%s%i%s', 'FstatHist_', p.id, '.txt');
+    if (cumulative == 1)
+        suffix = ['_', date.date2str_nospace, '_cumulative'];
+    elseif (cumulative == 0)
+        suffix = ['_', date.date2str_nospace, '_daily'];
+    end
+    % Names for the output files of the lalapps_compute script
+    loud = sprintf('%s%i%s%s', 'FstatLoudest_', p.id, suffix, '.txt');
+    val = sprintf('%s%i%s%s', 'FstatValues_', p.id, suffix, '.txt');
+    hist = sprintf('%s%i%s%s', 'FstatHist_', p.id, suffix, '.txt');
     
     earthpath = '/home/eilam.morag/opt/lalsuite/share/lalpulsar/earth00-19-DE405.dat.gz';
     sunpath = '/home/eilam.morag/opt/lalsuite/share/lalpulsar/sun00-19-DE405.dat.gz';
@@ -25,11 +31,8 @@ function lalapps_compute(p, datafiles, date, cumulative)
         '--outputLoudest ', loud, ' --outputFstat ', val, ...
         ' --outputFstatHist ', hist);
     
-    if (cumulative == 1)
-        filename = ['recover_pulsarx', num2str(p.id), '_', date.date2str_nospace, '_cumulative'];
-    elseif (cumulative == 0)
-        filename = ['recover_pulsarx', num2str(p.id), '_', date.date2str_nospace, '_daily'];
-    end
+    % Actual name of the lalapps_compute script
+    filename = ['recover_pulsarx', num2str(p.id), suffix];
     disp(['Creating file ', filename]);
     fileID = fopen(filename, 'w');
     fprintf(fileID, cmd);

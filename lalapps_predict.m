@@ -5,7 +5,14 @@
 % --ephemSun \"$SUN_PATH\" --Freq=$F0 --Alpha=$ASCENSION --Delta=$DECLINATION 
 % --aPlus=$APLUS --aCross=$ACROSS --psi=$PSI --IFO \"H1\" --outputFstat " << outputFstat;
 function lalapps_predict(p, datafiles, date, cumulative)
-    val = sprintf('%s%i%s', 'FstatValues_', p.id, '.txt');
+    % Suffix is used to uniquely name the lalapps scripts and their outputs
+    if (cumulative == 1)
+        suffix = ['_', date.date2str_nospace, '_cumulative'];
+    elseif (cumulative == 0)
+        suffix = ['_', date.date2str_nospace, '_daily'];
+    end
+    % Name for the output of the lalapps_predict script
+    val = sprintf('%s%i%s%s', 'FstatValues_', p.id, suffix, '.txt');
     
     earthpath = '/home/eilam.morag/opt/lalsuite/share/lalpulsar/earth00-19-DE405.dat.gz';
     sunpath = '/home/eilam.morag/opt/lalsuite/share/lalpulsar/sun00-19-DE405.dat.gz';
@@ -24,11 +31,8 @@ function lalapps_predict(p, datafiles, date, cumulative)
     cmd = sprintf('%s', 'lalapps_PredictFstat --DataFiles "', ...
         datafiles, earth, sun, Freq, alpha, delta, aplus, across, psi, last);
     
-    if (cumulative == 1)
-        filename = ['predict_pulsarx', num2str(p.id), '_', date.date2str_nospace, '_cumulative'];
-    elseif (cumulative == 0)
-        filename = ['predict_pulsarx', num2str(p.id), '_', date.date2str_nospace, '_daily'];
-    end
+    % Name of the actual lalapps_predict script
+    filename = ['predict_pulsarx', num2str(p.id), suffix];
     disp(['Creating file ', filename]);
     fileID = fopen(filename, 'w');
     fprintf(fileID, cmd);
