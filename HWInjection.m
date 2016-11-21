@@ -19,7 +19,7 @@ for i = 1:1:length(pulsar_list_IDs)
 end
 
 start = Date([11, 25, 2015]);
-today = Date([1, 17, 2016]);
+today = Date([1, 18, 2016]);
 
 sfts_cumulative = cumulativePoint(start, today, pulsar_list);
 for pulsar = pulsar_list
