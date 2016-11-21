@@ -55,8 +55,12 @@ classdef Pulsar
         
         % init: initializes the pulsar injection parameters.  
         function p = init(p)
-            file = '/home/keithr/public_html/cw/O2_H1_test1_injection_params_O2_H1_test1.html';
+%             file = '/home/keithr/public_html/cw/O2_H1_test1_injection_params_O2_H1_test1.html';
+            file = 'O2_H1_test1_injection_params_O2_H1_test1.html';
             fileID = fopen(file);
+            if (fileID == -1)
+                error(['file could not be opened: ', file]);
+            end
             p = p.getData(fileID);
             fclose(fileID);
         end
