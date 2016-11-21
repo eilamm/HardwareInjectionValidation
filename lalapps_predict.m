@@ -25,9 +25,9 @@ function lalapps_predict(p, datafiles, date, cumulative)
         datafiles, earth, sun, Freq, alpha, delta, aplus, across, psi, last);
     
     if (cumulative == 1)
-        filename = ['predict_pulsarx', num2str(p.id), date.date2str_nospace, '_cumulative'];
+        filename = ['predict_pulsarx', num2str(p.id), '_', date.date2str_nospace, '_cumulative'];
     elseif (cumulative == 0)
-        filename = ['predict_pulsarx', num2str(p.id), date.date2str_nospace, '_daily'];
+        filename = ['predict_pulsarx', num2str(p.id), '_', date.date2str_nospace, '_daily'];
     end
     disp(['Creating file ', filename]);
     fileID = fopen(filename, 'w');

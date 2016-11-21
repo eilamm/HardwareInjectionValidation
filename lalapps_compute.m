@@ -26,9 +26,9 @@ function lalapps_compute(p, datafiles, date, cumulative)
         ' --outputFstatHist ', hist);
     
     if (cumulative == 1)
-        filename = ['recover_pulsarx', num2str(p.id), date.date2str_nospace, '_cumulative'];
+        filename = ['recover_pulsarx', num2str(p.id), '_', date.date2str_nospace, '_cumulative'];
     elseif (cumulative == 0)
-        filename = ['recover_pulsarx', num2str(p.id), date.date2str_nospace, '_daily'];
+        filename = ['recover_pulsarx', num2str(p.id), '_', date.date2str_nospace, '_daily'];
     end
     disp(['Creating file ', filename]);
     fileID = fopen(filename, 'w');
