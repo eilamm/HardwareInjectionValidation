@@ -39,7 +39,7 @@ function [filenames, file_exists, folder_path] = read_data(day, month, ...
     else
         filenames = '';
         for i = folder
-            filenames = [filenames; folder_path, folder(i).name];
+            filenames = [filenames folder_path folder(i).name ';' ];
         end
         
     end

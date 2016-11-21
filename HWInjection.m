@@ -18,11 +18,25 @@ for i = 1:1:length(pulsar_list_IDs)
     pulsar_list(i) = Pulsar(pulsar_list_IDs(i));
 end
 
-% Find all the relevant datafiles
-datafiles = findDatafiles();
+start = Date([11, 25, 2015]);
+today = Date([1, 17, 2016]);
 
-% Run the lalapps compute and predict functions on these pulsars
+sfts_cumulative = cumulativePoint(start, today, pulsar_list);
 for pulsar = pulsar_list
-    lalapps_compute(pulsar, datafiles);
-    lalapps_predict(pulsar, datafiles);
+    lalapps_compute(pulsar, sfts_cumulative, 1);
+    lalapps_predict(pulsar, sfts_cumulative, 1);
 end
+
+sfts_daily = dailyPoint(today, pulsar_list);
+for pulsar = pulsar_list
+        lalapps_compute(pulsar, sfts_daily, 0);
+        lalapps_predict(pulsar, sfts_daily, 0);
+end
+% Find all the relevant datafiles
+% datafiles = findDatafiles();
+
+% % Run the lalapps compute and predict functions on these pulsars
+% for pulsar = pulsar_list
+%     lalapps_compute(pulsar, datafiles);
+%     lalapps_predict(pulsar, datafiles);
+% end
