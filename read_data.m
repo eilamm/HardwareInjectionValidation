@@ -34,7 +34,7 @@ function filenames = read_data(day, month, ...
     
     if (isempty(folder))
         % Do nothing
-        disp(['No sfts for date: ', num2str(day), '/', num2str(month), '/', num2str(year)]);
+        disp(['No sfts for date: ',  num2str(month), '/', num2str(day), '/', num2str(year)]);
     else
         for i = 1:length(folder)
             filenames = [filenames, folder_path, folder(i).name, ';' ];
