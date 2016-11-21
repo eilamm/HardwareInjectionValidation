@@ -9,7 +9,7 @@ function sfts = cumulativeCalcPoint(A, B, pulsar_list)
         d = date.day;
         m = date.month;
         y = date.year;
-        [filenames_date, data_exists, folder_path] = read_data(d, m, y);
+        filenames_date = read_data(d, m, y);
         % Add the sfts for the current date (in filenames_date) to the list
         % of all sfts in the date range so far (in sfts)
         sfts = [sfts filenames_date];
