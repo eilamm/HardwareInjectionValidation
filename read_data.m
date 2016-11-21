@@ -6,6 +6,7 @@ function filenames = read_data(day, month, ...
                                         year)
     path = ['/home/pulsar/public_html/fscan/H1_DUAL_ARM/H1_DUAL_ARM_HANN/',...
            'H1_DUAL_ARM_HANN/'];
+    filenames = '';   
        
     y = num2str(year);
     if (month < 10)
@@ -27,17 +28,14 @@ function filenames = read_data(day, month, ...
         
     path = [path, '/', chan, '/sfts/tmp/'];
     filetype = [path, '*.sft'];
-%     temp = [path, 'spec_', num2str(first_val), '.00_', ...
-%             num2str(first_val + 100), '.00_*.txt'];
-%         
-    folder_path = path; % Return directory where the files are.
-        
-    folder = dir(filetype); % YOU WERE HERE - NOVEMBER 20, 2016 8:51 PM
+
+    folder_path = path; % Return directory where the files are.        
+    folder = dir(filetype); % Structure containing all the sfts in directory
+    
     if (isempty(folder))
-        file_exists = 0;
-        
+        % Do nothing
+        disp(['No sfts for date: ', num2str(day), '/', num2str(month), '/', num2str(year)]);
     else
-        filenames = '';
         for i = 1:length(folder)
             filenames = [filenames, folder_path, folder(i).name, ';' ];
         end
