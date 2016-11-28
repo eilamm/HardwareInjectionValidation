@@ -24,7 +24,8 @@ function filenames = read_data(day, month, ...
     folder = dir(temp);
     path = [path, folder.name];
     
-    chan = 'H1_CAL-DELTAL_EXTERNAL_DQ';
+%     chan = 'H1_CAL-DELTAL_EXTERNAL_DQ';
+    chan = 'H1_GDS-CALIB_STRAIN';
         
     path = [path, '/', chan, '/sfts/tmp/'];
     filetype = [path, '*.sft'];
