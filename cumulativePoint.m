@@ -3,7 +3,7 @@
 % Creates lalapps predict and compute scripts that use all sfts from date A
 % to date B
 
-function sfts = cumulativeCalcPoint(A, B, pulsar_list)
+function sfts = cumulativePoint(A, B, pulsar_list)
     % Initializations
     date = A;
     sfts = '';
