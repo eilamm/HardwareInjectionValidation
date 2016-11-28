@@ -10,7 +10,7 @@ function symlink = sft2symlink(sft_filepath, sft_name)
     cmd = ['ln -s ', sft_filepath, ' ', symlink];
     status = system(cmd, '-echo');
     if (status ~= 0)
-        error('%s\n%s%s\n%s%s', 'Symlink failed', 'sft filename: ', sft_name, 'symlink: ', symlink);
+        error('%s\n%s%s\n%s%s', 'Symlink failed', 'sft filename: ', sft_filepath, 'symlink: ', symlink);
     end
     % Make the return string just the timestamp, because we can call just
     % that in the scripts
