@@ -39,7 +39,7 @@ function filenames = read_data(day, month, ...
     else
         for i = 1:length(folder)
             file_path = [folder_path, folder(i).name];
-            symlink = sft2symlink(file_path);
+            symlink = sft2symlink(file_path, folder(i).name);
             filenames = [filenames, symlink, ';'];
 %             filenames = [filenames, folder_path, folder(i).name, ';' ];
         end

@@ -4,11 +4,15 @@
 % name of the link.
 % The symbolic link's name will be the timestamp of the sft, which should
 % uniquely identify each sft.
-function symlink = sft2symlink(sft_name)
-    symlink = sft_name(40:50);
-    cmd = ['ln -s ', sft_name, ' ', symlink];
+function symlink = sft2symlink(sft_filepath, sft_name)
+    timestamp = sft_name(40:50);
+    symlink = ['/home/eilam.morag/hw_injection/Hardware_Injection_2016/', timestamp];
+    cmd = ['ln -s ', sft_filepath, ' ', symlink];
     status = system(cmd, '-echo');
     if (status ~= 0)
         error('%s\n%s%s\n%s%s', 'Symlink failed', 'sft filename: ', sft_name, 'symlink: ', symlink);
     end
+    % Make the return string just the timestamp, because we can call just
+    % that in the scripts
+    symlink = timestamp;
 end
