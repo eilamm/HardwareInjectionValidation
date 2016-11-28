@@ -6,14 +6,12 @@
 % uniquely identify each sft.
 function symlink = sft2symlink(sft_filepath, sft_name)
     timestamp = sft_name(41:50);
-    symlink = ['/home/eilam.morag/hw_injection/Hardware_Injection_2016/', timestamp];
-    cmd = ['ln -s ', sft_filepath, ' ', symlink];
+    symlink = [timestamp, '.sft'];
+    symlink_path = ['/home/eilam.morag/hw_injection/Hardware_Injection_2016/', symlink];
+    cmd = ['ln -s ', sft_filepath, ' ', symlink_path];
 %     status = system(cmd, '-echo');
     status = system(cmd);
 %     if (status ~= 0)
 %         error('%s\n%s%s\n%s%s', 'Symlink failed', 'sft filename: ', sft_filepath, 'symlink: ', symlink);
 %     end
-    % Make the return string just the timestamp, because we can call just
-    % that in the scripts
-    symlink = timestamp;
 end
