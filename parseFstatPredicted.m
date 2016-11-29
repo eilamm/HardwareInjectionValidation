@@ -19,7 +19,6 @@ function twoF = parseFstatPredicted(id, date, c)
     % If the file does not exist
     if (fileID == -1)
         twoF = NaN;
-        fclose(fileID);
         fprintf('%s%s\n', 'No predicted data for: ', date.date2str());
         return;
     end

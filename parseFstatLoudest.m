@@ -18,7 +18,6 @@ function twoF = parseFstatLoudest(id, date, c)
     % If the file does not exist
     if (fileID == -1)
         twoF = NaN;
-        fclose(fileID);
         fprintf('%s%s\n', 'No loudest data for: ', date.date2str());
         return;
     end
