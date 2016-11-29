@@ -12,7 +12,7 @@ function lalapps_predict(p, datafiles, date, cumulative)
         suffix = ['_', date.date2str_nospace, '_daily'];
     end
     % Name for the output of the lalapps_predict script
-    val = sprintf('%s%i%s%s', 'FstatValues_', p.id, suffix, '.txt');
+    val = sprintf('%s%i%s%s', 'FstatPredicted_', p.id, suffix, '.txt');
     
     earthpath = '/home/eilam.morag/opt/lalsuite/share/lalpulsar/earth00-19-DE405.dat.gz';
     sunpath = '/home/eilam.morag/opt/lalsuite/share/lalpulsar/sun00-19-DE405.dat.gz';
