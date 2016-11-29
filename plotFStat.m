@@ -55,6 +55,9 @@ function plotFStat(A, B, id)
    title(['Cumulative Fstat Values between ', A.date2str(), ' and ', B.date2str(), ' for Pulsar ', num2str(id)]);
    xlabel(['Days since ', A.date2str()]);
    ylabel('Fstat');
+   filename = sprintf('%s%i%s%s%s%s%s', '/home/eilam.morag/public_html/HWInjection/Pulsar_', id, '_', A.date2str_nospace(), '_', B.date2str_nospace(), '_c.png');
+   saveas(gcf, filename);
+   close(gcf);
    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
    
    % Plot daily data %%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -68,5 +71,7 @@ function plotFStat(A, B, id)
    title(['Daily Fstat Values between ', A.date2str(), ' and ', B.date2str(), ' for Pulsar ', num2str(id)]);
    xlabel(['Days since ', A.date2str()]);
    ylabel('Fstat');
-   
+   filename = sprintf('%s%i%s%s%s%s%s', '/home/eilam.morag/public_html/HWInjection/Pulsar_', id, '_', A.date2str_nospace(), '_', B.date2str_nospace(), '_d.png');
+   saveas(gcf, filename);
+   close(gcf);
 end
