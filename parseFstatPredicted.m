@@ -8,10 +8,10 @@
 function twoF = parseFstatPredicted(id, date, c)
     if (c == 0)
         file = sprintf('%s%i%s%s%s', 'FstatPredicted_', id, '_', ...
-            date2str_nospaces(date), '_daily.txt');
+            date2str_nospace(date), '_daily.txt');
     elseif (c == 1)
         file = sprintf('%s%i%s%s%s', 'FstatPredicted_', id, '_', ...
-            date2str_nospaces(date), '_cumulative.txt');
+            date2str_nospace(date), '_cumulative.txt');
     end
     
     path = sprintf('%s%s', '/home/eilam.morag/hw_injection/Hardware_Injection_2016/', file);
