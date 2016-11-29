@@ -29,7 +29,8 @@ function twoF = parseFstatPredicted(id, date, c)
     
     % Split the line by whitespace and grab the relevant data
     line = strsplit(fgetl(fileID));
-    twoF_str = line(3);
+    % Take the data from line and convert it from a cell array to a string
+    twoF_str = char(line(3));
     % Get rid of the semicolon
     twoF_str = twoF_str(1:end-1);
     % Convert string to double
