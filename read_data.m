@@ -30,19 +30,21 @@ function filenames = read_data(day, month, ...
     path = [path, '/', chan, '/sfts/tmp/'];
     filetype = [path, '*.sft'];
 
-    folder_path = path; % Return directory where the files are.        
     folder = dir(filetype); % Structure containing all the sfts in directory
     
     if (isempty(folder))
         % Do nothing
         disp(['No sfts for date: ',  num2str(month), '/', num2str(day), '/', num2str(year)]);
     else
-        for i = 1:length(folder)
-            file_path = [folder_path, folder(i).name];
-            symlink = sft2symlink(file_path, folder(i).name);
-            filenames = [filenames, symlink, ';'];
-%             filenames = [filenames, folder_path, folder(i).name, ';' ];
-        end
+        name = [num2str(m), num2str(d), num2str(y)];
+        symlink = sft2symlink(path, name);
+        filenames = [symlink, '*.sft;'];
+%         for i = 1:length(folder)
+%             file_path = [folder_path, folder(i).name];
+%             symlink = sft2symlink(file_path, folder(i).name);
+%             filenames = [filenames, symlink, ';'];
+% %             filenames = [filenames, folder_path, folder(i).name, ';' ];
+%         end
         
     end
     

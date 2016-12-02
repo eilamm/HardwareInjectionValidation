@@ -33,11 +33,3 @@ for pulsar = pulsar_list
     lalapps_compute(pulsar, sfts_daily, today, 0, 1);
     lalapps_predict(pulsar, sfts_daily, today, 0);
 end
-% Find all the relevant datafiles
-% datafiles = findDatafiles();
-
-% % Run the lalapps compute and predict functions on these pulsars
-% for pulsar = pulsar_list
-%     lalapps_compute(pulsar, datafiles);
-%     lalapps_predict(pulsar, datafiles);
-% end
