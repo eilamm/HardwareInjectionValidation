@@ -37,7 +37,7 @@ function filenames = read_data(day, month, ...
         disp(['No sfts for date: ',  num2str(month), '/', num2str(day), '/', num2str(year)]);
     else
     
-    name = Date([m, d, y]).date2str_num();
+    name = Date([month, day, year]).date2str_num();
     symlink = sft2symlink(path, name);
     filenames = [symlink, '/*.sft;'];
 %         for i = 1:length(folder)

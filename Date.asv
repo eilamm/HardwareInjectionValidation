@@ -36,8 +36,8 @@ classdef Date
                 date.year = obj.year;
             end
         end
-        % Returns the date object as a constant-length string of numbers 
-        % in the format mmddyy (e.g. Jan 9, 2016 becomes 010916)
+        % Returns a string version of the date with only numbers (e.g. Jan
+        % 12 2016 becomes 01122016)
         function date = date2str_num(obj)
             if (obj.month < 10)
                 m = ['0', num2str(obj.month)];
@@ -51,8 +51,7 @@ classdef Date
                 d = num2str(obj.day);
             end
             
-            y = num2str(obj.year);
-            y = y(3:end);
+            y = num2str(obj.year
             date = [m, d, y];
         end
         % Returns a string version of the date (e.g. Jan 12, 2016)
