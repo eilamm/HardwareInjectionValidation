@@ -44,13 +44,16 @@ function plotFStat(A, B, id)
        day = day.next_day();
    end
    
+   % This will serve as the xaxis values, to clean up the code.
+   xaxis = 1:1:num_days;
+   
    % Plot cumulative data %%%%%%%%%%%%%%%%%%%%%%%
    figure;
    % Plot the computed values
-   plot(1:1:num_days, cumulData(index, 1), '-o');
-   hold on;
+   plot(xaxis, cumulData(index, 1), '-o', xaxis, cumulData(index, 2), '-x');
+%    hold on;
    % Plot the predicted values on the same graph
-   plot(1:1:num_days, cumulData(index, 2), '-x');
+%    plot(xaxis, cumulData(index, 2), '-x');
    legend('Computed', 'Predicted');
    title(['Cumulative Fstat Values between ', A.date2str(), ' and ', B.date2str(), ' for Pulsar ', num2str(id)]);
    xlabel(['Days since ', A.date2str()]);
@@ -63,10 +66,10 @@ function plotFStat(A, B, id)
    % Plot daily data %%%%%%%%%%%%%%%%%%%%%%%%%%%%
    figure;
    % Plot the computed values
-   plot(1:1:num_days, dailyData(index, 1), '-o');
-   hold on;
+   plot(xaxis, dailyData(index, 1), '-o', xaxis, dailyData(index, 2), '-x');
+%    hold on;
    % Plot the predicted values on the same graph
-   plot(1:1:num_days, dailyData(index, 2), '-o');
+%    plot(xaxis, dailyData(index, 2), '-x');
    legend('Computed', 'Predicted');
    title(['Daily Fstat Values between ', A.date2str(), ' and ', B.date2str(), ' for Pulsar ', num2str(id)]);
    xlabel(['Days since ', A.date2str()]);
