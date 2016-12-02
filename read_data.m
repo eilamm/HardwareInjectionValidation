@@ -38,7 +38,7 @@ function filenames = read_data(day, month, ...
     else
         name = [num2str(m), num2str(d), num2str(y)];
         symlink = sft2symlink(path, name);
-        filenames = [symlink, '*.sft;'];
+        filenames = [symlink, '/*.sft;'];
 %         for i = 1:length(folder)
 %             file_path = [folder_path, folder(i).name];
 %             symlink = sft2symlink(file_path, folder(i).name);
