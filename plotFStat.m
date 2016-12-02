@@ -23,7 +23,7 @@ function plotFStat(A, B, id)
    daily = 0;
    while (day <= B)
        
-       index = day - A + 1;
+       index = day - A;
        
        % Cumulative
        twoF = parseFstatLoudest(id, day, cumulative);
@@ -47,10 +47,10 @@ function plotFStat(A, B, id)
    % Plot cumulative data %%%%%%%%%%%%%%%%%%%%%%%
    figure;
    % Plot the computed values
-   plot(1:1:num_days, cumulData(index, 1));
+   plot(1:1:num_days, cumulData(index, 1), '-o');
    hold on;
    % Plot the predicted values on the same graph
-   plot(1:1:num_days, cumulData(index, 2));
+   plot(1:1:num_days, cumulData(index, 2), '-x');
    legend('Computed', 'Predicted');
    title(['Cumulative Fstat Values between ', A.date2str(), ' and ', B.date2str(), ' for Pulsar ', num2str(id)]);
    xlabel(['Days since ', A.date2str()]);
@@ -63,10 +63,10 @@ function plotFStat(A, B, id)
    % Plot daily data %%%%%%%%%%%%%%%%%%%%%%%%%%%%
    figure;
    % Plot the computed values
-   plot(1:1:num_days, dailyData(index, 1));
+   plot(1:1:num_days, dailyData(index, 1), '-o');
    hold on;
    % Plot the predicted values on the same graph
-   plot(1:1:num_days, dailyData(index, 2));
+   plot(1:1:num_days, dailyData(index, 2), '-o');
    legend('Computed', 'Predicted');
    title(['Daily Fstat Values between ', A.date2str(), ' and ', B.date2str(), ' for Pulsar ', num2str(id)]);
    xlabel(['Days since ', A.date2str()]);
