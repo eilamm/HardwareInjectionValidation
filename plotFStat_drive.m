@@ -7,4 +7,6 @@ close
 
 A = Date([1, 17, 2016]);
 
-plotFStat(A, A, 0);
+for i=0:14
+    plotFStat(A, A, i);
+end
