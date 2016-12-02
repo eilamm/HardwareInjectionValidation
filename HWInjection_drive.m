@@ -12,7 +12,8 @@ disp('Inputted pulsars: ');
 disp(pulsar_list_IDs);
 
 start_today = Date([11, 25, 2015]);
-end_today = Date([1, 17, 2016]);
+% end_today = Date([1, 17, 2016]);
+end_today = start_today;
 
 date = start_today;
 
