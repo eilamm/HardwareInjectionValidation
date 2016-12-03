@@ -8,15 +8,18 @@
 % \"ResampBest\" --outputLoudest " << loud << " --outputFstat " << 
 % val << " --outputFstatHist " << hist
 function lalapps_compute(p, datafiles, date, cumulative, num_days)
+    
     if (cumulative == 1)
         suffix = ['_', date.date2str_nospace, '_cumulative'];
     elseif (cumulative == 0)
         suffix = ['_', date.date2str_nospace, '_daily'];
     end
+    
+    basepath = '/home/eilam.morag/hw_injection/Hardware_Injection_2016/';
     % Names for the output files of the lalapps_compute script
-    loud = sprintf('%s%i%s%s', 'FstatLoudest_', p.id, suffix, '.txt');
-    val = sprintf('%s%i%s%s', 'FstatValues_', p.id, suffix, '.txt');
-    hist = sprintf('%s%i%s%s', 'FstatHist_', p.id, suffix, '.txt');
+    loud = sprintf('%s%s%i%s%s', basepath, 'output/FstatLoudest_', p.id, suffix, '.txt');
+    val = sprintf('%s%s%i%s%s', basepath, 'output/FstatValues_', p.id, suffix, '.txt');
+    hist = sprintf('%s%s%i%s%s', basepath, 'output/FstatHist_', p.id, suffix, '.txt');
     
     earthpath = '/home/eilam.morag/opt/lalsuite/share/lalpulsar/earth00-19-DE405.dat.gz';
     sunpath = '/home/eilam.morag/opt/lalsuite/share/lalpulsar/sun00-19-DE405.dat.gz';
@@ -34,7 +37,7 @@ function lalapps_compute(p, datafiles, date, cumulative, num_days)
         ' --outputFstatHist ', hist);
     
     % Actual name of the lalapps_compute script
-    filename = ['recover_pulsarx', num2str(p.id), suffix];
+    filename = [basepath, 'scripts/recover_pulsarx', num2str(p.id), suffix];
     disp(['Creating file ', filename]);
     fileID = fopen(filename, 'w');
     fprintf(fileID, cmd);

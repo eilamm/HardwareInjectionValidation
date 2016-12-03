@@ -6,15 +6,16 @@
 % FstatPredicted_9_Jan-17-2016_cumulative.txt
 
 function twoF = parseFstatPredicted(id, date, c)
+    basepath = '/home/eilam.morag/hw_injection/Hardware_Injection_2016/';
     if (c == 0)
-        file = sprintf('%s%i%s%s%s', 'FstatPredicted_', id, '_', ...
+        file = sprintf('%s%s%i%s%s%s', basepath, 'output/FstatPredicted_', id, '_', ...
             date2str_nospace(date), '_daily.txt');
     elseif (c == 1)
-        file = sprintf('%s%i%s%s%s', 'FstatPredicted_', id, '_', ...
+        file = sprintf('%s%s%i%s%s%s', basepath, 'output/FstatPredicted_', id, '_', ...
             date2str_nospace(date), '_cumulative.txt');
     end
     
-    path = sprintf('%s%s', '/home/eilam.morag/hw_injection/Hardware_Injection_2016/', file);
+    path = sprintf('%s%s', basepath, file);
     fileID = fopen(path);
     % If the file does not exist
     if (fileID == -1)

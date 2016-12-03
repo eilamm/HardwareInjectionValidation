@@ -11,8 +11,10 @@ function lalapps_predict(p, datafiles, date, cumulative)
     elseif (cumulative == 0)
         suffix = ['_', date.date2str_nospace, '_daily'];
     end
+    
+    basepath = '/home/eilam.morag/hw_injection/Hardware_Injection_2016/';
     % Name for the output of the lalapps_predict script
-    val = sprintf('%s%i%s%s', 'FstatPredicted_', p.id, suffix, '.txt');
+    val = sprintf('%s%s%i%s%s', basepath, 'output/FstatPredicted_', p.id, suffix, '.txt');
     
     earthpath = '/home/eilam.morag/opt/lalsuite/share/lalpulsar/earth00-19-DE405.dat.gz';
     sunpath = '/home/eilam.morag/opt/lalsuite/share/lalpulsar/sun00-19-DE405.dat.gz';
@@ -32,7 +34,7 @@ function lalapps_predict(p, datafiles, date, cumulative)
         datafiles, earth, sun, Freq, alpha, delta, aplus, across, psi, last);
     
     % Name of the actual lalapps_predict script
-    filename = ['predict_pulsarx', num2str(p.id), suffix];
+    filename = [basepath, 'scripts/predict_pulsarx', num2str(p.id), suffix];
     disp(['Creating file ', filename]);
     fileID = fopen(filename, 'w');
     fprintf(fileID, cmd);
