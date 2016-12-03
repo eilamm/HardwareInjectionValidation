@@ -20,3 +20,5 @@ while (date <= end_today)
     HWInjection(pulsar_list_IDs, date);
     date = date.next_day();
 end
+
+create_runAll_scripts();

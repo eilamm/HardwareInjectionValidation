@@ -29,4 +29,5 @@ function HWInjection(pulsar_list_IDs, today)
         lalapps_compute(pulsar, sfts_daily, today, 0, 1);
         lalapps_predict(pulsar, sfts_daily, today, 0);
     end
+    
 end
