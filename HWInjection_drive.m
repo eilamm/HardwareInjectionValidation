@@ -12,10 +12,9 @@ disp('Inputted pulsars: ');
 disp(pulsar_list_IDs);
 
 start_today = Date([11, 25, 2015]);
-% end_today = Date([1, 17, 2016]);
-end_today = start_today;
+end_today = Date([1, 17, 2016]);
 
-date = start_today;
+date = end_today;
 
 while (date <= end_today)
     HWInjection(pulsar_list_IDs, date);
