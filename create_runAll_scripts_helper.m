@@ -18,7 +18,7 @@ function create_runAll_scripts_helper(inputFiles, outputFile)
     fprintf(fileID, '%s', script_beginning);
 
 
-    for rows = 1:nrows
+    for row = 1:nrows
         fprintf(fileID, '%s\n', file_list{row, :});
     end
     
