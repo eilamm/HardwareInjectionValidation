@@ -9,7 +9,7 @@ function create_runAll_scripts_helper(inputFiles, outputFile)
     nrows = length(file_list);
     
     fullpath = ['/home/eilam.morag/hw_injection/Hardware_Injection_2016/', outputFile];
-    fileID = fopen(outputFile);
+    fileID = fopen(outputFile, 'w');
     
     script_beginning = sprintf('%s\n\n%s\n%s\n\n', '#!/bin/bash',...
         'start_time=$(date +%s)', ...
