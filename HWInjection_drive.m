@@ -14,7 +14,7 @@ disp(pulsar_list_IDs);
 start_today = Date([11, 25, 2015]);
 end_today = Date([1, 17, 2016]);
 
-date = end_today;
+date = start_today;
 
 while (date <= end_today)
     HWInjection(pulsar_list_IDs, date);
