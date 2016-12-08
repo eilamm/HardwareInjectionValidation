@@ -19,7 +19,7 @@ function twoF = parseFstatLoudest(id, date, c)
     % If the file does not exist
     if (fileID == -1)
         twoF = NaN;
-        fprintf('%s%s\n', 'No loudest data for: ', date.date2str());
+        fprintf('%s%i%s%s\n', 'No loudest data for Pulsar ', id, ' on ', date.date2str());
         return;
     end
     % The data we want is in the 47th line
