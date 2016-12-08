@@ -79,4 +79,5 @@ function plotFStat(A, B, id)
 %    filename = sprintf('%s%i%s%s%s%s%s', '/home/eilam.morag/public_html/HWInjection/Pulsar_', id, '_', A.date2str_nospace(), '_', B.date2str_nospace(), '_d.png');
 %    saveas(gcf, filename);
 %    close(gcf);
+    fprintf('%s%i\n', 'Finished plotting pulsar ', id);
 end

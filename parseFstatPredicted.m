@@ -20,7 +20,7 @@ function twoF = parseFstatPredicted(id, date, c)
     % If the file does not exist
     if (fileID == -1)
         twoF = NaN;
-        fprintf('%s%i%s%s\n', 'No loudest data for Pulsar ', id, ' on ', date.date2str());
+        fprintf('%s%i%s%s\n', 'No predicted data for Pulsar ', id, ' on ', date.date2str());
         return;
     end
     
