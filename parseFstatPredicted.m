@@ -15,8 +15,8 @@ function twoF = parseFstatPredicted(id, date, c)
             date2str_nospace(date), '_cumulative.txt');
     end
     
-    path = sprintf('%s%s', basepath, file);
-    fileID = fopen(path);
+%     path = sprintf('%s%s', basepath, file);
+    fileID = fopen(file);
     % If the file does not exist
     if (fileID == -1)
         twoF = NaN;
