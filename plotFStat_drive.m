@@ -4,7 +4,7 @@
 
 clear
 close
-A = Date([11, 25, 2015]);
+A = Date([1, 1, 2016]);
 B = Date([1, 17, 2016]);
 
 for i=0:14
