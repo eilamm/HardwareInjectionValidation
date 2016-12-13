@@ -26,9 +26,9 @@ classdef Pulsar
             p = p.init();
         end
         
-        % getData: grabs the relevant injection data from Professor Riles'
-        % files, opened by init
-        function p = getData(p, fileID)
+        % getData: grabs the relevant injection data for O2 from Professor 
+        % Riles' files, opened by init
+        function p = getData_O2(p, fileID)
             % Each injection has 20 lines of data, starting at line 25. sod
             % is start of useful data
             sod = 24 + p.id*20;
@@ -53,16 +53,47 @@ classdef Pulsar
             p.alpha = parseData(fileID);
         end        
         
-        % init: initializes the pulsar injection parameters.  
+        % getData: grabs the relevant injection data for O1 from Professor 
+        % Riles' files, opened by init. The reason two functions are needed
+        % is because the parameter file for O2 and O1 is formatted slightly
+        % differently.
+        function p = getData_O1(p, fileID)
+            % Each injection has 20 lines of data, starting at line 25. sod
+            % is start of useful data
+            sod = 22 + p.id*18;
+            discardLines(fileID, sod);
+            id_in = parseData(fileID);
+            if (id_in ~= p.id)
+                error(['Retrieved pulsar ID is incorrect: ', ...
+                        'Pulsar.getData() has read ', num2str(id_in), ...
+                        ' instead of expected ', num2str(p.id), ...
+                        '. Aborting.']);
+            end
+            p.reftime = parseData(fileID);
+            p.f0 = parseData(fileID);
+            p.fdot = parseData(fileID);
+            discardLines(fileID, 2);
+            p.aplus = parseData(fileID);
+            p.across = parseData(fileID);
+            discardLines(fileID, 2);
+            p.psi = parseData(fileID);
+            discardLines(fileID, 2);
+            p.delta = parseData(fileID);
+            p.alpha = parseData(fileID);
+        end        
+        % init: initializes the pulsar injection parameters. 
+        % TO RETURN TO O2 DATA:
         function p = init(p)
 %             file = '/home/keithr/public_html/cw/O2_H1_test1_injection_params_O2_H1_test1.html';
             basepath = '/home/eilam.morag/hw_injection/Hardware_Injection_2016/';
-            file = [basepath, 'O2_H1_test1_injection_params_O2_H1_test1.html'];
+%             file = [basepath, 'O2_H1_test1_injection_params_O2_H1_test1.html'];
+            file = [basepath, 'ER8B_injection_params_ER8B.html'];
             fileID = fopen(file);
             if (fileID == -1)
                 error(['file could not be opened: ', file]);
             end
-            p = p.getData(fileID);
+%             p = p.getData_O2(fileID);
+            p = p.getData_O1(fileID);
             fclose(fileID);
         end
         
