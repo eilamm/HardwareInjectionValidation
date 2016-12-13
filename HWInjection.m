@@ -14,6 +14,7 @@ function HWInjection(pulsar_list_IDs, today)
         pulsar_list(i) = Pulsar(pulsar_list_IDs(i));
     end
 
+    % start is the first day of the data range (Nov 24 for O1)
     start = Date([11, 24, 2015]);
 %     today = Date([1, 17, 2016]);
     num_days = today - start;

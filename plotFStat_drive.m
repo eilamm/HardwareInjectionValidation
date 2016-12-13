@@ -5,7 +5,7 @@
 clear
 close
 A = Date([11, 24, 2015]);
-B = Date([11, 28, 2015]);
+B = Date([12, 7, 2015]);
 
 for i=0:14
     plotFStat(A, B, i);
