@@ -4,8 +4,8 @@
 
 clear
 close
-A = Date([1, 1, 2016]);
-B = Date([1, 17, 2016]);
+A = Date([11, 24, 2015]);
+B = Date([11, 28, 2015]);
 
 for i=0:14
     plotFStat(A, B, i);
