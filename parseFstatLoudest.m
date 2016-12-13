@@ -34,7 +34,7 @@ function twoF = parseFstatLoudest(id, date, c)
     % Convert string to double
     twoF = str2double(twoF_str);
     fclose(fileID);
-    if (c == 1 && id == 0)
-        fprintf('%s%s%s%d\n\n', 'Pulsar 0 on ', date.date2str(), ': ', twoF); 
-    end
+%     if (c == 1 && id == 0)
+%         fprintf('%s%s%s%d\n\n', 'Pulsar 0 on ', date.date2str(), ': ', twoF); 
+%     end
 end
