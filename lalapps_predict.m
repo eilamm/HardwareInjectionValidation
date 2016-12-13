@@ -27,7 +27,7 @@ function lalapps_predict(p, datafiles, date, cumulative)
 %     alpha = [' --Alpha=', num2str(p.alpha)];
     alpha = sprintf('%s%1.12e', ' --Alpha=', p.alpha);
 %     delta = [' --Delta=', num2str(p.delta)];
-    delta = sprtinf('%s%1.12e', ' --Delta=', p.delta);
+    delta = sprintf('%s%1.12e', ' --Delta=', p.delta);
 %     aplus = [' --aPlus=', num2str(p.aplus)];
     aplus = sprintf('%s%1.15e', ' --aPlus=', p.aplus);
 %     across = [' --aCross=', num2str(p.across)];
