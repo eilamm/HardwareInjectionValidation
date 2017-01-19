@@ -21,7 +21,9 @@ function create_runAll_scripts_helper(inputFiles, outputFile)
 
 
     for row = 1:nrows
-        fprintf(fileID, '%s%s%s%s\n', './', base, 'scripts/', file_list{row, :});
+        % there's a period instead of a ./ because the slash is in the
+        % beginning of the 'base' variable
+        fprintf(fileID, '%s%s%s%s\n', '.', base, 'scripts/', file_list{row, :});
     end
     
     script_ending = sprintf('\n\n%s\n\n%s\n%s\n%s\n', 'echo "Finished running all scripts"', ...
