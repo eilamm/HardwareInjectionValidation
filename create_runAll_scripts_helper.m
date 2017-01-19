@@ -8,7 +8,7 @@ function create_runAll_scripts_helper(inputFiles, outputFile)
     file_list = {folder.name}';
     nrows = length(file_list);
     
-    base = '/home/eilam.morag/hw_injection/Hardware_Injection_2016/';
+    base = '/home/eilam.morag/hw_injection/Hardware_Injection_2016/scripts/';
     
     fullpath = [base, outputFile];
     fileID = fopen(fullpath, 'w');
@@ -21,9 +21,7 @@ function create_runAll_scripts_helper(inputFiles, outputFile)
 
 
     for row = 1:nrows
-        % there's a period instead of a ./ because the slash is in the
-        % beginning of the 'base' variable
-        fprintf(fileID, '%s%s%s%s\n', '.', base, 'scripts/', file_list{row, :});
+        fprintf(fileID, '%s%s\n', './', file_list{row, :});
     end
     
     script_ending = sprintf('\n\n%s\n\n%s\n%s\n%s\n', 'echo "Finished running all scripts"', ...
