@@ -8,7 +8,7 @@ function create_runAll_scripts_helper(inputFiles, outputFile)
     file_list = {folder.name}';
     nrows = length(file_list);
     
-    fullpath = ['/home/eilam.morag/hw_injection/Hardware_Injection_2016/', outputFile];
+    fullpath = ['/home/eilam.morag/hw_injection/Hardware_Injection_2016/scripts/', outputFile];
     fileID = fopen(outputFile, 'w');
     
     script_beginning = sprintf('%s\n\n%s\n%s\n\n', '#!/bin/bash',...
@@ -19,7 +19,7 @@ function create_runAll_scripts_helper(inputFiles, outputFile)
 
 
     for row = 1:nrows
-        fprintf(fileID, '%s%s\n', './scripts/', file_list{row, :});
+        fprintf(fileID, '%s%s\n', './', file_list{row, :});
     end
     
     script_ending = sprintf('\n\n%s\n\n%s\n%s\n%s\n', 'echo "Finished running all scripts"', ...
