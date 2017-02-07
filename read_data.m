@@ -4,8 +4,12 @@
 % range (give the first frequency in the range). Returns the data in vector data
 function filenames = read_data(day, month, ...
                                         year)
-    path = ['/home/pulsar/public_html/fscan/H1_DUAL_ARM/H1_DUAL_ARM_HANN/',...
-           'H1_DUAL_ARM_HANN/'];
+    % Uncomment below path for Hann-windowed SFTs
+%     path = ['/home/pulsar/public_html/fscan/H1_DUAL_ARM/H1_DUAL_ARM_HANN/',...
+%            'H1_DUAL_ARM_HANN/'];
+    % Below path for Tukey-windowed SFTS
+    path = ['/home/pulsar/public_html/fscan/H1_DUAL_ARM/H1_DUAL_ARM_TUKEY/',...
+           'H1_DUAL_ARM_TUKEY/'];
     filenames = '';   
        
     y = num2str(year);
