@@ -23,7 +23,7 @@ function plotFStat_helper(A, B, data, id, cumulative)
         filename = [filename, '_c.png'];
         title(['Cumulative Fstat Values between ', A.date2str(), ' and ', B.date2str(), ' for Pulsar ', num2str(id)]);
     end
-    legend('Computed', 'Predicted');     
+    legend('Computed', 'Predicted', 'Location', 'NorthWest');     
     xlabel(['Days since ', A.date2str()]);
     ylabel('Fstat');
     
