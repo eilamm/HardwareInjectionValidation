@@ -39,7 +39,7 @@ function plotFStat_helper(A, B, data, id, cumulative)
     if (cumulative == 0)
         filename = sprintf('%s', path, '/', B.date2str_num(), '_d.png');
         current_filename = sprintf('%s', current, '/', B.date2str_num(), '_d.png');
-        title(['Daily Fstat Values for ', B.date2str(), ' for Pulsar ', num2str(id)]);
+        title(['Daily Fstat Values between ', A.date2str(), ' and ', B.date2str(), ' for Pulsar ', num2str(id)]);
     elseif (cumulative == 1)
         filename = sprintf('%s', path, '/', B.date2str_num(), '_c.png');
         current_filename = sprintf('%s', current, '/', B.date2str_num(), '_c.png');
