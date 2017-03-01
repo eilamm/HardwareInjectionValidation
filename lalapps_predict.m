@@ -4,7 +4,7 @@
 % lalapps_PredictFstat --DataFiles \"$DATAFILES\" --ephemEarth \"$EARTH_PATH\" 
 % --ephemSun \"$SUN_PATH\" --Freq=$F0 --Alpha=$ASCENSION --Delta=$DECLINATION 
 % --aPlus=$APLUS --aCross=$ACROSS --psi=$PSI --IFO \"H1\" --outputFstat " << outputFstat;
-function lalapps_predict(p, datafiles, date, cumulative)
+function lalapps_predict(p, datafiles, date, cumulative, server)
     % Suffix is used to uniquely name the lalapps scripts and their outputs
     if (cumulative == 1)
         suffix = ['_', date.date2str_nospace, '_cumulative'];
@@ -35,7 +35,7 @@ function lalapps_predict(p, datafiles, date, cumulative)
 %     psi = [' --psi=', num2str(p.psi)];
     psi = sprintf('%s%1.15e', ' --psi=', p.psi);
     
-    last = [' --IFO "H1" --outputFstat ', val];
+    last = [' --IFO "', server, '" --outputFstat ', val];
     cmd = sprintf('%s', 'lalapps_PredictFstat --DataFiles "', ...
         datafiles, earth, sun, Freq, alpha, delta, aplus, across, psi, last);
     

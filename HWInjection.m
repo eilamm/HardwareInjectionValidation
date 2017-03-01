@@ -5,7 +5,7 @@
 % genScript_compute() and genScript_predict() functions. 
 % This is the matlab version of the original C++ file, genScript.cpp.
 
-function HWInjection(pulsar_list_IDs, today)
+function HWInjection(pulsar_list_IDs, today, server)
     % Use the list of IDs to create pulsar objects. Initialize pulsar list with
     % pulsar ID 0 everytime just to give it a data type. This pulsar will be
     % overwritten anyway.
@@ -14,8 +14,8 @@ function HWInjection(pulsar_list_IDs, today)
         pulsar_list(i) = Pulsar(pulsar_list_IDs(i));
     end
 
-    % start is the first day of the data range (Nov 24, 2015 for O1)
-    start = Date([11, 24, 2015]); % Uncomment for O1
+    % start is the first day of the data range (Nov 25, 2015 for O1)
+    start = Date([11, 25, 2015]); % Uncomment for O1
 
     % start is the first day of the data range (Oct 20, 2016 for O2)
 %     start = Date([10, 20, 2016]); % Uncomment for O2
@@ -24,14 +24,14 @@ function HWInjection(pulsar_list_IDs, today)
 
     sfts_cumulative = cumulativePoint(start, today, pulsar_list);
     for pulsar = pulsar_list
-        lalapps_compute(pulsar, sfts_cumulative, today, 1, num_days);
-        lalapps_predict(pulsar, sfts_cumulative, today, 1);
+        lalapps_compute(pulsar, sfts_cumulative, today, 1, num_days, server);
+        lalapps_predict(pulsar, sfts_cumulative, today, 1, server);
     end
 
     sfts_daily = dailyPoint(today, pulsar_list);
     for pulsar = pulsar_list
-        lalapps_compute(pulsar, sfts_daily, today, 0, 1);
-        lalapps_predict(pulsar, sfts_daily, today, 0);
+        lalapps_compute(pulsar, sfts_daily, today, 0, 1, server);
+        lalapps_predict(pulsar, sfts_daily, today, 0, server);
     end
     
 end

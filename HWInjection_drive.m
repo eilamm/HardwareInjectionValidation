@@ -11,7 +11,7 @@ pulsar_list_IDs = inputPulsars();
 disp('Inputted pulsars: ');
 disp(pulsar_list_IDs);
 
-start_today = Date([11, 24, 2015]); % Start of O1
+start_today = Date([11, 25, 2015]); % Start of O1
 end_today = Date([12, 3, 2015]); % End of O1
 % end_today = Date([1, 17, 2016]); % End of O1
 
@@ -20,9 +20,24 @@ end_today = Date([12, 3, 2015]); % End of O1
 
 date = start_today;
 
+server = getServerName();
+
 while (date <= end_today)
-    HWInjection(pulsar_list_IDs, date);
+    HWInjection(pulsar_list_IDs, date, server);
     date = date.next_day();
 end
 
 create_runAll_scripts();
+
+
+
+function server = getServerName()
+    [~, temp] = system('dnsdomainname');
+    if (temp == 'ligo-la.caltech.edu')
+        server = 'L1';
+    elseif  (temp== 'ligo-wa.caltech.edu')
+        server = 'H1';
+    else
+        server = 'INVALID SERVER NAME';
+    end
+end
