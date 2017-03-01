@@ -31,7 +31,7 @@ function plotFStat_helper(A, B, data, id, cumulative)
     path = sprintf('%s', path, '/', B.date2str_num());
     
     % Check if there's a directory for this date. If not, create one.
-    if (~exist(B.date2str_num(), 'dir'))
+    if (~exist(path, 'dir'))
         mkdir(path);
     end
     
