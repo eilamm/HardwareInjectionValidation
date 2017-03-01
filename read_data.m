@@ -2,14 +2,22 @@
 % February 21, 2016
 % Reads in the frequency data for a given day, month, year and frequency
 % range (give the first frequency in the range). Returns the data in vector data
-function filenames = read_data(day, month, ...
-                                        year)
+function filenames = read_data(day, month, year, server)
     % Uncomment below path for Hann-windowed SFTs
 %     path = ['/home/pulsar/public_html/fscan/H1_DUAL_ARM/H1_DUAL_ARM_HANN/',...
 %            'H1_DUAL_ARM_HANN/'];
     % Below path for Tukey-windowed SFTS
-    path = ['/home/pulsar/public_html/fscan/H1_DUAL_ARM/H1_DUAL_ARM_TUKEY/',...
+    path = 'Nothing';
+    if (strcmp(server, 'L1'))
+        path = ['/home/pulsar/public_html/fscan/L1_DUAL_ARM/L1_DUAL_ARM_DCREADOUT_TUKEY/',...
+           'L1_DUAL_ARM_DCREADOUT_TUKEY/'];
+        chan = 'L1_GDS-CALIB_STRAIN';
+    elseif (strcmp(server, 'H1'))
+        path = ['/home/pulsar/public_html/fscan/H1_DUAL_ARM/H1_DUAL_ARM_TUKEY/',...
            'H1_DUAL_ARM_TUKEY/'];
+        chan = 'H1_GDS-CALIB_STRAIN';
+    end
+    
     filenames = '';   
        
     y = num2str(year);
@@ -28,8 +36,8 @@ function filenames = read_data(day, month, ...
     folder = dir(temp);
     path = [path, folder.name];
     
-%     chan = 'H1_CAL-DELTAL_EXTERNAL_DQ';
-    chan = 'H1_GDS-CALIB_STRAIN';
+    
+    
         
     path = [path, '/', chan, '/sfts/tmp/'];
     filetype = [path, '*.sft'];

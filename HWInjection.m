@@ -22,13 +22,13 @@ function HWInjection(pulsar_list_IDs, today, server)
     
     num_days = today - start;
 
-    sfts_cumulative = cumulativePoint(start, today, pulsar_list);
+    sfts_cumulative = cumulativePoint(start, today, pulsar_list, server);
     for pulsar = pulsar_list
         lalapps_compute(pulsar, sfts_cumulative, today, 1, num_days, server);
         lalapps_predict(pulsar, sfts_cumulative, today, 1, server);
     end
 
-    sfts_daily = dailyPoint(today, pulsar_list);
+    sfts_daily = dailyPoint(today, pulsar_list, server);
     for pulsar = pulsar_list
         lalapps_compute(pulsar, sfts_daily, today, 0, 1, server);
         lalapps_predict(pulsar, sfts_daily, today, 0, server);
