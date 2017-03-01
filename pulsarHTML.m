@@ -20,9 +20,9 @@ function pulsarHTML(date, i)
     
     path = sprintf('%s', '/home/eilam.morag/public_html/HWInjection/', ...
         nospace, '/');
-    current = sprintf('%s', path, 'current/');
-    plot_c = sprintf('%s', current, date, '_c.png');
-    plot_d = sprintf('%s', current, date, '_d.png');
+
+    plot_c = sprintf('%s', 'current/', date, '_c.png');
+    plot_d = sprintf('%s', 'current/', date, '_d.png');
     
     %% HTML text
     text = sprintf('%s', '<!DOCTYPE html>\n', ...
