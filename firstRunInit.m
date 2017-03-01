@@ -20,7 +20,11 @@ function firstRunInit()
         disp(['Creating the folder: ', folder]);
         mkdir(folder);
         for i = 1:1:14
-            pulsar = sprintf('%s%s%d%s', folder, '/Pulsar ', i, '/current');
+            if (i < 10)
+                pulsar = sprintf('%s%s%d%s', folder, '/Pulsar0', i, '/current');
+            else
+                pulsar = sprintf('%s%s%d%s', folder, '/Pulsar', i, '/current');
+            end
             mkdir(pulsar);
         end
     end
