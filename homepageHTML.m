@@ -48,6 +48,6 @@ function homepageHTML()
     filename = [path, 'HWInjection.php'];
     disp(['Creating file ', filename]);
     fileID = fopen(filename, 'w');
-    fprintf('%s\n', fileID, text);
+    fprintf(fileID, '%s\n', text);
     fclose(fileID);
 end
