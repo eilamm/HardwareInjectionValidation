@@ -40,6 +40,7 @@ function homepageCSS()
             'font-size: 18px;\n', ...
     '}\n'];
 
+    path = '/home/eilam.morag/public_html/HWInjection/';
     filename = [path, 'HWInjection.css'];
     disp(['Creating file ', filename]);
     fileID = fopen(filename, 'w');
