@@ -3,9 +3,10 @@
 % in the lalapps scripts
 function server = getServerName()
     [~, temp] = system('dnsdomainname');
-    if (temp == 'ligo-la.caltech.edu')
+    temp = strtrim(temp);
+    if (strcmp(temp, 'ligo-la.caltech.edu'))
         server = 'L1';
-    elseif  (temp== 'ligo-wa.caltech.edu')
+    elseif  (strcmp(temp, 'ligo-wa.caltech.edu'))
         server = 'H1';
     else
         server = 'INVALID SERVER NAME';
