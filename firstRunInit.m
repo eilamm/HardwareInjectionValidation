@@ -19,7 +19,7 @@ function firstRunInit()
     if (~exist(folder, 'dir'))
         disp(['Creating the folder: ', folder]);
         mkdir(folder);
-        for i = 0:1:13
+        for i = 0:1:14
             if (i < 10)
                 pulsar = sprintf('%s%s%d%s', folder, '/Pulsar0', i);
             else
