@@ -27,8 +27,8 @@ function firstRunInit()
     clear folder pulsar
     %% If the main webpage does not exist, create it
     homepage = '/home/eilam.morag/public_html/HWInjection/HWInjection.php';
-    if (~exist(homepage, 'file'))
+%     if (~exist(homepage, 'file'))
         disp(['Creating the homepage: ', homepage]);
         homepageHTML();
-    end
+%     end
 end
