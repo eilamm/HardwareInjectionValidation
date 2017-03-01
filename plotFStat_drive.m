@@ -11,6 +11,7 @@ B = Date([12, 3, 2015]);
 temp = 'home/eilam.morag/public_html/HWInjection';
 folder = dir(temp);
 if (isempty(folder))
+    disp(['Creating the folder: ', temp]);
     mkdir(temp);
 end
 clear temp folder
