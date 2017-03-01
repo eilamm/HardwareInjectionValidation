@@ -7,6 +7,9 @@
 
 clear
 close
+
+firstRunInit();
+
 pulsar_list_IDs = inputPulsars();
 disp('Inputted pulsars: ');
 disp(pulsar_list_IDs);
