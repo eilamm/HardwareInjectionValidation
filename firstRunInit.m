@@ -21,11 +21,11 @@ function firstRunInit()
         mkdir(folder);
         for i = 1:1:14
             if (i < 10)
-                pulsar = sprintf('%s%s%d%s', folder, '/Pulsar0', i, '/current');
+                pulsar = sprintf('%s%s%d%s', folder, '/Pulsar0', i);
             else
-                pulsar = sprintf('%s%s%d%s', folder, '/Pulsar', i, '/current');
+                pulsar = sprintf('%s%s%d%s', folder, '/Pulsar', i);
             end
-            mkdir(pulsar);
+            mkdir(pulsar, 'current');
         end
     end
     clear folder pulsar
