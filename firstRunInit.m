@@ -34,5 +34,6 @@ function firstRunInit()
 %     if (~exist(homepage, 'file'))
         disp(['Creating the homepage: ', homepage]);
         homepageHTML();
+        homepageCSS();
 %     end
 end
