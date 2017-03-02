@@ -1,13 +1,15 @@
 function readableDate() {
-	var dates = document.getElementsByTagName("ul").innerHTML;
+	var datesobj = document.getElementsByClassName("date");
+	var dates = dateobj.getElementsByTagName("p");
+
 	var i;
 	var ans;
 	for (i = 0; i < dates.length; i++) {
-
-		if (dates[i] === "current") {
+		date = dates[i].innerHTML;
+		if (date === "current") {
 		    ans[i] = "Most Recent Run";
 	  	} else {
-	        var parts = dates[i].match(/.{2}/g);
+	        var parts = date.match(/.{2}/g);
 	        var m = parts[0];
 	        var d = parts[1];
 	        var y = parts[2];
@@ -51,7 +53,6 @@ function readableDate() {
 	        ans[i] = mname.concat(" ", d, ", ", y);
 	        console.log(ans[i]);
 	  	}
-	  	var temp = document.getElementById("ul");
-	  	ans[i] = temp[i].innerHTML;
+	  	dates[i].innerHTML = ans[i];
   	}
 };
