@@ -7,40 +7,40 @@ function readableDate(id, date) {
         var d = parts[1];
         var y = parts[2];
         var mname = "";
-        if (m === 1) {
+        if (m === "1") {
         	mname = "Jan";
         }
-        if (m === 2) {
+        if (m === "2") {
         	mname = "Feb";
         }
-        if (m === 3) {
+        if (m === "3") {
         	mname = "Mar";
         }
-        if (m === 4) {
+        if (m === "4") {
         	mname = "Apr";
         }
-        if (m === 5) {
+        if (m === "5") {
         	mname = "May";
         }
-        if (m === 6) {
+        if (m === "6") {
         	mname = "Jun";
         }
-        if (m === 7) {
+        if (m === "7") {
         	mname = "Jul";
         }
-        if (m === 8) {
+        if (m === "8") {
         	mname = "Aug";
         }
-        if (m === 9) {
+        if (m === "9") {
         	mname = "Sept";
         }
-        if (m === 10) {
+        if (m === "10") {
         	mname = "Oct";
         }
-        if (m === 11) {
+        if (m === "11") {
         	mname = "Nov";
         }
-        if (m === 12) {
+        if (m === "12") {
         	mname = "Dec";
         }
         var ans = mname.concat(" ", d, ", ", y);
