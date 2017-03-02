@@ -3,11 +3,11 @@ function readableDate() {
 	var dates = datesobj.getElementsByTagName("p");
 
 	var i;
-	var ans;
+	var temp;
 	for (i = 0; i < dates.length; i++) {
 		date = dates[i].innerHTML;
 		if (date === "current") {
-		    ans[i] = "Most Recent Run";
+		    temp = "Most Recent Run";
 	  	} else {
 	        var parts = date.match(/.{2}/g);
 	        var m = parts[0];
@@ -50,9 +50,9 @@ function readableDate() {
 	        if (m === "12") {
 	        	mname = "Dec";
 	        }
-	        ans[i] = mname.concat(" ", d, ", ", y);
-	        console.log(ans[i]);
+	        temp = mname.concat(" ", d, ", ", y);
+	        console.log(temp);
 	  	}
-	  	dates[i].innerHTML = ans[i];
+	  	dates[i].innerHTML = temp;
   	}
 };
