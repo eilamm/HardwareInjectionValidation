@@ -44,7 +44,7 @@ function readableDate(id, date) {
         	mname = "Dec";
         }
         var ans = mname.concat(" ", d, ", ", y);
-        var ans = "Test";
+        console.log(ans);
   	}
   	
   	document.getElementById(id).innerHTML = ans;
