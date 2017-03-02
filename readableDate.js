@@ -2,7 +2,7 @@ function readableDate(id, date) {
 	if (date === "current") {
 	    var ans = "Most Recent Run";
   	} else {
-        var parts = date.split(/.{2}/g);
+        var parts = date.match(/.{2}/g);
         var m = parts[0];
         var d = parts[1];
         var y = parts[2];
