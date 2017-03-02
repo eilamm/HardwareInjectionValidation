@@ -1,6 +1,6 @@
 function readableDate() {
 	var datesobj = document.getElementsByClassName("date");
-	var dates = dateobj.getElementsByTagName("p");
+	var dates = datesobj.getElementsByTagName("p");
 
 	var i;
 	var ans;
