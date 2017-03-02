@@ -2,12 +2,12 @@ function readableDate() {
 	var dates = document.getElementsByTagName("ul").innerHTML;
 	var i;
 	var ans;
-	for (i = 0; i < date.length; i++) {
+	for (i = 0; i < dates.length; i++) {
 
-		if (date[i] === "current") {
+		if (dates[i] === "current") {
 		    ans[i] = "Most Recent Run";
 	  	} else {
-	        var parts = date[i].match(/.{2}/g);
+	        var parts = dates[i].match(/.{2}/g);
 	        var m = parts[0];
 	        var d = parts[1];
 	        var y = parts[2];
