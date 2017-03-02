@@ -36,4 +36,10 @@ function firstRunInit()
         homepageHTML();
         homepageCSS();
 %     end
+    %% Copy the JavaScript files to the public_html/HWInjection directory
+    destination = '/home/eilam.morag/public_html/HWInjection/';
+    file1 = 'changeDate.js';
+    file2 = 'readableDate.js';
+    copyfile(file1, destination);
+    copyfile(file2, destination);
 end
