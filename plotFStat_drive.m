@@ -5,7 +5,7 @@
 clear
 close
 A = Date([11, 25, 2015]);
-B = Date([12, 3, 2015]);
+B = Date([1, 17, 2016]);
 
 
 %% Call plotFStat for each pulsar
