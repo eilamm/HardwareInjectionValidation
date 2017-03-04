@@ -14,31 +14,31 @@ function readableDate() {
 	        var d = parts[1];
 	        var y = parts[2];
 	        var mname = "";
-	        if (m === "1") {
+	        if (m === "01") {
 	        	mname = "Jan";
 	        }
-	        if (m === "2") {
+	        if (m === "02") {
 	        	mname = "Feb";
 	        }
-	        if (m === "3") {
+	        if (m === "03") {
 	        	mname = "Mar";
 	        }
-	        if (m === "4") {
+	        if (m === "04") {
 	        	mname = "Apr";
 	        }
-	        if (m === "5") {
+	        if (m === "05") {
 	        	mname = "May";
 	        }
-	        if (m === "6") {
+	        if (m === "06") {
 	        	mname = "Jun";
 	        }
-	        if (m === "7") {
+	        if (m === "07") {
 	        	mname = "Jul";
 	        }
-	        if (m === "8") {
+	        if (m === "08") {
 	        	mname = "Aug";
 	        }
-	        if (m === "9") {
+	        if (m === "09") {
 	        	mname = "Sept";
 	        }
 	        if (m === "10") {

@@ -40,6 +40,13 @@ function firstRunInit()
     destination = '/home/eilam.morag/public_html/HWInjection/';
     file1 = 'changeDate.js';
     file2 = 'readableDate.js';
-    copyfile(file1, destination);
-    copyfile(file2, destination);
+    status1 = copyfile(file1, destination);
+    status2 = copyfile(file2, destination);
+    if (status1 == 1)
+        disp(['Copying the file: ', file1]);
+    end
+    if (status2 == 1)
+        disp(['Copying the file: ', file2]);
+    end
+    clear destination file1 file2 status1 status2 
 end
