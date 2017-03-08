@@ -46,7 +46,7 @@ end
 function create_runAll_scripts_helper(list, outputFile)
     nrows = length(list);
     
-    base = '/home/eilam.morag/hw_injection/Hardware_Injection_2016/scripts/';
+    base = 'home/eilam.morag/hw_injection/Hardware_Injection_2016/scripts/';
     
     outpath = [base, outputFile];
     fileID = fopen(outpath, 'w');
