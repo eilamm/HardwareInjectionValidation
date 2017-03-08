@@ -53,7 +53,7 @@ function create_runAll_scripts_helper(list, outputFile)
     
     script_beginning = sprintf('%s\n\n%s\n%s\n\n', '#!/bin/bash',...
         'start_time=$(date +%s)', ...
-        'echo "Running scripts of type: ', list{1}, '... "');
+        'echo "Running: ', outputFile, '... "');
     
     fprintf(fileID, '%s', script_beginning);
 
@@ -62,9 +62,9 @@ function create_runAll_scripts_helper(list, outputFile)
         fprintf(fileID, '%s\n', list{i});
     end
     
-    script_ending = sprintf('\n\n%s\n\n%s\n%s\n%s\n', 'echo "Finished running all scripts"', ...
+    script_ending = sprintf('\n\n%s\n\n%s\n\n%s\n%s\n%s\n%s', 'echo', 'echo "Finished running all scripts"', ...
         'end_time=$(date +%s)', 'runtime=$((end_time-start_time))', ...
-        'echo "Runtime: $runtime"');
+        'echo "Runtime: $runtime"', 'echo');
 
     fprintf(fileID, '%s', script_ending);
     
