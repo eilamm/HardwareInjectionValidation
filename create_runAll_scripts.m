@@ -59,7 +59,7 @@ function create_runAll_scripts_helper(list, outputFile)
 
 
     for i = 1:nrows
-        fprintf(fileID, '%s%s\n', './', list{i, :});
+        fprintf(fileID, '%s%s\n', './', list{i});
     end
     
     script_ending = sprintf('\n\n%s\n\n%s\n%s\n%s\n', 'echo "Finished running all scripts"', ...
