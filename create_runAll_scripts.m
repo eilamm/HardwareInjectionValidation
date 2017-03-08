@@ -121,6 +121,6 @@ function list = listUnexecutedScripts(startdate, enddate, compute, daily)
     if (i == 1)
         temp = sprintf('%s', 'echo "All scripts previously executed: ', ...
             scriptprefix, scriptsuffix, '"');
-        l{1} = temp;
+        list{1} = temp;
     end
 end
