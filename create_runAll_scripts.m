@@ -58,9 +58,8 @@ function create_runAll_scripts_helper(list, outputFile)
     fprintf(fileID, '%s', script_beginning);
 
 
-    % Print the scripts to the file, period is for ./script
     for i = 1:nrows
-        fprintf(fileID, '%s%s\n', '.', list{i});
+        fprintf(fileID, '%s\n', list{i});
     end
     
     script_ending = sprintf('\n\n%s\n\n%s\n%s\n%s\n', 'echo "Finished running all scripts"', ...
@@ -82,7 +81,7 @@ end
 % not yet been executed
 function list = listUnexecutedScripts(startdate, enddate, compute, daily)
     outpath = '/home/eilam.morag/hw_injection/Hardware_Injection_2016/output/';
-    scrpath = '/home/eilam.morag/hw_injection/Hardware_Injection_2016/scripts/';
+    scrpath = './home/eilam.morag/hw_injection/Hardware_Injection_2016/scripts/';
     %% Pre and suffixes to the Fstat files and lalapps scripts
     % Example file: FstatValues_9_Nov-30-2015_daily.txt; FstatLoudest_9_Jan-6-2016_cumulative.txt
     % Example script: predict_pulsarx9_Dec-9-2015_daily; recover_pulsarx2_Dec-21-2015_daily
@@ -117,5 +116,11 @@ function list = listUnexecutedScripts(startdate, enddate, compute, daily)
             end
         end
         d = d.next_day();
+    end
+    % If no scripts are unexecuted
+    if (i == 1)
+        temp = sprintf('%s', 'echo "All scripts previously executed: ', ...
+            scriptprefix, scriptsuffix, '"');
+        l{1} = temp;
     end
 end
