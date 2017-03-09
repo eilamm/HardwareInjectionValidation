@@ -4,9 +4,13 @@
 
 clear
 close
-A = Date([11, 25, 2015]);
-B = Date([1, 17, 2016]);
+% O1
+% A = Date([11, 25, 2015]);
+% B = Date([1, 17, 2016]);
 
+% O2
+A = Date([12, 31, 2016]);
+B = Date([1, 15, 2017]);
 
 %% Call plotFStat for each pulsar
 pulsars = [0:1:12, 14];

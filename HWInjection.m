@@ -17,10 +17,10 @@ function HWInjection(pulsar_list_IDs, today, server)
     end
 
     % start is the first day of the data range (Nov 25, 2015 for O1)
-    start = Date([11, 25, 2015]); % Uncomment for O1
+%     start = Date([11, 25, 2015]); % Uncomment for O1
 
     % start is the first day of the data range (Oct 20, 2016 for O2)
-%     start = Date([10, 20, 2016]); % Uncomment for O2
+    start = Date([12, 31, 2016]); % Uncomment for O2
     
     num_days = today - start;
 
