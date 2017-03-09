@@ -19,20 +19,14 @@ function lalapps_predict(p, datafiles, date, cumulative, server)
     earthpath = '/home/eilam.morag/opt/lalsuite/share/lalpulsar/earth00-19-DE405.dat.gz';
     sunpath = '/home/eilam.morag/opt/lalsuite/share/lalpulsar/sun00-19-DE405.dat.gz';
     
-    fprintf('%s%i\n', 'Predicting injection: ', p.id);
+%     fprintf('%s%i\n', 'Predicting injection: ', p.id);
     earth = ['" --ephemEarth "', earthpath];
     sun = ['" --ephemSun "', sunpath];
-%     Freq = ['" --Freq=', num2str(p.f0)];
     Freq = sprintf('%s%1.12e', '" --Freq=', p.f0);
-%     alpha = [' --Alpha=', num2str(p.alpha)];
     alpha = sprintf('%s%1.12e', ' --Alpha=', p.alpha);
-%     delta = [' --Delta=', num2str(p.delta)];
     delta = sprintf('%s%1.12e', ' --Delta=', p.delta);
-%     aplus = [' --aPlus=', num2str(p.aplus)];
     aplus = sprintf('%s%1.15e', ' --aPlus=', p.aplus);
-%     across = [' --aCross=', num2str(p.across)];
     across = sprintf('%s%1.15e', ' --aCross=', p.across);
-%     psi = [' --psi=', num2str(p.psi)];
     psi = sprintf('%s%1.15e', ' --psi=', p.psi);
     
     last = [' --IFO "', server, '" --outputFstat ', val];

@@ -24,7 +24,7 @@ function lalapps_compute(p, datafiles, date, cumulative, num_days, server)
     earthpath = '/home/eilam.morag/opt/lalsuite/share/lalpulsar/earth00-19-DE405.dat.gz';
     sunpath = '/home/eilam.morag/opt/lalsuite/share/lalpulsar/sun00-19-DE405.dat.gz';
     
-    fprintf('%s%i\n', 'Recovering injection: ', p.id);
+%     fprintf('%s%i\n', 'Recovering injection: ', p.id);
     
     FreqBand = (5/86400)/num_days;
     
