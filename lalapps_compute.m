@@ -56,7 +56,7 @@ function lalapps_compute(p, datafiles, date, cumulative, num_days, server)
     
     % Actual name of the lalapps_compute script
     filename = [basepath, 'scripts/recover_pulsarx', num2str(p.id), suffix];
-    disp(['Creating file ', filename]);
+%     disp(['Creating file ', filename]);
     fileID = fopen(filename, 'w');
     fprintf(fileID, cmd);
     fclose(fileID);

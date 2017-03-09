@@ -41,7 +41,7 @@ function lalapps_predict(p, datafiles, date, cumulative, server)
     
     % Name of the actual lalapps_predict script
     filename = [basepath, 'scripts/predict_pulsarx', num2str(p.id), suffix];
-    disp(['Creating file ', filename]);
+%     disp(['Creating file ', filename]);
     fileID = fopen(filename, 'w');
     fprintf(fileID, cmd);
     fclose(fileID);

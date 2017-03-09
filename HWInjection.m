@@ -6,7 +6,8 @@
 % This is the matlab version of the original C++ file, genScript.cpp.
 
 function HWInjection(pulsar_list_IDs, today, server)
-
+    
+    fprintf('%s%s\n', 'Creating scripts for ', today.date2str());
     % Use the list of IDs to create pulsar objects. Initialize pulsar list with
     % pulsar ID 0 everytime just to give it a data type. This pulsar will be
     % overwritten anyway.

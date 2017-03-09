@@ -15,8 +15,8 @@ disp('Inputted pulsars: ');
 disp(pulsar_list_IDs);
 
 start_today = Date([11, 25, 2015]); % Start of O1
-% end_today = Date([12, 31, 2015]); % End of O1
-end_today = Date([12, 13, 2015]); % End of O1
+end_today = Date([12, 4, 2015]);
+% end_today = Date([1, 17, 2016]); % End of O1
 
 % start_today = Date([12, 31, 2016]);
 % end_today = Date([1, 17, 2017]);
@@ -31,4 +31,9 @@ while (date <= end_today)
 end
 
 create_runAll_scripts(start_today, end_today);
+fprintf('%s%s%s%s%s\n', 'Finished creating LAL scripts. Navigate to the "scripts" ', ...
+    'directory and execute the script "runAllScripts" to ', ...
+    'run all the LAL scripts. This may take awhile. Following ', ...
+    'completion of the scripts, navigate back to this directory ', ...
+    'and run the MATLAB script "plotFStat_drive" to generate plots.');
 
