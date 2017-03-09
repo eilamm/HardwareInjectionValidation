@@ -5,11 +5,12 @@
 clear
 close
 A = Date([11, 25, 2015]);
-B = Date([1, 17, 2016]);
+B = Date([12, 4, 2015]);
 
 
 %% Call plotFStat for each pulsar
-for i=0:14
+pulsars = [0:1:12, 14];
+for i = pulsars
     fprintf('%s%d\n', 'Plotting pulsar: ', i);
     plotFStat(A, B, i);
 end 
