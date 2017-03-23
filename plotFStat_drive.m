@@ -11,7 +11,7 @@ close
 % O2
 A = Date([12, 31, 2016]);
 % B = Date([1, 15, 2017]);
-A = todayDate();
+B = todayDate();
 
 %% Call plotFStat for each pulsar
 pulsars = [0:1:12, 14];
