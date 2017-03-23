@@ -96,5 +96,17 @@ classdef Pulsar
             fclose(fileID);
         end
         
+        %% Print functions
+        % returns string of info on pulsar, for webpages
+        function str = pulsar2strWebpage(p)
+            i = p.id;
+            if (i < 10)
+                pulsar = ['Pulsar 0', num2str(i)];
+            else
+                pulsar = ['Pulsar ', num2str(i)];
+            end
+            str = sprintf('%s%s%d%s%f', pulsar, ' - Frequency: ', p.f0, '; Spindown: ', p.fdot);
+             
+        end
     end
 end

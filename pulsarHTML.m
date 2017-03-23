@@ -1,11 +1,15 @@
 % Generates the webpage for a given pulsar 
 function pulsarHTML(date, i)
+    load('pulsars.mat', 'pulsar_list');
+    p = pulsar_list(i);
+    clear pulsar_list
+    pulsarInfo = p.pulsar2strWebpage(p);
     %% Initializing variables
     if (i < 10)
-        pulsar = ['Pulsar 0', num2str(i)];
+%         pulsar = ['Pulsar 0', num2str(i)];
         nospace = ['Pulsar0', num2str(i)];        
     else
-    	pulsar = ['Pulsar ', num2str(i)];
+%     	pulsar = ['Pulsar ', num2str(i)];
         nospace = ['Pulsar', num2str(i)];
     end
     
@@ -16,7 +20,7 @@ function pulsarHTML(date, i)
         host = 'LHO';
     end
     
-    title = [pulsar, ': ', host];
+    title = [host, ': ', pulsarInfo];
     
     path = sprintf('%s', '/home/eilam.morag/public_html/HWInjection/', ...
         nospace, '/');
