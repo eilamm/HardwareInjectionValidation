@@ -105,7 +105,7 @@ classdef Pulsar
             else
                 pulsar = ['Pulsar ', num2str(i)];
             end
-            str = sprintf('%s%s%d%s%f', pulsar, ' - Frequency: ', p.f0, '; Spindown: ', p.fdot);
+            str = sprintf('%s%s%.4f%s%.4e', pulsar, ' - Frequency: ', p.f0, '; Spindown: ', p.fdot);
              
         end
     end
