@@ -1,7 +1,7 @@
 % Generates the webpage for a given pulsar 
 function pulsarHTML(date, i)
     load('pulsars.mat', 'pulsar_list');
-    p = pulsar_list(i);
+    p = pulsar_list(i+1);
     clear pulsar_list
     pulsarInfo = p.pulsar2strWebpage(p);
     %% Initializing variables
