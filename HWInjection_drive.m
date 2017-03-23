@@ -19,7 +19,8 @@ disp(pulsar_list_IDs);
 % end_today = Date([1, 17, 2016]); % End of O1
 
 start_today = Date([12, 31, 2016]);
-end_today = Date([1, 15, 2017]);
+% end_today = Date([1, 15, 2017]);
+end_today = todayDate();
 
 date = start_today;
 
@@ -37,3 +38,4 @@ fprintf('%s%s%s%s%s\n', 'Finished creating LAL scripts. Navigate to the "scripts
     'have finished running, navigate back to this directory ', ...
     'and run the MATLAB script "plotFStat_drive" to generate plots.');
 
+quit

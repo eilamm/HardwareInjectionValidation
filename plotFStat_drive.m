@@ -10,7 +10,8 @@ close
 
 % O2
 A = Date([12, 31, 2016]);
-B = Date([1, 15, 2017]);
+% B = Date([1, 15, 2017]);
+A = todayDate();
 
 %% Call plotFStat for each pulsar
 pulsars = [0:1:12, 14];
@@ -18,3 +19,5 @@ for i = pulsars
     fprintf('%s%d\n', 'Plotting pulsar: ', i);
     plotFStat(A, B, i);
 end 
+
+quit

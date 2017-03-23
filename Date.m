@@ -25,6 +25,9 @@ classdef Date
                 obj.year = 2016;
             end
         end
+        
+        
+        
         function date = next_month(obj)
             date = Date();
             date.day = 1;
