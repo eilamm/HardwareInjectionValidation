@@ -16,7 +16,7 @@ function HWInjection(pulsar_list_IDs, today, server)
         pulsar_list(i) = Pulsar(pulsar_list_IDs(i));
     end
     if (~exist('pulsars.mat', 'file'))
-        save('pulsars.mat', 'pulsar_list(i)');
+        save('pulsars.mat', 'pulsar_list');
     end
     % start is the first day of the data range (Nov 25, 2015 for O1)
 %     start = Date([11, 25, 2015]); % Uncomment for O1
