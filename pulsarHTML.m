@@ -3,7 +3,7 @@ function pulsarHTML(date, i)
     load('pulsars.mat', 'pulsar_list');
     p = pulsar_list(i+1);
     clear pulsar_list
-    pulsarInfo = p.pulsar2strWebpage(p);
+    pulsarInfo = p.pulsar2strWebpage();
     %% Initializing variables
     if (i < 10)
 %         pulsar = ['Pulsar 0', num2str(i)];
