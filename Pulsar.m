@@ -10,6 +10,7 @@ classdef Pulsar
         fdot = -1;
         aplus = -1;
         across = -1;
+        iota = -1;
         psi = -1;
         delta = -1; % Declination
         alpha = -1; % Ascension
@@ -46,7 +47,8 @@ classdef Pulsar
             discardLines(fileID, 2);
             p.aplus = parseData(fileID);
             p.across = parseData(fileID);
-            discardLines(fileID, 4);
+            discardLines(fileID, 3);
+            p.iota = parseData(fileID);
             p.psi = parseData(fileID);
             discardLines(fileID, 2);
             p.delta = parseData(fileID);
@@ -105,7 +107,9 @@ classdef Pulsar
             else
                 pulsar = ['Pulsar ', num2str(i)];
             end
-            str = sprintf('%s%s%.4f%s%.4e', pulsar, ' - Frequency: ', p.f0, '; Spindown: ', p.fdot);
+            t = cos(iota);
+            str = sprintf('%s%s%.4f%s%.4e%s%.3f', pulsar, ' - Frequency: ', ...
+                p.f0, '; Spindown: ', p.fdot, '; cos(iota): ', p.iota);
              
         end
     end
