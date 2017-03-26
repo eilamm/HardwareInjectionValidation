@@ -18,7 +18,7 @@ disp(pulsar_list_IDs);
 % end_today = Date([12, 31, 2015]);
 % end_today = Date([1, 17, 2016]); % End of O1
 
-start_today = Date([12, 31, 2016]);
+start_today = O2StartDate(); %Start of O2
 % end_today = Date([1, 15, 2017]);
 end_today = todayDate();
 

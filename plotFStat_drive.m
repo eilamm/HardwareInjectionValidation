@@ -9,7 +9,7 @@ close
 % B = Date([1, 17, 2016]);
 
 % O2
-A = Date([12, 31, 2016]);
+A = O2StartDate(); % O2 start date
 % B = Date([1, 15, 2017]);
 B = todayDate();
 
