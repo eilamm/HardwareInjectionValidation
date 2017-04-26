@@ -48,9 +48,45 @@ function plotFStat(A, B, id)
    
     %% Actually plotting the values
     plotFStat_helper(A, B, cumulData, id, cumulative);
+    % Filter out the outliers from the daily data
+    dailyData = outlierFilter(dailyData, A);
     plotFStat_helper(A, B, dailyData, id, daily);
     
     fprintf('%s%i\n', 'Finished plotting pulsar ', id);
     %% Updating the webpage for this pulsar
     pulsarHTML(B.date2str_num(), id);
+end
+
+%% Outlier filter: This function represses and logs FStat outliers
+% Takes in twoF, which can be predicted or cumulative. If the value is
+% above the EXPECTEDMAX value, which will be set to 500 (to be
+% conservative, as daily twoF values usually hover between 5 to 70), then
+% it returns NaN and outputs to a .txt file that it encountered an outlier
+% on day X of value twoF
+function filteredData = outlierFilter(data, startDay)
+    EXPECTEDMAX = 500;
+    outlierVector = data > EXPECTEDMAX;
+    filteredData = data;
+    filteredData(outlierVector == 1) = NaN;
+    
+    indicesOutliers = find(outlierVector);
+    secondCol = indicesOutliers > length(outlierVector);
+    indicesOutliers(secondCol) = indicesOutliers(secondCol) - length(outlierVector);
+    indicesOutliers = unique(indicesOutliers);
+    % Initialize a Date array of correct size
+    n = length(indicesOutliers);
+    
+    
+    days_outliers(n, 1) = string; 
+    % The - 1 is because the first day should be startDay
+    for ii = 1:1:n
+        index = indicesOutliers(ii);
+        days_str = date2str(startDay.add_days(index - 1));
+        outlier_str = sprintf(':\t%s%.2f\t%s%.2f\n', 'Computed: ', data(index, 1), 'Predicted: ', data(index, 2));
+        days_outliers(ii) = [days_str outlier_str];
+    end
+    
+    fileID = fopen('outlierLog.txt', 'wt');
+    fprintf(fileID, '%s', days_outliers);
+    fclose(fileID);
 end

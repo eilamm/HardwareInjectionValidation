@@ -318,12 +318,18 @@ classdef Date
                 r = 0;
             end
         end
-        % add_days: adds the integer number of 'days' to the date. Returns
-        % the new date as a Date object. CURRENTLY NOT WORKING FOR THE YEAR
-        % 2016 FOR UNKNOWN REASONS.
-%         function date = add_days(obj, days)
+%         add_days: adds the integer number of 'days' to the date. Returns
+%         the new date as a Date object. CURRENTLY NOT WORKING FOR THE YEAR
+%         2016 FOR UNKNOWN REASONS.
+        function date = add_days(obj, days)
 %             date = jdn2date(date2jdn(obj) + days + 2);
-%         end
+            date = obj;
+            i = 1;
+            while (i <= days)
+                date = date.next_day();
+                i = i + 1;
+            end
+        end
 
     end
 end
