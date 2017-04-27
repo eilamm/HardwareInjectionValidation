@@ -49,6 +49,9 @@ function plotFStat_helper(A, B, data, id, cumulative)
     xlabel(['Days since ', A.date2str()]);
     ylabel('Fstat');
     
+    % Separate the months
+    plot_vlines(A, B);
+    
     % Save to the date's directory and to the 'current' directory
     saveas(gcf, filename);
     saveas(gcf, current_filename);
