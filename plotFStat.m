@@ -85,8 +85,9 @@ function filteredData = outlierFilter(data, startDay, id)
         outlier_str = sprintf(':\t%s%.2f\t%s%.2f\n', 'Computed: ', data(index, 1), 'Predicted: ', data(index, 2));
         days_outliers{ii} = [days_str outlier_str];
     end
+    
     filename = sprintf('%s%d%s', 'outlierLog_', id, '.txt');
     fileID = fopen(filename, 'wt');
-    fprintf(fileID, '%s', days_outliers);
+    fprintf(fileID, '%s', transpose(char(days_outliers)));
     fclose(fileID);
 end
