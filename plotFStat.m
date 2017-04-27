@@ -49,7 +49,7 @@ function plotFStat(A, B, id)
     %% Actually plotting the values
     plotFStat_helper(A, B, cumulData, id, cumulative);
     % Filter out the outliers from the daily data
-    dailyData = outlierFilter(dailyData, A);
+    dailyData = outlierFilter(dailyData, A, id);
     plotFStat_helper(A, B, dailyData, id, daily);
     
     fprintf('%s%i\n', 'Finished plotting pulsar ', id);
@@ -58,12 +58,12 @@ function plotFStat(A, B, id)
 end
 
 %% Outlier filter: This function represses and logs FStat outliers
-% Takes in twoF, which can be predicted or cumulative. If the value is
-% above the EXPECTEDMAX value, which will be set to 500 (to be
-% conservative, as daily twoF values usually hover between 5 to 70), then
-% it returns NaN and outputs to a .txt file that it encountered an outlier
-% on day X of value twoF
-function filteredData = outlierFilter(data, startDay)
+% Takes in an n-row x 2-col data matrix, where the first column is computed
+% FStat and the second col is predicted FStat. FStat values are considered
+% outliers if they are > EXPECTEDMAX, which will be set to 500 (to be
+% conservative, as daily twoF values usually hover between 5 to 70). Outliers
+% are overwritten as NaN and recorded in outlierLog.txt
+function filteredData = outlierFilter(data, startDay, id)
     EXPECTEDMAX = 500;
     outlierVector = data > EXPECTEDMAX;
     filteredData = data;
@@ -77,16 +77,16 @@ function filteredData = outlierFilter(data, startDay)
     n = length(indicesOutliers);
     
     
-    days_outliers(n, 1) = string; 
+    days_outliers = cell(n, 1);
     % The - 1 is because the first day should be startDay
     for ii = 1:1:n
         index = indicesOutliers(ii);
         days_str = date2str(startDay.add_days(index - 1));
         outlier_str = sprintf(':\t%s%.2f\t%s%.2f\n', 'Computed: ', data(index, 1), 'Predicted: ', data(index, 2));
-        days_outliers(ii) = [days_str outlier_str];
+        days_outliers{ii} = [days_str outlier_str];
     end
-    
-    fileID = fopen('outlierLog.txt', 'wt');
+    filename = sprintf('%s%d%s', 'outlierLog_', id, '.txt');
+    fileID = fopen(filename, 'wt');
     fprintf(fileID, '%s', days_outliers);
     fclose(fileID);
 end
