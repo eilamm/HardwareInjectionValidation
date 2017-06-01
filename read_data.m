@@ -44,14 +44,16 @@ function filenames = read_data(day, month, year, server)
 
     folder = dir(filetype); % Structure containing all the sfts in directory
     
-    if (isempty(folder))
+    % if there's no SFTs in a folder, or if there's too many (e.g. Feb 23,
+    % 2017), then don't make a symlink for that folder
+    if (isempty(folder) || length(folder) > 1000)
         % Do nothing
         disp(['No sfts for date: ',  num2str(month), '/', num2str(day), '/', num2str(year)]);
     else
     
-    name = Date([month, day, year]).date2str_num();
-    symlink = sft2symlink(path, name);
-    filenames = [symlink, '/*.sft;'];
+        name = Date([month, day, year]).date2str_num();
+        symlink = sft2symlink(path, name);
+        filenames = [symlink, '/*.sft;'];
 %         for i = 1:length(folder)
 %             file_path = [folder_path, folder(i).name];
 %             symlink = sft2symlink(file_path, folder(i).name);
