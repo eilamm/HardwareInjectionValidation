@@ -22,7 +22,11 @@ start_today = O2StartDate(); %Start of O2
 % end_today = Date([1, 15, 2017]);
 end_today = todayDate();
 
-date = start_today;
+% The switch from 'date = start_today' to 'date = end_today' was done on
+% June 1, 2017. Did it because otherwise all the recover/predict scripts 
+% would be regenerated every day for no reason. 
+% date = start_today;
+date = end_today;
 
 server = getServerName();
 
