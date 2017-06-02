@@ -89,7 +89,7 @@ function list = listUnexecutedScripts(startdate, enddate, compute, daily)
         fileprefix = 'FstatLoudest_';
         scriptprefix = 'recover_pulsarx';
     else
-        fileprefix = 'FstatValues_';
+        fileprefix = 'FstatPredicted_';
         scriptprefix = 'predict_pulsarx';
     end
     
