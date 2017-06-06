@@ -2,8 +2,17 @@
 % November 28, 2016
 % Calls plotFStat for all pulsars
 
+%% Clear variables, close figures, and add directories to path
 clear
 close
+
+addpath('Classes');
+addpath('Functions');
+addpath('Plotting');
+addpath('Scripts');
+addpath('Website');
+
+%% Set the end and start date for plotting (will only plot days that have not yet been plotted)
 % O1
 % A = Date([11, 25, 2015]);
 % B = Date([1, 17, 2016]);
