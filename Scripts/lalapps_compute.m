@@ -21,8 +21,10 @@ function lalapps_compute(p, datafiles, date, cumulative, num_days, server)
     val = sprintf('%s%s%i%s%s', basepath, 'output/FstatValues_', p.id, suffix, '.txt');
     hist = sprintf('%s%s%i%s%s', basepath, 'output/FstatHist_', p.id, suffix, '.txt');
     
-    earthpath = '/home/eilam.morag/opt/lalsuite/share/lalpulsar/earth00-19-DE405.dat.gz';
-    sunpath = '/home/eilam.morag/opt/lalsuite/share/lalpulsar/sun00-19-DE405.dat.gz';
+%     earthpath = '/home/eilam.morag/opt/lalsuite/share/lalpulsar/earth00-19-DE405.dat.gz';
+    earthpath = '/home/eilam.morag/lalsuite/test/lalpulsar/earth00-19-DE405.dat.gz';
+%     sunpath = '/home/eilam.morag/opt/lalsuite/share/lalpulsar/sun00-19-DE405.dat.gz';
+    sunpath = '/home/eilam.morag/lalsuite/test/lalpulsar/sun00-19-DE405.dat.gz';
     
 %     fprintf('%s%i\n', 'Recovering injection: ', p.id);
     
