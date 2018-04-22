@@ -20,7 +20,8 @@ addpath('Website');
 % O2
 A = O2StartDate(); % O2 start date
 % B = Date([1, 15, 2017]);
-B = todayDate();
+% B = todayDate();
+B = O2EndDate();
 
 %% Call plotFStat for each pulsar
 pulsars = [0:1:12, 14];
