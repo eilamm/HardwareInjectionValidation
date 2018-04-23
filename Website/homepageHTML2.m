@@ -28,7 +28,7 @@ function homepageHTML2()
                             '<th>Pulsar Navigation</th>', ...
                         '</tr>');
     for i = 0:14
-        tableEntry = sprintf('<tr><td><a href="Pulsar%1$02d/Pulsar%1$02d.php">Pulsar %1$02d</a></td></tr>', i);
+        tableEntry = sprintf('<tr><td><a href="Pulsar%1$02d/Pulsar%1$02d.html">Pulsar %1$02d</a></td></tr>', i);
 	text = [text, tableEntry];
     end
     ending = sprintf('%s', ...
@@ -39,7 +39,7 @@ function homepageHTML2()
         '</html>');
     text = [text, ending];
 
-    filename = [path, 'HWInjection.php'];
+    filename = [path, 'HWInjection.html'];
     disp(['Creating file ', filename]);
     fileID = fopen(filename, 'w');
     fprintf(fileID, text);
