@@ -5,12 +5,12 @@
 % cumulative) and for a given pulsar
 % FstatLoudest_9_Jan-17-2016_cumulative.txt
 function twoF = parseFstatLoudest(id, date, c)
-    basepath = '/home/eilam.morag/hw_injection/Hardware_Injection_2016/';
+    basepath = sprintf('/home/eilam.morag/hw_injection/Hardware_Injection_2016/output/Pulsar%d/%s', id, date.date2str_nospace());
     if (c == 0)
-        file = sprintf('%s%s%i%s%s%s', basepath, 'output/FstatLoudest_', id, '_', ...
+        file = sprintf('%s%s%i%s%s%s', basepath, '/FstatLoudestResampOff_', id, '_', ...
             date2str_nospace(date), '_daily.txt');
     elseif (c == 1)
-        file = sprintf('%s%s%i%s%s%s', basepath, 'output/FstatLoudest_', id, '_', ...
+        file = sprintf('%s%s%i%s%s%s', basepath, '/FstatLoudestResampOff_', id, '_', ...
             date2str_nospace(date), '_cumulative.txt');
     end
     

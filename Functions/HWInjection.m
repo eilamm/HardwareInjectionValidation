@@ -14,6 +14,10 @@ function HWInjection(pulsar_list_IDs, today, server)
     pulsar_list = [Pulsar(0)];
     for i = 1:1:length(pulsar_list_IDs)
         pulsar_list(i) = Pulsar(pulsar_list_IDs(i));
+	outputFolder = sprintf('/home/eilam.morag/hw_injection/Hardware_Injection_2016/output/Pulsar%d/%s', pulsar_list_IDs(i), today.date2str_nospace()); 
+	if (~exist(outputFolder, 'dir'))
+		mkdir(outputFolder);
+	end
     end
     if (~exist('pulsars.mat', 'file'))
         save('pulsars.mat', 'pulsar_list');
@@ -25,6 +29,8 @@ function HWInjection(pulsar_list_IDs, today, server)
     start = O2StartDate(); % Uncomment for O2
     
     num_days = today - start;
+
+
 
     sfts_cumulative = cumulativePoint(start, today, pulsar_list, server);
     for pulsar = pulsar_list

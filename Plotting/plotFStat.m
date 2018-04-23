@@ -45,7 +45,7 @@ function plotFStat(A, B, id)
        
         day = day.next_day();
     end
-   
+    printFStatLog(A, B, dailyData, cumulData, id); 
     %% Actually plotting the values
     plotFStat_helper(A, B, cumulData, id, cumulative);
     % Filter out the outliers from the daily data
@@ -54,7 +54,7 @@ function plotFStat(A, B, id)
     
     fprintf('%s%i\n', 'Finished plotting pulsar ', id);
     %% Updating the webpage for this pulsar
-    pulsarHTML(B.date2str_num(), id);
+    % pulsarHTML2(id);
 end
 
 %% Outlier filter: This function represses and logs FStat outliers

@@ -15,6 +15,29 @@ function firstRunInit()
         mkdir(folder);
     end
     clear folder
+    %% If the atoms folder does not exist, create it
+    folder = '/home/eilam.morag/hw_injection/Hardware_Injection_2016/Atoms';
+    if (~exist(folder, 'dir'))
+        disp(['Creating the folder: ', folder]);
+        mkdir(folder);
+	subdir = sprintf('%s/daily', folder);
+        disp(['Creating the folder: ', subdir]);
+	mkdir(subdir);
+	for i = 0:14
+		pulsar = sprintf('%s/Pulsar%d', subdir, i);
+        	disp(['Creating the folder: ', pulsar]);
+		mkdir(pulsar);
+	end
+	subdir = sprintf('%s/cumulative', folder);
+        disp(['Creating the folder: ', subdir]);
+	mkdir(subdir);
+	for i = 0:14
+		pulsar = sprintf('%s/Pulsar%d', subdir, i);
+        	disp(['Creating the folder: ', pulsar]);
+		mkdir(pulsar);
+	end
+    end
+    clear folder subdir pulsar
     %% If the HWInjection folder does not exist, create it and pulsar subdirs
     folder = '/home/eilam.morag/public_html/HWInjection';
     if (~exist(folder, 'dir'))

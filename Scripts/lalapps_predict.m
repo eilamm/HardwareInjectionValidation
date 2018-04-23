@@ -7,19 +7,23 @@
 function lalapps_predict(p, datafiles, date, cumulative, server)
     % Suffix is used to uniquely name the lalapps scripts and their outputs
     if (cumulative == 1)
-        suffix = ['_', date.date2str_nospace, '_cumulative'];
+       % suffix = ['_', date.date2str_nospace, '_cumulative'];
+	suffix = sprintf('_%i_%s_cumulative', p.id, date.date2str_nospace);
     elseif (cumulative == 0)
-        suffix = ['_', date.date2str_nospace, '_daily'];
+       % suffix = ['_', date.date2str_nospace, '_daily'];
+	suffix = sprintf('_%i_%s_daily', p.id, date.date2str_nospace);
     end
     
     basepath = '/home/eilam.morag/hw_injection/Hardware_Injection_2016/';
     % Name for the output of the lalapps_predict script
-    val = sprintf('%s%s%i%s%s', basepath, 'output/FstatPredicted_', p.id, suffix, '.txt');
+    outputPath = sprintf('%soutput/Pulsar%d/%s/', basepath, p.id, date.date2str_nospace()); 
+    val = sprintf('%sFstatPredicted%s.txt', outputPath, suffix);
+%    val = sprintf('%s%s%i%s%s', basepath, 'output/FstatPredicted_', p.id, suffix, '.txt');
     
 %     earthpath = '/home/eilam.morag/opt/lalsuite/share/lalpulsar/earth00-19-DE405.dat.gz';
-    earthpath = '/home/eilam.morag/lalsuite/test/lalpulsar/earth00-19-DE405.dat.gz';
+    earthpath = '/home/eilam.morag/lalsuite/lalpulsar/test/earth00-19-DE405.dat.gz';
 %     sunpath = '/home/eilam.morag/opt/lalsuite/share/lalpulsar/sun00-19-DE405.dat.gz';
-    sunpath = '/home/eilam.morag/lalsuite/test/lalpulsar/sun00-19-DE405.dat.gz';
+    sunpath = '/home/eilam.morag/lalsuite/lalpulsar/test/sun00-19-DE405.dat.gz';
     
 %     fprintf('%s%i\n', 'Predicting injection: ', p.id);
     earth = ['" --ephemEarth "', earthpath];
@@ -36,7 +40,7 @@ function lalapps_predict(p, datafiles, date, cumulative, server)
         datafiles, earth, sun, Freq, alpha, delta, aplus, across, psi, last);
     
     % Name of the actual lalapps_predict script
-    filename = [basepath, 'scripts/predict_pulsarx', num2str(p.id), suffix];
+    filename = [basepath, 'scripts/predict_pulsar',  suffix];
 %     disp(['Creating file ', filename]);
     fileID = fopen(filename, 'w');
     fprintf(fileID, cmd);

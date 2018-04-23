@@ -107,9 +107,11 @@ classdef Pulsar
             else
                 pulsar = ['Pulsar ', num2str(i)];
             end
+	    pulsar = sprintf('Pulsar %02d', i);
             t = cos(p.iota);
             str = sprintf('%s%s%.4f%s%.4e%s%.3f', pulsar, ' - Frequency: ', ...
                 p.f0, '; Spindown: ', p.fdot, '; cos(iota): ', t);
+	    str = sprintf('Pulsar %02d - Frequency: %.4f Hz; Spindown: %.4e Hz; cos(iota): %.3f', i, p.f0, p.fdot, t);
              
         end
     end
