@@ -1,0 +1,22 @@
+#!/bin/bash
+cd /home/eilam.morag/hw_injection/Hardware_Injection_2016/
+rm -r DONE
+echo >> WORKING
+echo "Creating LAL scripts"
+
+/ldcg/matlab_r2015a/bin/matlab -nodisplay -nodesktop -r HWInjection_drive
+
+echo "Running LAL scripts"
+
+cd scripts
+./runAllScripts
+cd ..
+
+echo "Plotting data and updating webpages"
+
+/ldcg/matlab_r2015a/bin/matlab -nodisplay -nodesktop -r plotFStat_drive
+
+/ldcg/matlab_r2015a/bin/matlab -nodisplay -nodesktop -r log_process.m
+
+rm -r WORKING
+echo >> DONE
