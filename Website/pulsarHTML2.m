@@ -30,6 +30,9 @@ function pulsarHTML2(i)
     prevPulsar = i - 1; 
     if (i == 14)
 	nextPulsar = 0;
+	prevPulsar = 12;
+    elseif (i == 12)
+	nextPulsar = 14;
     elseif (i == 0);
 	prevPulsar = 14;
     end
