@@ -13,17 +13,6 @@ function xTickDateLabels(firstDate, lastDate, fig)
 	day = firstDate;					
 	index = 1;						% For indexing into the xTickLabels cell array
 	for i = 1:numDays
-%		if (isFirstDayOfMonth(day))
-%			xTickLabels{index} = day.date2str();
-%			index = index + 1;
-%			counter = 1;
-%		elseif (counter == spacing)
-%			xTickLabels{index} = day.day;
-%			index = index + 1;
-%			counter = 1;
-%		else
-%			counter = counter + 1;
-%		end
 		if (i == xTicks(index))
 			xTickLabels{index} = day.date2str();
 			index = index + 1;

@@ -19,17 +19,10 @@ function plotFStat_helper(A, B, data, id, cumulative)
     scatter(xaxis, data(:, 2), 'blue');
     
     %% Initialize paths for this date's directory
-%    if (id < 10)
-%        path =sprintf('%s%d%s', '/home/eilam.morag/public_html/HWInjection/Pulsar0', id); 
-%    else
-%        path =sprintf('%s%d%s', '/home/eilam.morag/public_html/HWInjection/Pulsar', id); 
-%    end
     path =  sprintf('/home/eilam.morag/public_html/HWInjection/Pulsar%02d', id);
     % Make paths to the 'current' subdirectory and to the date's
     % subdirectory
-%    current = sprintf('%s', path, '/current');
     current = sprintf('%s/current', path);
-%    path = sprintf('%s', path, '/', B.date2str_num());
     path = sprintf('%s/%s', path, B.date2str_num());
     
     % Check if there's a directory for this date. If not, create one.
@@ -39,18 +32,12 @@ function plotFStat_helper(A, B, data, id, cumulative)
     
     %% Saving and formatting the graphs
     if (cumulative == 0)
-%        filename = sprintf('%s', path, '/', B.date2str_num(), '_d.png');
 	filename = sprintf('%s/%s_d.png', path, B.date2str_num());
-%        current_filename = sprintf('%s', current, '/', B.date2str_num(), '_d.png');
 	current_filename = sprintf('%s/dailyPlot.png', current);
-        title(['Daily Fstat Values between ', A.date2str(), ' and ', B.date2str(), ' for Pulsar ', num2str(id)]);
         title({'Daily F-stat Values'; sprintf('%s to %s, Pulsar %d',  A.date2str(), B.date2str(), id)});
     elseif (cumulative == 1)
-%        filename = sprintf('%s', path, '/', B.date2str_num(), '_c.png');
 	filename = sprintf('%s/%s_c.png', path, B.date2str_num());
-%        current_filename = sprintf('%s', current, '/', B.date2str_num(), '_c.png');
 	current_filename = sprintf('%s/cumulativePlot.png', current);
-       title(['Cumulative Fstat Values between ', A.date2str(), ' and ', B.date2str(), ' for Pulsar ', num2str(id)]);
         title({'Cumulative F-stat Values'; sprintf('%s to %s, Pulsar %d',  A.date2str(), B.date2str(), id)});
     end
     legend('Computed', 'Predicted', 'Location', 'eastoutside');     
@@ -59,7 +46,6 @@ function plotFStat_helper(A, B, data, id, cumulative)
     yTicksDecimalNotation(gcf);
     grid;
     % Separate the months
-    % plot_vlines(A, B);
     
     % Save to the date's directory and to the 'current' directory
     saveas(gcf, filename);

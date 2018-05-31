@@ -13,6 +13,11 @@ function plotFStat(A, B, id)
     % day in the range of days. The first column will be the computed Fstat
     % and the second column will be the predicted Fstat
     cumulData = zeros(num_days, 2);
+
+    h0Data = zeros(num_days, 1);
+    cosiotaData = zeros(num_days, 1);
+    phi0Data = zeros(num_days, 1);
+    psiData = zeros(num_days, 1);
    
     % dailyData will be the same thing but for the daily plot
     dailyData = zeros(num_days, 2);
@@ -28,15 +33,20 @@ function plotFStat(A, B, id)
            index = day - A;
 
            % Cumulative
-           twoF = parseFstatLoudest(id, day, cumulative);
+           [twoF, h0, cosiota, phi0, psi] = parseFstatLoudest(id, day, cumulative);
            twoF_p = parseFstatPredicted(id, day, cumulative);
+
+	   h0Data(index) = h0;
+	   cosiotaData(index) = cosiota;
+           phi0Data(index) = phi0;
+	   psiData(index) = psi;
 
            cumulData(index, 1) = twoF;
            cumulData(index, 2) = twoF_p;
            %%%%%%%%%%%%%%%%%%%%
 
            % Daily
-           twoF = parseFstatLoudest(id, day, daily);
+           [twoF, ~, ~, ~, ~] = parseFstatLoudest(id, day, daily);
            twoF_p = parseFstatPredicted(id, day, daily);
 
            dailyData(index, 1) = twoF;
@@ -46,16 +56,261 @@ function plotFStat(A, B, id)
         day = day.next_day();
     end
     printFStatLog(A, B, dailyData, cumulData, id); 
-    %% Actually plotting the values
-    plotFStat_helper(A, B, cumulData, id, cumulative);
+    
     % Filter out the outliers from the daily data
     dailyData = outlierFilter(dailyData, A, id);
-    plotFStat_helper(A, B, dailyData, id, daily);
+
+    %% Actually plotting the values
+    % Create paths to directories where plots will be saved
+    path =  sprintf('/home/eilam.morag/public_html/HWInjection/Pulsar%02d', id);
+    % Make paths to the 'current' subdirectory and to the date's
+    % subdirectory
+    current = sprintf('%s/current', path);
+    path = sprintf('%s/%s', path, B.date2str_num());
+
+    % Check if there's a directory for this date. If not, create one.
+    if (~exist(path, 'dir'))
+        mkdir(path);
+    end
+
+
+    %%%%%%%%%%%%%%% Cumulative F-stat %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+    % Create the plot
+    figHandle = figure();
     
+    % Plot the computed values
+    scatter(1:num_days, cumulData(:, 1), 'red');
+    hold on;
+    % Plot the predicted values on the same graph
+    scatter(1:num_days, cumulData(:, 2), 'blue');
+    hold off;
+
+    legend('Computed', 'Predicted', 'Location', 'eastoutside');
+    ylabel('Fstat');
+    xTickDateLabels(A, B, gcf);
+    yTicksDecimalNotation(gcf);
+    grid;
+    % Give it title and labels
+    title({'Cumulative F-stat Values'; sprintf('%s to %s, Pulsar %d',  A.date2str(), B.date2str(), id)});
+    
+    
+    % Save to the date's directory and to the 'current' directory
+    filename = sprintf('%s/%s_c.png', path, B.date2str_num());
+    current_filename = sprintf('%s/cumulativePlot.png', current);
+    saveas(gcf, filename);
+    saveas(gcf, current_filename);
+    close(gcf);
+
+    %%%%%%%%%%%%%%% Daily F-stat      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+    % Create the plot
+    figHandle = figure();
+    
+    % Plot the computed values
+    scatter(1:num_days, dailyData(:, 1), 'red');
+    hold on;
+    % Plot the predicted values on the same graph
+    scatter(1:num_days, dailyData(:, 2), 'blue');
+    hold off;
+
+    legend('Computed', 'Predicted', 'Location', 'eastoutside');
+    ylabel('Fstat');
+    xTickDateLabels(A, B, gcf);
+    yTicksDecimalNotation(gcf);
+    grid;
+    % Give it title and labels
+    title({'Daily F-stat Values'; sprintf('%s to %s, Pulsar %d',  A.date2str(), B.date2str(), id)});
+    
+    
+    % Save to the date's directory and to the 'current' directory
+    filename = sprintf('%s/%s_d.png', path, B.date2str_num());
+    current_filename = sprintf('%s/dailyPlot.png', current);
+    saveas(gcf, filename);
+    saveas(gcf, current_filename);
+    close(gcf); 
+
+    %%%%%%%%%%%%%%% h0                %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+    % Create the plot
+    figHandle = figure();
+    
+    % Plot the computed values
+    scatter(1:num_days, h0Data, 'red');
+
+    % Give it title and labels
+    xTickDateLabels(A, B, gcf);
+%    yTicksDecimalNotation(gcf);
+    title({'Cumulative h_0'; sprintf('%s to %s, Pulsar %d',  A.date2str(), B.date2str(), id)});
+    grid;
+    
+    % Save to the date's directory and to the 'current' directory
+    filename = sprintf('%s/%s_h0.png', path, B.date2str_num());
+    current_filename = sprintf('%s/h0Plot.png', current);
+    saveas(gcf, filename);
+    saveas(gcf, current_filename);
+    close(gcf);
+
+    %%%%%%%%%%%%%%% cos(iota)         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+    % Create the plot
+    figHandle = figure();
+    
+    % Plot the computed values
+    scatter(1:num_days, cosiotaData, 'red');
+
+    % Give it title and labels
+    xTickDateLabels(A, B, gcf);
+    yTicksDecimalNotation(gcf);
+    title({'Cumulative cos(iota)'; sprintf('%s to %s, Pulsar %d',  A.date2str(), B.date2str(), id)});
+    grid;
+    
+    % Save to the date's directory and to the 'current' directory
+    filename = sprintf('%s/%s_cosiota.png', path, B.date2str_num());
+    current_filename = sprintf('%s/cosiotaPlot.png', current);
+    saveas(gcf, filename);
+    saveas(gcf, current_filename);
+    close(gcf);
+
+    %%%%%%%%%%%%%%% phi0              %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % Create the plot
+    figHandle = figure();
+    
+    % Plot the computed values
+    scatter(1:num_days, phi0Data, 'red');
+
+    % Give it title and labels
+    xTickDateLabels(A, B, gcf);
+    yTicksDecimalNotation(gcf);
+    title({'Cumulative phi_0'; sprintf('%s to %s, Pulsar %d',  A.date2str(), B.date2str(), id)});
+    grid;
+    
+    % Save to the date's directory and to the 'current' directory
+    filename = sprintf('%s/%s_phi0.png', path, B.date2str_num());
+    current_filename = sprintf('%s/phi0Plot.png', current);
+    saveas(gcf, filename);
+    saveas(gcf, current_filename);
+    close(gcf);
+
+    %%%%%%%%%%%%%%% psi               %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+    % Create the plot
+    figHandle = figure();
+    
+    % Plot the computed values
+    scatter(1:num_days, psiData, 'red');
+
+    % Give it title and labels
+    xTickDateLabels(A, B, gcf);
+    yTicksDecimalNotation(gcf);
+    title({'Cumulative psi'; sprintf('%s to %s, Pulsar %d',  A.date2str(), B.date2str(), id)});
+    grid;
+    
+    % Save to the date's directory and to the 'current' directory
+    filename = sprintf('%s/%s_psi.png', path, B.date2str_num());
+    current_filename = sprintf('%s/psiPlot.png', current);
+    saveas(gcf, filename);
+    saveas(gcf, current_filename);
+    close(gcf);
+   
+
+
+
+
+ 
     fprintf('%s%i\n', 'Finished plotting pulsar ', id);
     %% Updating the webpage for this pulsar
-    % pulsarHTML2(id);
+   %  pulsarHTML2(id);
 end
+
+
+
+
+
+function figHandle = plotFStat_helper(A, B, data, id, cumulative)
+    num_days = A - B;
+
+    %% Plot the values
+    figHandle = figure;
+
+    % Prepare the xaxis
+    xaxis = 1:1:num_days;
+
+    % Plot the computed values
+    scatter(xaxis, data(:, 1), 'red');
+    hold on;
+
+    % Plot the predicted values on the same graph
+    scatter(xaxis, data(:, 2), 'blue');
+
+    %% Initialize paths for this date's directory
+    path =  sprintf('/home/eilam.morag/public_html/HWInjection/Pulsar%02d', id);
+    % Make paths to the 'current' subdirectory and to the date's
+    % subdirectory
+    current = sprintf('%s/current', path);
+    path = sprintf('%s/%s', path, B.date2str_num());
+
+    % Check if there's a directory for this date. If not, create one.
+    if (~exist(path, 'dir'))
+        mkdir(path);
+    end
+
+    %% Saving and formatting the graphs
+    if (cumulative == 0)
+        filename = sprintf('%s/%s_d.png', path, B.date2str_num());
+        current_filename = sprintf('%s/dailyPlot.png', current);
+        title({'Daily F-stat Values'; sprintf('%s to %s, Pulsar %d',  A.date2str(), B.date2str(), id)});
+    elseif (cumulative == 1)
+        filename = sprintf('%s/%s_c.png', path, B.date2str_num());
+        current_filename = sprintf('%s/cumulativePlot.png', current);
+        title({'Cumulative F-stat Values'; sprintf('%s to %s, Pulsar %d',  A.date2str(), B.date2str(), id)});
+    end
+    legend('Computed', 'Predicted', 'Location', 'eastoutside');
+    ylabel('Fstat');
+    xTickDateLabels(A, B, gcf);
+    yTicksDecimalNotation(gcf);
+    grid;
+    % Separate the months
+
+    % Save to the date's directory and to the 'current' directory
+    saveas(gcf, filename);
+    saveas(gcf, current_filename);
+    close(gcf);
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 %% Outlier filter: This function represses and logs FStat outliers
 % Takes in an n-row x 2-col data matrix, where the first column is computed
