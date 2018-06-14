@@ -17,6 +17,10 @@ function printFStatLog(firstDay, lastDay, dailyData, cumulativeData, id)
 	end
 	filename = sprintf('/home/eilam.morag/public_html/HWInjection/Pulsar%02d/%s/FStatList_%s.txt', id, lastDay.date2str_num(), lastDay.date2str_nospace());
 	fileID = fopen(filename, 'w');
+	if (fileID == -1)
+		fprintf('Could not print log on %s\n', lastDay.date2str());
+		return;
+	end
 	fprintf(fileID, 'Loudest F-stat values for Pulsar %02d between %s and %s\n', id, firstDay.date2str(), lastDay.date2str());
 	fprintf(fileID, 'Date\t\t\tDaily\t\t\tPredicted Daily\t\tCumulative\t\tPredicted Cumulative\n');
 	fprintf(fileID, '%s\t\t%+s\t\t%+s\t\t%+s\t\t%+s\n', text{:});

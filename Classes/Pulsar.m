@@ -14,6 +14,8 @@ classdef Pulsar
         psi = -1;
         delta = -1; % Declination
         alpha = -1; % Ascension
+	h0 = -1;
+	phi0 = -1;
     end
     methods
         % Constructor
@@ -47,10 +49,12 @@ classdef Pulsar
             discardLines(fileID, 2);
             p.aplus = parseData(fileID);
             p.across = parseData(fileID);
-            discardLines(fileID, 3);
+	    p.h0 = parseData(fileID);
+            discardLines(fileID, 2);
             p.iota = parseData(fileID);
             p.psi = parseData(fileID);
-            discardLines(fileID, 2);
+	    p.phi0 = parseData(fileID);
+            discardLines(fileID, 1);
             p.delta = parseData(fileID);
             p.alpha = parseData(fileID);
         end        

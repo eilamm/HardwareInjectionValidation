@@ -22,7 +22,7 @@ A = O2StartDate(); % O2 start date
 % B = Date([1, 15, 2017]);
 % B = todayDate();
 % B = O2EndDate();
-B = Date([8, 24, 2017]);
+B = Date([8, 23, 2017]);
 
 %% Call plotFStat for each pulsar
 pulsars = [0:1:12, 14];

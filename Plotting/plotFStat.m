@@ -7,7 +7,8 @@ function plotFStat(A, B, id)
     %% Initializing variables
     day = A;
     num_days = B - A;
-    
+    load('pulsars.mat', 'pulsar_list');
+    pulsar = pulsar_list(id + 1);
     % cumulData will store the cumulative Fstat values. Each row will
     % correspond to a day's entry in the plot, with entry 1 being the first
     % day in the range of days. The first column will be the computed Fstat
@@ -137,10 +138,15 @@ function plotFStat(A, B, id)
 
     % Give it title and labels
     xTickDateLabels(A, B, gcf);
-%    yTicksDecimalNotation(gcf);
     title({'Cumulative h_0'; sprintf('%s to %s, Pulsar %d',  A.date2str(), B.date2str(), id)});
     grid;
-    
+   
+    % Plot expected value over it
+    hold on;
+    plot(1:num_days, ones(1, num_days)*pulsar.h0, '-b');
+    hold off;
+    legend('Computed', 'Expected', 'Location', 'NorthEastOutside');
+ 
     % Save to the date's directory and to the 'current' directory
     filename = sprintf('%s/%s_h0.png', path, B.date2str_num());
     current_filename = sprintf('%s/h0Plot.png', current);
@@ -161,6 +167,12 @@ function plotFStat(A, B, id)
     title({'Cumulative cos(iota)'; sprintf('%s to %s, Pulsar %d',  A.date2str(), B.date2str(), id)});
     grid;
     
+    % Plot expected value over it
+    hold on;
+    plot(1:num_days, ones(1, num_days)*cos(pulsar.iota), '-b');
+    hold off;
+    legend('Computed', 'Expected', 'Location', 'NorthEastOutside');
+
     % Save to the date's directory and to the 'current' directory
     filename = sprintf('%s/%s_cosiota.png', path, B.date2str_num());
     current_filename = sprintf('%s/cosiotaPlot.png', current);
@@ -180,6 +192,12 @@ function plotFStat(A, B, id)
     yTicksDecimalNotation(gcf);
     title({'Cumulative phi_0'; sprintf('%s to %s, Pulsar %d',  A.date2str(), B.date2str(), id)});
     grid;
+
+    % Plot expected value over it
+    hold on;
+    plot(1:num_days, ones(1, num_days)*pulsar.phi0, '-b');
+    hold off;
+    legend('Computed', 'Expected', 'Location', 'NorthEastOutside');
     
     % Save to the date's directory and to the 'current' directory
     filename = sprintf('%s/%s_phi0.png', path, B.date2str_num());
@@ -201,6 +219,11 @@ function plotFStat(A, B, id)
     title({'Cumulative psi'; sprintf('%s to %s, Pulsar %d',  A.date2str(), B.date2str(), id)});
     grid;
     
+    % Plot expected value over it
+    hold on;
+    plot(1:num_days, ones(1, num_days)*pulsar.psi, '-b');
+    hold off;
+    legend('Computed', 'Expected', 'Location', 'NorthEastOutside');
     % Save to the date's directory and to the 'current' directory
     filename = sprintf('%s/%s_psi.png', path, B.date2str_num());
     current_filename = sprintf('%s/psiPlot.png', current);
