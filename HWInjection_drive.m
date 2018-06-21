@@ -6,23 +6,13 @@
 % This is the matlab version of the original C++ file, genScript.cpp.
 
 %% Clear variables, close figures, and add directories to path
-clear
-close
+clear 
+close all
 
-addpath('Classes');
-addpath('Functions');
-addpath('Plotting');
-addpath('Pulsar-parameters');
-addpath('Scripts');
-addpath('Website');
+includePaths;
 
 %% Initialize if this is the first run
 firstRunInit();
-
-%% Get the pulsars of interest
-pulsar_list_IDs = inputPulsars();
-disp('Inputted pulsars: ');
-disp(pulsar_list_IDs);
 
 %% Set the end and start date for script-creation
 % start_today = Date([11, 25, 2015]); % Start of O1
@@ -35,11 +25,11 @@ start_today = O2StartDate(); %Start of O2
 if (todayDate() <= O2EndDate())
 	end_today = todayDate();
 else
-	% end_today = O2EndDate();
-	disp('Observation run not in progress - cancelling injection run.');
-	return;
+	end_today = O2EndDate();
+	% disp('Observation run not in progress - cancelling injection run.');
+	% return;
 end
-
+end_today = Date([08, 22, 2017]);
 %% Create LAL scripts for all days between the start and end dates
 % The switch from 'date = start_today' to 'date = end_today' was done on
 % June 1, 2017. Did it because otherwise all the recover/predict scripts 
@@ -50,7 +40,7 @@ date = start_today;
 server = getServerName();
 
 while (date <= end_today)
-    HWInjection(pulsar_list_IDs, date, server);
+    HWInjection(date, server);
     date = date.next_day();
 end
 

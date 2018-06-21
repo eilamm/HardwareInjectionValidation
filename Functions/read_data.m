@@ -19,27 +19,17 @@ function filenames = read_data(day, month, year, server)
     end
     
     filenames = '';   
-       
-    y = num2str(year);
-    if (month < 10)
-        m = ['0', num2str(month)];
-    else
-        m = num2str(month);
-    end
-    if (day < 10)
-        d = ['0', num2str(day)];
-    else
-        d = num2str(day);
-    end
+
+    y = sprintf('%d', year);
+    m = sprintf('%2d', month);
+    d = sprintf('%2d', day);  
     
-    temp = [path, '/fscans_', y, '_', m, '_', d, '*'];
-    folder = dir(temp);
-    path = [path, folder.name];
+%     temp = [path, '/fscans_', y, '_', m, '_', d, '*'];
+    folder = dir(sprintf('%sfscans_%d_%2d_%2d*', path, year, month, day));
+%    folder = dir(temp);
+    path = sprintf('%s%s/%s/sfts/tmp/', path, folder.name, chan);
     
-    
-    
-        
-    path = [path, '/', chan, '/sfts/tmp/'];
+%    path = [path, '/', chan, '/sfts/tmp/'];
     filetype = [path, '*.sft'];
 
     folder = dir(filetype); % Structure containing all the sfts in directory
@@ -50,17 +40,17 @@ function filenames = read_data(day, month, year, server)
         % Do nothing
         disp(['No sfts for date: ',  num2str(month), '/', num2str(day), '/', num2str(year)]);
     else
-    
         name = Date([month, day, year]).date2str_num();
+	% Open Prof. Riles' injection timespan file for this day, get all injection timespans into an array
+	
+	% Iterate through SFTs in the folder
+	for sft = 1:length(folder)
+		% Read timespan of SFT (in name)
+		% If timespan is within range of injection timespans, then create a symlink to it in the directory for this date
+	end 
+	% Create a symlink to 
         symlink = sft2symlink(path, name);
         filenames = [symlink, '/*.sft;'];
-%         for i = 1:length(folder)
-%             file_path = [folder_path, folder(i).name];
-%             symlink = sft2symlink(file_path, folder(i).name);
-%             filenames = [filenames, symlink, ';'];
-% %             filenames = [filenames, folder_path, folder(i).name, ';' ];
-%         end
-        
     end
     
 end

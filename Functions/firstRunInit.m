@@ -1,34 +1,4 @@
 function firstRunInit()
-    %% If the SFTSymlinks folder does not exist, create it, along with all the scripts inside it
-    folder = '/home/eilam.morag/hw_injection/Hardware_Injection_2016/SFTSymlinks';
-    if (~exist(folder, 'dir'))
-        disp('First time initializations...');
-        disp(['Creating the folder: ', folder]);
-        mkdir(folder);
-        % Add the functions for creating the runAll scripts
-    end
-    clear folder
-    %% If the Functions folder does not exist, create it, along with all the scripts inside it
-    folder = '/home/eilam.morag/hw_injection/Hardware_Injection_2016/Functions';
-    if (~exist(folder, 'dir'))
-        disp('First time initializations...');
-        disp(['Creating the folder: ', folder]);
-        mkdir(folder);
-        % Add the functions for creating the runAll scripts
-    end
-    clear folder
-
-    %% If the Classes folder does not exist, create it, along with all the scripts inside it
-    folder = '/home/eilam.morag/hw_injection/Hardware_Injection_2016/Classes';
-    if (~exist(folder, 'dir'))
-        disp('First time initializations...');
-        disp(['Creating the folder: ', folder]);
-        mkdir(folder);
-        % Add the functions for creating the runAll scripts
-    end
-    clear folder
-
-
     %% If the scripts folder does not exist, create it, along with all the scripts inside it
     folder = '/home/eilam.morag/hw_injection/Hardware_Injection_2016/scripts';
     if (~exist(folder, 'dir'))
@@ -84,7 +54,7 @@ function firstRunInit()
     end
     clear folder pulsar
     %% If the main webpage does not exist, create it
-    homepage = '/home/eilam.morag/public_html/HWInjection/HWInjection.php';
+    homepage = '/home/eilam.morag/public_html/HWInjection/HWInjection.html';
     if (~exist(homepage, 'file'))
         disp(['Creating the homepage: ', homepage]);
         homepageHTML();
@@ -107,4 +77,14 @@ function firstRunInit()
         end
         clear destination file1 file2 status1 status2 
     end
+
+   if (~exist('Pulsar-parameters/pulsars.mat'))
+	disp('Saving pulsar information to variable pulsar_list in Pulsar-parameters/pulsars.mat');
+        for i = 0:14
+	    pulsar_list(i + 1) = Pulsar(i);
+        end
+        save('Pulsar-parameters/pulsars.mat', 'pulsar_list');    
+   end
+
+
 end
