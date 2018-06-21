@@ -17,7 +17,7 @@ function lalapps_predict(p, datafiles, date, cumulative, server)
     basepath = '/home/eilam.morag/hw_injection/Hardware_Injection_2016/';
     % Name for the output of the lalapps_predict script
     outputPath = sprintf('%soutput/Pulsar%d/%s/', basepath, p.id, date.date2str_nospace()); 
-    val = sprintf('%sFstatPredicted%s.txt', outputPath, suffix);
+    val = sprintf('%sFstatPredicted_restricted%s.txt', outputPath, suffix);
 %    val = sprintf('%s%s%i%s%s', basepath, 'output/FstatPredicted_', p.id, suffix, '.txt');
     
 %     earthpath = '/home/eilam.morag/opt/lalsuite/share/lalpulsar/earth00-19-DE405.dat.gz';

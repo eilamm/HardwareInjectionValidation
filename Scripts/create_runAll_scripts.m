@@ -66,12 +66,12 @@ function list = listUnexecutedScripts(startdate, enddate, compute, daily)
     % Example file: FstatValues_9_Nov-30-2015_daily.txt; FstatLoudest_9_Jan-6-2016_cumulative.txt
     % Example script: predict_pulsarx9_Dec-9-2015_daily; recover_pulsarx2_Dec-21-2015_daily
     if (compute == 1)
-        fileprefix = 'FstatLoudestResampOff_';
+        fileprefix = 'FstatLoudestResampOff_restricted_';
 %        scriptprefix = 'recover_pulsar';
 	scriptprefix = 'recover_pulsar_restricted';
 
     else
-        fileprefix = 'FstatPredicted_';
+        fileprefix = 'FstatPredicted_restricted_';
 %        scriptprefix = 'predict_pulsar';
         scriptprefix = 'predict_pulsar_restricted';
     end

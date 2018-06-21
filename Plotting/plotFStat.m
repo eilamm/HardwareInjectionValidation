@@ -136,17 +136,24 @@ function plotFStat(A, B, id)
     % Plot the computed values
     scatter(1:num_days, h0Data, 'red');
 
-    % Give it title and labels
-    xTickDateLabels(A, B, gcf);
-    title({'Cumulative h_0'; sprintf('%s to %s, Pulsar %d',  A.date2str(), B.date2str(), id)});
-    grid;
-   
     % Plot expected value over it
     hold on;
     plot(1:num_days, ones(1, num_days)*pulsar.h0, '-b');
     hold off;
+
+    % Set axis limits
+    if (pulsar.h0 > max(h0Data))
+       ylim([0, 1.1*pulsar.h0]);
+    else
+       ylim([0, 1.1*max(h0Data)]);
+    end
+
+    % Give it title and labels
+    xTickDateLabels(A, B, gcf);
+    title({'Cumulative h_0'; sprintf('%s to %s, Pulsar %d',  A.date2str(), B.date2str(), id)});
     legend('Computed', 'Expected', 'Location', 'NorthEastOutside');
- 
+    grid;
+    
     % Save to the date's directory and to the 'current' directory
     filename = sprintf('%s/%s_h0.png', path, B.date2str_num());
     current_filename = sprintf('%s/h0Plot.png', current);
@@ -161,17 +168,20 @@ function plotFStat(A, B, id)
     % Plot the computed values
     scatter(1:num_days, cosiotaData, 'red');
 
-    % Give it title and labels
-    xTickDateLabels(A, B, gcf);
-    yTicksDecimalNotation(gcf);
-    title({'Cumulative cos(iota)'; sprintf('%s to %s, Pulsar %d',  A.date2str(), B.date2str(), id)});
-    grid;
-    
     % Plot expected value over it
     hold on;
     plot(1:num_days, ones(1, num_days)*cos(pulsar.iota), '-b');
     hold off;
+
+    % Set axis limits
+    ylim([-1, 1]);
+
+    % Give it title and labels
+    xTickDateLabels(A, B, gcf);
+    yTicksDecimalNotation(gcf);	% The call to this MUST come after the y-limits are set!
+    title({'Cumulative cos(iota)'; sprintf('%s to %s, Pulsar %d',  A.date2str(), B.date2str(), id)});
     legend('Computed', 'Expected', 'Location', 'NorthEastOutside');
+    grid; 
 
     % Save to the date's directory and to the 'current' directory
     filename = sprintf('%s/%s_cosiota.png', path, B.date2str_num());
@@ -187,18 +197,22 @@ function plotFStat(A, B, id)
     % Plot the computed values
     scatter(1:num_days, phi0Data, 'red');
 
-    % Give it title and labels
-    xTickDateLabels(A, B, gcf);
-    yTicksDecimalNotation(gcf);
-    title({'Cumulative phi_0'; sprintf('%s to %s, Pulsar %d',  A.date2str(), B.date2str(), id)});
-    grid;
-
     % Plot expected value over it
     hold on;
     plot(1:num_days, ones(1, num_days)*pulsar.phi0, '-b');
+    plot(1:num_days, ones(1, num_days)*mod(pulsar.phi0 + pi, 2*pi), '--b');
     hold off;
+
+    % Set axis limits
+    ylim([0, 2*pi]);
+
+    % Give it title and labels
+    xTickDateLabels(A, B, gcf);
+    yTicksDecimalNotation(gcf);	% The call to this MUST come after the y-limits are set!
+    title({'Cumulative phi_0'; sprintf('%s to %s, Pulsar %d',  A.date2str(), B.date2str(), id)});
     legend('Computed', 'Expected', 'Location', 'NorthEastOutside');
-    
+    grid;   
+     
     % Save to the date's directory and to the 'current' directory
     filename = sprintf('%s/%s_phi0.png', path, B.date2str_num());
     current_filename = sprintf('%s/phi0Plot.png', current);
@@ -213,17 +227,21 @@ function plotFStat(A, B, id)
     % Plot the computed values
     scatter(1:num_days, psiData, 'red');
 
-    % Give it title and labels
-    xTickDateLabels(A, B, gcf);
-    yTicksDecimalNotation(gcf);
-    title({'Cumulative psi'; sprintf('%s to %s, Pulsar %d',  A.date2str(), B.date2str(), id)});
-    grid;
-    
     % Plot expected value over it
     hold on;
     plot(1:num_days, ones(1, num_days)*pulsar.psi, '-b');
     hold off;
+
+    % Set axis limits
+    ylim([-pi/4, pi/4]);    
+    
+    % Give it title and labels
+    xTickDateLabels(A, B, gcf);
+    yTicksDecimalNotation(gcf);	% The call to this MUST come after the y-limits are set!
+    title({'Cumulative psi'; sprintf('%s to %s, Pulsar %d',  A.date2str(), B.date2str(), id)});
     legend('Computed', 'Expected', 'Location', 'NorthEastOutside');
+    grid;
+    
     % Save to the date's directory and to the 'current' directory
     filename = sprintf('%s/%s_psi.png', path, B.date2str_num());
     current_filename = sprintf('%s/psiPlot.png', current);
@@ -231,11 +249,6 @@ function plotFStat(A, B, id)
     saveas(gcf, current_filename);
     close(gcf);
    
-
-
-
-
- 
     fprintf('%s%i\n', 'Finished plotting pulsar ', id);
     %% Updating the webpage for this pulsar
    %  pulsarHTML2(id);

@@ -22,7 +22,7 @@ function lalapps_compute(p, datafiles, date, cumulative, num_days, server)
     end
     outputPath = sprintf('%soutput/Pulsar%d/%s/', basepath, p.id, date.date2str_nospace()); 
     % Names for the output files of the lalapps_compute script
-    loud = sprintf('%sFstatLoudestResampOff%s.txt', outputPath, suffix);
+    loud = sprintf('%sFstatLoudestResampOff_restricted%s.txt', outputPath, suffix);
     val = sprintf('%s%s%s%s', basepath, 'output/FstatValues_', suffix, '.txt');
     hist = sprintf('%s%s%s%s', basepath, 'output/FstatHist_', suffix, '.txt');
 
