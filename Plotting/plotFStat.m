@@ -7,7 +7,7 @@ function plotFStat(A, B, id)
     %% Initializing variables
     day = A;
     num_days = B - A;
-    load('pulsars.mat', 'pulsar_list');
+    load('Pulsar-parameters/pulsars.mat', 'pulsar_list');
     pulsar = pulsar_list(id + 1);
     % cumulData will store the cumulative Fstat values. Each row will
     % correspond to a day's entry in the plot, with entry 1 being the first

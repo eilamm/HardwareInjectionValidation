@@ -2,26 +2,6 @@
 % December 2, 2016
 % Creates four scripts that will run all the lalapps-calling scripts
 function create_runAll_scripts(startdate, enddate)
-%     base = '/home/eilam.morag/hw_injection/Hardware_Injection_2016/scripts/';
-%     % Cumulative Compute
-%     inputFile = [base, 'recover_pulsarx*cumulative'];
-%     outputFile = 'ComputeCumulativeRunAllScripts';
-%     create_runAll_scripts_helper(inputFile, outputFile);
-%     
-%     % Daily Compute
-%     inputFile = [base, 'recover_pulsarx*daily'];
-%     outputFile = 'ComputeDailyRunAllScripts';
-%     create_runAll_scripts_helper(inputFile, outputFile);
-%     
-%     % Cumulative Predict
-%     inputFile = [base, 'predict_pulsarx*cumulative'];
-%     outputFile = 'PredictCumulativeRunAllScripts';
-%     create_runAll_scripts_helper(inputFile, outputFile);
-%     
-%     % Daily Predict
-%     inputFile = [base, 'predict_pulsarx*daily'];
-%     outputFile = 'PredictDailyRunAllScripts';
-%     create_runAll_scripts_helper(inputFile, outputFile);
     list = listUnexecutedScripts(startdate, enddate, 1, 0);
     outputFile = 'ComputeCumulativeRunAllScripts';
     create_runAll_scripts_helper(list, outputFile);
@@ -87,10 +67,13 @@ function list = listUnexecutedScripts(startdate, enddate, compute, daily)
     % Example script: predict_pulsarx9_Dec-9-2015_daily; recover_pulsarx2_Dec-21-2015_daily
     if (compute == 1)
         fileprefix = 'FstatLoudestResampOff_';
-        scriptprefix = 'recover_pulsar';
+%        scriptprefix = 'recover_pulsar';
+	scriptprefix = 'recover_pulsar_restricted';
+
     else
         fileprefix = 'FstatPredicted_';
-        scriptprefix = 'predict_pulsar';
+%        scriptprefix = 'predict_pulsar';
+        scriptprefix = 'predict_pulsar_restricted';
     end
     
     if (daily == 1)

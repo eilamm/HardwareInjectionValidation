@@ -40,7 +40,8 @@ function lalapps_predict(p, datafiles, date, cumulative, server)
         datafiles, earth, sun, Freq, alpha, delta, aplus, across, psi, last);
     
     % Name of the actual lalapps_predict script
-    filename = [basepath, 'scripts/predict_pulsar',  suffix];
+%    filename = [basepath, 'scripts/predict_pulsar',  suffix];
+    filename = [basepath, 'scripts/predict_pulsar_restricted',  suffix];
 %     disp(['Creating file ', filename]);
     fileID = fopen(filename, 'w');
     fprintf(fileID, cmd);

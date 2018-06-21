@@ -9,10 +9,7 @@ function sfts = cumulativePoint(A, B, pulsar_list, server)
     sfts = '';
     % Iterate over dates in range from A to B
     while date <= B
-        d = date.day;
-        m = date.month;
-        y = date.year;
-        filenames_date = read_data(d, m, y, server);
+        filenames_date = read_data(date, server);
         % Add the sfts for the current date (in filenames_date) to the list
         % of all sfts in the date range so far (in sfts)
         

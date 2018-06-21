@@ -1,4 +1,5 @@
 function firstRunInit()
+    includePaths;
     %% If the scripts folder does not exist, create it, along with all the scripts inside it
     folder = '/home/eilam.morag/hw_injection/Hardware_Injection_2016/scripts';
     if (~exist(folder, 'dir'))
@@ -54,7 +55,7 @@ function firstRunInit()
     end
     clear folder pulsar
     %% If the main webpage does not exist, create it
-    homepage = '/home/eilam.morag/public_html/HWInjection/HWInjection.php';
+    homepage = '/home/eilam.morag/public_html/HWInjection/HWInjection.html';
     if (~exist(homepage, 'file'))
         disp(['Creating the homepage: ', homepage]);
         homepageHTML();
@@ -77,4 +78,14 @@ function firstRunInit()
         end
         clear destination file1 file2 status1 status2 
     end
+
+   if (~exist('Pulsar-parameters/pulsars.mat'))
+	disp('Saving pulsar information to variable pulsar_list in Pulsar-parameters/pulsars.mat');
+        for i = 0:14
+	    pulsar_list(i + 1) = Pulsar(i);
+        end
+        save('Pulsar-parameters/pulsars.mat', 'pulsar_list');    
+   end
+
+
 end

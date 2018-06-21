@@ -10,9 +10,5 @@ function symlink = sft2symlink(sft_filepath, sft_name)
     symlink = sft_name;
     symlink_path = ['/home/eilam.morag/hw_injection/Hardware_Injection_2016/scripts/', symlink];
     cmd = ['ln -s ', sft_filepath, ' ', symlink_path, ' >/dev/null 2>&1'];
-%     status = system(cmd, '-echo');
     status = system(cmd);
-%     if (status ~= 0)
-%         error('%s\n%s%s\n%s%s', 'Symlink failed', 'sft filename: ', sft_filepath, 'symlink: ', symlink);
-%     end
 end
