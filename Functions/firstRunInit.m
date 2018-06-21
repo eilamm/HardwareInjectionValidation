@@ -1,4 +1,34 @@
 function firstRunInit()
+    %% If the SFTSymlinks folder does not exist, create it, along with all the scripts inside it
+    folder = '/home/eilam.morag/hw_injection/Hardware_Injection_2016/SFTSymlinks';
+    if (~exist(folder, 'dir'))
+        disp('First time initializations...');
+        disp(['Creating the folder: ', folder]);
+        mkdir(folder);
+        % Add the functions for creating the runAll scripts
+    end
+    clear folder
+    %% If the Functions folder does not exist, create it, along with all the scripts inside it
+    folder = '/home/eilam.morag/hw_injection/Hardware_Injection_2016/Functions';
+    if (~exist(folder, 'dir'))
+        disp('First time initializations...');
+        disp(['Creating the folder: ', folder]);
+        mkdir(folder);
+        % Add the functions for creating the runAll scripts
+    end
+    clear folder
+
+    %% If the Classes folder does not exist, create it, along with all the scripts inside it
+    folder = '/home/eilam.morag/hw_injection/Hardware_Injection_2016/Classes';
+    if (~exist(folder, 'dir'))
+        disp('First time initializations...');
+        disp(['Creating the folder: ', folder]);
+        mkdir(folder);
+        % Add the functions for creating the runAll scripts
+    end
+    clear folder
+
+
     %% If the scripts folder does not exist, create it, along with all the scripts inside it
     folder = '/home/eilam.morag/hw_injection/Hardware_Injection_2016/scripts';
     if (~exist(folder, 'dir'))
