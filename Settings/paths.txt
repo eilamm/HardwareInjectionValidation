@@ -1,0 +1,25 @@
+% This file contains paths to certain directories important to the system's operation
+
+% THE ORDER OF THIS FILE IS VERY IMPORTANT. DO NOT DELETE LINES OR ENTER NEW ONES. You may modify any paths as long as they stay on the same line number. You may add new paths by appending them to the end of the file; do NOT insert them before existing paths
+
+% Project home directory below
+/home/eilam.morag/hw_injection/Hardware_Injection_2016
+
+% Location of LAL scripts below
+/home/eilam.morag/hw_injection/Hardware_Injection_2016/scripts
+
+% Naming convention for LAL scripts that call lalapps_ComputeFstatistic_v2 below
+recover_pulsar_restricted
+
+% Naming convention for LAL scripts that call lalapps_PredictFstat below
+predict_pulsar_restricted
+
+% Output files containing the F-stat values will print to subdirectories that branch off below path
+/home/eilam.morag/hw_injection/Hardware_Injection_2016/output
+
+% Naming convention for output files of computed F-stat below
+FstatLoudestResampOff_restricted
+
+% Naming convention for output files of predicted F-stat below
+FstatPredicted_restricted
+

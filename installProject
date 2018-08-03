@@ -1,0 +1,54 @@
+#!/bin/bash
+
+echo "Setting up..."
+HOME="$(pwd)"
+SETTINGS="${HOME}/Settings/paths.txt"
+
+# Create the file ${SETTINGS}, which contains paths to important directories
+echo -e "% This file contains paths to certain directories important to the system's operation\n" > ${SETTINGS}
+
+echo -e "% THE ORDER OF THIS FILE IS VERY IMPORTANT. DO NOT DELETE LINES OR ENTER NEW ONES. You may modify any paths as long as they stay on the same line number. You may add new paths by appending them to the end of the file; do NOT insert them before existing paths\n" >> ${SETTINGS}
+
+# Specify the path for the project directory
+echo "Setting project home directory to: ${HOME}"
+echo "% Project home directory below" >> ${SETTINGS}
+echo -e "${HOME}\n" >> ${SETTINGS}
+
+# Set the location for the LAL scripts (see stage 1 of manual)
+LALLOCATION="${HOME}/scripts"
+echo "Setting location of LAL scripts to: ${LALLOCATION}"
+echo "% Location of LAL scripts below" >> ${SETTINGS}
+echo -e "${LALLOCATION}\n" >> ${SETTINGS}
+
+# Set the naming convention for LAL scripts that call lalapps_ComputeFstatistic_v2
+COMPUTEDNAME="recover_pulsar_restricted"
+echo "Naming convention for LAL scripts for computed F-stat: ${COMPUTEDNAME}"
+echo "% Naming convention for LAL scripts that call lalapps_ComputeFstatistic_v2 below" >> ${SETTINGS}
+echo -e "${COMPUTEDNAME}\n" >> ${SETTINGS}
+
+# Set the naming convention for LAL scripts that call lalapps_PredictFstat 
+PREDICTEDNAME="predict_pulsar_restricted"
+echo "Naming convention for LAL scripts for predicted F-stat: ${PREDICTEDNAME}"
+echo "% Naming convention for LAL scripts that call lalapps_PredictFstat below" >> ${SETTINGS}
+echo -e "${PREDICTEDNAME}\n" >> ${SETTINGS}
+
+# Set the location for the output of the LAL scripts (see stage 2 of manual)
+FSTATLOCATION="${HOME}/output"
+echo "Output files containing F-stat values will print to subdirectories: ${FSTATLOCATION}/Pulsar<ID>/<Mmm>-<dd>-<yy>/"
+echo "% Output files containing the F-stat values will print to subdirectories that branch off below path" >> ${SETTINGS}
+echo -e "${FSTATLOCATION}\n" >> ${SETTINGS}
+
+# Set the naming convention for the output files containing the computed F-stat
+COMPUTEDFSTATNAME="FstatLoudestResampOff_restricted"
+echo "Naming convention for output files of computed F-stat: ${COMPUTEDFSTATNAME}"
+echo "% Naming convention for output files of computed F-stat below" >> ${SETTINGS}
+echo -e "${COMPUTEDFSTATNAME}\n" >> ${SETTINGS}
+
+# Set the naming convention for the output files containing the predicted F-stat
+PREDICTEDFSTATNAME="FstatPredicted_restricted"
+echo "Naming convention for output files of predicted F-stat: ${PREDICTEDFSTATNAME}"
+echo "% Naming convention for output files of predicted F-stat below" >> ${SETTINGS}
+echo -e "${PREDICTEDFSTATNAME}\n" >> ${SETTINGS}
+
+echo ""
+echo "You may change any of these settings by modifying ${SETTINGS}"
