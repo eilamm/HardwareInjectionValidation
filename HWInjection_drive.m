@@ -19,7 +19,7 @@ firstRunInit();
 % end_today = Date([12, 31, 2015]);
 % end_today = Date([1, 17, 2016]); % End of O1
 
-start_today = O2StartDate(); %Start of O2
+ start_today = O2StartDate(); %Start of O2
 % end_today = Date([1, 15, 2017]);
 % end_today = todayDate();
 if (todayDate() <= O2EndDate())
@@ -29,23 +29,27 @@ else
 	% disp('Observation run not in progress - cancelling injection run.');
 	% return;
 end
-end_today = Date([08, 22, 2017]);
+ end_today = Date([08, 22, 2017]);
+startDate = observationRunStartDate();
+finalDate = observationRunFinalDate();
 %% Create LAL scripts for all days between the start and end dates
 % The switch from 'date = start_today' to 'date = end_today' was done on
 % June 1, 2017. Did it because otherwise all the recover/predict scripts 
 % would be regenerated every day for no reason. 
-date = start_today;
+% date = start_today;
 % date = end_today;
 
+
+date = startDate;
 server = getServerName();
 
-while (date <= end_today)
+while (date <= finalDate)
     HWInjection(date, server);
     date = date.next_day();
 end
 
 %% Create the scripts to automatically execute the LAL scripts
-create_runAll_scripts(start_today, end_today);
+create_runAll_scripts(startDate, endDate);
 fprintf('%s%s%s%s%s\n', 'Finished creating LAL scripts. Navigate to the "scripts" ', ...
     'directory and execute the script "runAllScripts" to ', ...
     'run all the LAL scripts. This may take awhile. Once the scripts ', ...

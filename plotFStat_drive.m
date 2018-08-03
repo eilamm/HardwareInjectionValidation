@@ -19,16 +19,19 @@ addpath('Website');
 
 % O2
 A = O2StartDate(); % O2 start date
+startDate = observationRunStartDate();
 % B = Date([1, 15, 2017]);
 % B = todayDate();
 % B = O2EndDate();
+finalDate = observationRunFinalDate();
 B = Date([8, 22, 2017]);
 
 %% Call plotFStat for each pulsar
 pulsars = [0:1:12, 14];
 for i = pulsars
     fprintf('%s%d\n', 'Plotting pulsar: ', i);
-    plotFStat(A, B, i);
+%    plotFStat(A, B, i);
+    plotFStat(startDate, finalDate, i);
 end 
 
 quit
