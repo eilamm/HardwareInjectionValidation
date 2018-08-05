@@ -1,0 +1,25 @@
+#!/bin/bash
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
+cd ${DIR}
+echo "${DIR}"
+rm -r DONE
+rm log
+echo >> WORKING
+echo "Stage 1: Creating LAL scripts"
+
+/ldcg/matlab_r2015a/bin/matlab -nodisplay -nodesktop -r HWInjection_drive
+
+echo "Stage 2: Running LAL scripts"
+
+cd scripts
+./runAllScripts
+cd ..
+
+echo "Stage 3: Plotting data and updating webpages"
+
+/ldcg/matlab_r2015a/bin/matlab -nodisplay -nodesktop -r plotFStat_drive
+
+
+/ldcg/matlab_r2015a/bin/matlab -nodisplay -nodesktop -r log_process
+rm -r WORKING
+echo >> DONE
