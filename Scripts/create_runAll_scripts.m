@@ -76,7 +76,7 @@ function list = listUnexecutedScripts(startdate, enddate, compute, daily)
 %        fileprefix = 'FstatPredicted_restricted_';
         fileprefix = getFstatPredictNamingConvention();
 %        scriptprefix = 'predict_pulsar_restricted';
-        scriptprefix = getLALComputeNamingConvention();
+        scriptprefix = getLALPredictNamingConvention();
     end
     
     if (daily == 1)

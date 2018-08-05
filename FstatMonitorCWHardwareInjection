@@ -1,4 +1,7 @@
 #!/bin/bash
+
+STARTTIME=$(date)
+
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 cd ${DIR}
 echo "${DIR}"
@@ -26,4 +29,4 @@ echo >> DONE
 
 SERVER=$(hostname)
 EMAIL="eilam@umich.edu"
-mail -s "Finished running LAL on ${SERVER}" ${EMAIL} <<< ""
+mail -s "Finished running LAL on ${SERVER}" ${EMAIL} <<< "Started on ${STARTTIME}"

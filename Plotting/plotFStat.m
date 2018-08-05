@@ -288,8 +288,8 @@ function filteredData = outlierFilter(data, startDay, id)
         days_outliers{ii} = [days_str outlier_str];
     end
     
-    filename = sprintf('%s%d%s', 'outlierLog_', id, '.txt');
-    fileID = fopen(filename, 'wt');
-    fprintf(fileID, '%s', transpose(char(days_outliers)));
-    fclose(fileID);
+%    filename = sprintf('%s%d%s', 'outlierLog_', id, '.txt');
+%    fileID = fopen(filename, 'wt');
+%    fprintf(fileID, '%s', transpose(char(days_outliers)));
+%    fclose(fileID);
 end
