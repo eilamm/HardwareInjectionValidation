@@ -26,8 +26,6 @@ end
 function create_runAll_scripts_helper(list, outputFile)
     nrows = length(list);
     
-%    base = '/home/eilam.morag/hw_injection/Hardware_Injection_2016/scripts/';
-%    outpath = [base, outputFile];
     outpath = sprintf('%s/%s', getLALScriptsLocation(), outputFile);
     fileID = fopen(outpath, 'w');
     
@@ -60,22 +58,16 @@ end
 % Returns a list of scriptnames that fall within the constraints and have
 % not yet been executed
 function list = listUnexecutedScripts(startdate, enddate, compute, daily)
-%    outBasePath = '/home/eilam.morag/hw_injection/Hardware_Injection_2016/output/';
     outBasePath = getFstatFileLocation();
-    scrpath = './';
     %% Pre and suffixes to the Fstat files and lalapps scripts
     % Example file: FstatValues_9_Nov-30-2015_daily.txt; FstatLoudest_9_Jan-6-2016_cumulative.txt
     % Example script: predict_pulsarx9_Dec-9-2015_daily; recover_pulsarx2_Dec-21-2015_daily
     if (compute == 1)
-%        fileprefix = 'FstatLoudestResampOff_restricted_';
         fileprefix = getFstatComputeNamingConvention();
-%	scriptprefix = 'recover_pulsar_restricted';
 	    scriptprefix = getLALComputeNamingConvention();
 
     else
-%        fileprefix = 'FstatPredicted_restricted_';
         fileprefix = getFstatPredictNamingConvention();
-%        scriptprefix = 'predict_pulsar_restricted';
         scriptprefix = getLALPredictNamingConvention();
     end
     
@@ -94,11 +86,9 @@ function list = listUnexecutedScripts(startdate, enddate, compute, daily)
     while (d <= enddate)
         date = d.date2str_nospace();
         for ID = pulsars
-%	    outPath = sprintf('%sPulsar%d/%s/', outBasePath, ID, date);
 	    outPath = sprintf('%s/Pulsar%d/%s', outBasePath, ID, date);
             file = sprintf('%s/%s_%d_%s_%s', outPath, fileprefix, ID, date, filesuffix);
             if (~exist(file, 'file'))
-%                script = sprintf('%s%s_%d%s%s_%s', scrpath, scriptprefix, ID, '_', date, scriptsuffix);
                 script = sprintf('./%s_%d_%s_%s', scriptprefix, ID, date, scriptsuffix);
                 list{i} = script;
                 i = i + 1;

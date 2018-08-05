@@ -6,13 +6,12 @@
 % This is the matlab version of the original C++ file, genScript.cpp.
 
 function HWInjection(today, server) 
-    includePaths;
+%    includePaths;
     %% Load pulsars, create output folder if necessary, and initialize the date range
     load('Pulsar-parameters/pulsars.mat', 'pulsar_list');
     start = observationRunStartDate();
     for id = 0:14
         outputFolder = sprintf('%s/Pulsar%d/%s', getFstatFileLocation(), id, today.date2str_nospace());
-%        outputFolder = sprintf('/home/eilam.morag/hw_injection/Hardware_Injection_2016/output/Pulsar%d/%s', id, today.date2str_nospace()); 
         if (~exist(outputFolder, 'dir'))
             fprintf('Creating output folder:\n\t%s\n', outputFolder);
             mkdir(outputFolder);
@@ -24,7 +23,6 @@ function HWInjection(today, server)
 
     %%%%%%%%%%%%%%%%%%%%% Create links to today's SFTs if none exist %%%%%%%%%%%%%%%%
     SFTdirToday = sprintf('%s/_%s', getLALScriptsLocation(), today.date2str_num());
-%    SFTdirToday = sprintf('scripts/_%s', today.date2str_num()); % Folder for symlinks for today's SFTs
     if (~exist(SFTdirToday))
         fprintf('Creating folder\n\t%s\n', SFTdirToday);
         mkdir(SFTdirToday);
@@ -56,34 +54,32 @@ function HWInjection(today, server)
         % 2017), then don't make a symlink for that folder
         if (numSFTs == 0 || numSFTs > 1000)
             % Do nothing
-        fprintf('No sfts for date %02d/%02d/%d\n', today.month, today.day, today.year);
+            fprintf('No sfts for date %02d/%02d/%d\n', today.month, today.day, today.year);
         else
             % Open Prof. Riles' injection timespan file for this day, get all injection timespans into an array
-        fileID = fopen(sprintf('/home/pulsar/public_html/fscan/CWINJ_segs/%d_%02d_%02d_CWINJ_segments.txt', today.year, today.month, today.day));
-        if (fileID == -1)
+            fileID = fopen(sprintf('/home/pulsar/public_html/fscan/CWINJ_segs/%d_%02d_%02d_CWINJ_segments.txt', today.year, today.month, today.day));
+            if (fileID == -1)
                 fprintf('No injections on %s\n', today.date2str());
-        else
-            injections = cell2mat(textscan(fileID, '%d %d'));
-            fclose(fileID);
-            % Iterate through SFTs in the folder
-            for i = 1:numSFTs
+            else
+                injections = cell2mat(textscan(fileID, '%d %d'));
+                fclose(fileID);
+                % Iterate through SFTs in the folder
+                for i = 1:numSFTs
                 % Read timespan of SFT (in name)
-            % L-1_L1_1800SFT_Pulsar00-1165752380-1800.sft
-                SFT = folder(i).name;
-            timespan = str2double(SFT(41:50));
+                % L-1_L1_1800SFT_Pulsar00-1165752380-1800.sft
+                    SFT = folder(i).name;
+                    timespan = str2double(SFT(41:50));
                 
                     % If timespan is within range of any of the injection timespans, then create a symlink to it in the directory for this data
-                        if (any((timespan >= injections(:, 1)) & ((timespan + SFTduration) <= injections(:, 2))))
-                SFT_path = sprintf('%s%s', path, SFT);
-%                            symlink_path = sprintf('/home/eilam.morag/hw_injection/Hardware_Injection_2016/%s/%s', SFTdirToday, SFT);
-                            symlink_path = sprintf('%s/%s', SFTdirToday, SFT);
-                            cmd = ['ln -s ', SFT_path, ' ', symlink_path, ' >/dev/null 2>&1'];
-                            status = system(cmd);
-                        end
+                    if (any((timespan >= injections(:, 1)) & ((timespan + SFTduration) <= injections(:, 2))))
+                        SFT_path = sprintf('%s%s', path, SFT);
+                        symlink_path = sprintf('%s/%s', SFTdirToday, SFT);
+                        cmd = ['ln -s ', SFT_path, ' ', symlink_path, ' >/dev/null 2>&1'];
+                        status = system(cmd);
+                    end
+                end
             end
         end
-        end
-
     end
 
     %%%%%%%%%%%%%%%%%%%%% Gather the relevant SFTs %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -97,7 +93,6 @@ function HWInjection(today, server)
         % don't need to get their path, just their filenames
 
         % Check that there are SFTs for this date
-%    if (~isempty(dir(sprintf('/home/eilam.morag/hw_injection/Hardware_Injection_2016/scripts/_%s/*.sft', date.date2str_num()))))
         if (~isempty(dir(sprintf('%s/_%s/*.sft', getLALScriptsLocation(), date.date2str_num()))))
             SFTs_current_date = sprintf('_%s/*.sft', date.date2str_num());
             % Check if this is the first non-empty SFT directory
@@ -112,7 +107,6 @@ function HWInjection(today, server)
         date = date.next_day();
     end
 
-%    if (~isempty(dir(sprintf('/home/eilam.morag/hw_injection/Hardware_Injection_2016/scripts/_%s/*.sft', today.date2str_num()))))
     if (~isempty(dir(sprintf('%s/_%s/*.sft', getLALScriptsLocation(), today.date2str_num()))))
         sfts_daily = sprintf('_%s/*.sft', today.date2str_num());
     else
@@ -123,13 +117,11 @@ function HWInjection(today, server)
 
 
     %%%%%%%%%%%%%%%%%%%%% Create the LAL scripts %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%    sfts_cumulative = cumulativePoint(start, today, pulsar_list, server);
     for pulsar = pulsar_list
         lalapps_compute(pulsar, sfts_cumulative, today, 1, num_days, server);
         lalapps_predict(pulsar, sfts_cumulative, today, 1, server);
     end
 
-%    sfts_daily = dailyPoint(today, pulsar_list, server);
     for pulsar = pulsar_list
         lalapps_compute(pulsar, sfts_daily, today, 0, 1, server);
         lalapps_predict(pulsar, sfts_daily, today, 0, server);

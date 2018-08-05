@@ -44,7 +44,7 @@ function homepageCSS()
 	    'position: relative;\n', ...
             'font-family: Helvetica;\n', ...
     '}\n'];
-    path = '/home/eilam.morag/public_html/HWInjection/';
+    path = getWebsiteLocation();
     filename = [path, 'HWInjection.css'];
     disp(['Creating file ', filename]);
     fileID = fopen(filename, 'w');

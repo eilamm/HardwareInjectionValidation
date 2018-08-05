@@ -4,9 +4,9 @@ STARTTIME=$(date)
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 cd ${DIR}
-echo "${DIR}"
 rm -r DONE
 rm log
+
 echo >> WORKING
 echo "Stage 1: Creating LAL scripts"
 

@@ -12,15 +12,9 @@ function lalapps_predict(p, datafiles, date, cumulative, server)
     	suffix = sprintf('%i_%s_daily', p.id, date.date2str_nospace);
     end
     
-    basepath = '/home/eilam.morag/hw_injection/Hardware_Injection_2016/';
     % Name for the output of the lalapps_predict script
-%    outputPath = sprintf('%soutput/Pulsar%d/%s/', basepath, p.id, date.date2str_nospace()); 
     outputPath = sprintf('%s/Pulsar%d/%s', getFstatFileLocation, p.id, date.date2str_nospace()); 
-%    val = sprintf('%sFstatPredicted_restricted_%s.txt', outputPath, suffix);
     val = sprintf('%s/%s_%s.txt', outputPath, getFstatPredictNamingConvention(), suffix);
-    
-%    earthpath = '/home/eilam.morag/lalsuite/lalpulsar/test/earth00-19-DE405.dat.gz';
-%    sunpath = '/home/eilam.morag/lalsuite/lalpulsar/test/sun00-19-DE405.dat.gz';
     
     [~, userHomeDirectory] = system('echo ~');
     userHomeDirectory = userHomeDirectory(1:end-1); % Remove newline character
@@ -41,7 +35,6 @@ function lalapps_predict(p, datafiles, date, cumulative, server)
         datafiles, earth, sun, Freq, alpha, delta, aplus, across, psi, last);
     
     % Name of the actual lalapps_predict script
-%    filename = [basepath, 'scripts/predict_pulsar_restricted_',  suffix];
     filename = sprintf('%s/%s_%s', getLALScriptsLocation(), getLALPredictNamingConvention(), suffix);
     fileID = fopen(filename, 'w');
     fprintf(fileID, cmd);

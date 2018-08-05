@@ -15,7 +15,7 @@ function printFStatLog(firstDay, lastDay, dailyData, cumulativeData, id)
 		text{5, i} = sprintf('%8.3f', cumulativeData(i, 2));
 		d = d.next_day();
 	end
-	filename = sprintf('/home/eilam.morag/public_html/HWInjection/Pulsar%02d/%s/FStatList_%s.txt', id, lastDay.date2str_num(), lastDay.date2str_nospace());
+    filename = sprintf('%s/Pulsar%02d/%s/FStatList_%s.txt', getWebsiteLocation(), id, lastDay.date2str_num(), lastDay.date2str_nospace());
 	fileID = fopen(filename, 'w');
 	if (fileID == -1)
 		fprintf('Could not print log on %s\n', lastDay.date2str());
@@ -26,6 +26,6 @@ function printFStatLog(firstDay, lastDay, dailyData, cumulativeData, id)
 	fprintf(fileID, '%s\t\t%+s\t\t%+s\t\t%+s\t\t%+s\n', text{:});
 	fclose(fileID);
 
-	recentFolder = sprintf('/home/eilam.morag/public_html/HWInjection/Pulsar%02d/current/FStatList.txt', id);
+	recentFolder = sprintf('%s/Pulsar%02d/current/FStatList.txt', getWebsiteLocation(), id);
 	copyfile(filename, recentFolder);
 end 

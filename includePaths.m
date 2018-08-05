@@ -1,7 +1,18 @@
 % This script adds the Functions, Classes, Plotting, Parsing, and Scripts directories to the path
-addpath('/home/eilam.morag/hw_injection/Hardware_Injection_2016/Functions');
-addpath('/home/eilam.morag/hw_injection/Hardware_Injection_2016/Scripts');
-addpath('/home/eilam.morag/hw_injection/Hardware_Injection_2016/Classes');
-addpath('/home/eilam.morag/hw_injection/Hardware_Injection_2016/Plotting');
-addpath('/home/eilam.morag/hw_injection/Hardware_Injection_2016/Parsing');
-addpath('/home/eilam.morag/hw_injection/Hardware_Injection_2016/Website');
+%Functions = sprintf('%s/Functions', getProjectHomeLocation());
+addpath('Functions');
+
+%Scripts = sprintf('%s/Scripts', getProjectHomeLocation());
+addpath('Scripts');
+
+%Classes = sprintf('%s/Classes', getProjectHomeLocation());
+addpath('Classes');
+
+%Plotting = sprintf('%s/Plotting', getProjectHomeLocation());
+addpath('Plotting');
+
+%Parsing = sprintf('%s/Parsing', getProjectHomeLocation());
+addpath('Parsing');
+
+%Website = sprintf('%s/Website', getProjectHomeLocation());
+addpath('Website');

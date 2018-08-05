@@ -1,7 +1,7 @@
 % Creates the homepage for the hardware injection output. LLO and LHO have
 % their own homepages.
 function homepageHTML2()
-    path = '/home/eilam.morag/public_html/HWInjection/';
+    path = getWebsiteLocation();
     server = getServerName();
     if (strcmp(server, 'L1'))
         host = 'LLO';
@@ -39,7 +39,7 @@ function homepageHTML2()
         '</html>');
     text = [text, ending];
 
-    filename = [path, 'HWInjection.html'];
+    filename = [path, '/HWInjection.html'];
     disp(['Creating file ', filename]);
     fileID = fopen(filename, 'w');
     fprintf(fileID, text);

@@ -63,7 +63,6 @@ function plotFStat(A, B, id)
 
     %% Actually plotting the values
     % Create paths to directories where plots will be saved
-%    path =  sprintf('/home/eilam.morag/public_html/HWInjection/Pulsar%02d', id);
     path =  sprintf('%s/Pulsar%02d', getWebsiteLocation(), id);
     % Make paths to the 'current' subdirectory and to the date's
     % subdirectory
@@ -251,8 +250,6 @@ function plotFStat(A, B, id)
     close(gcf);
    
     fprintf('%s%i\n', 'Finished plotting pulsar ', id);
-    %% Updating the webpage for this pulsar
-   %  pulsarHTML2(id);
 end
 
 

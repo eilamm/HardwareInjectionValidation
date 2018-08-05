@@ -8,7 +8,6 @@
 % \"ResampBest\" --outputLoudest " << loud << " --outputFstat " << 
 % val << " --outputFstatHist " << hist
 function lalapps_compute(p, datafiles, date, cumulative, num_days, server)
-%    basepath = '/home/eilam.morag/hw_injection/Hardware_Injection_2016/'; 
     basepath = getProjectHomeLocation();
     if (cumulative == 1)
     	atomFolder = sprintf('%s/Atoms/cumulative/Pulsar%d/%s', basepath, p.id, date.date2str_nospace);
@@ -21,17 +20,13 @@ function lalapps_compute(p, datafiles, date, cumulative, num_days, server)
         mkdir(atomFolder);
     end
     atoms = sprintf('%s/ATOM%s', atomFolder, suffix);
-%    outputPath = sprintf('%soutput/Pulsar%d/%s/', basepath, p.id, date.date2str_nospace()); 
     outputPath = sprintf('%s/Pulsar%d/%s', getFstatFileLocation(), p.id, date.date2str_nospace()); 
     % Names for the output files of the lalapps_compute script
-%    loud = sprintf('%sFstatLoudestResampOff_restricted%s.txt', outputPath, suffix);
     loud = sprintf('%s/%s_%s.txt', outputPath, getFstatComputeNamingConvention(), suffix);
 
     [~, userHomeDirectory] = system('echo ~');
     userHomeDirectory = userHomeDirectory(1:end-1); % Remove newline character
-%    earthpath = '/home/eilam.morag/lalsuite/lalpulsar/test/earth00-19-DE405.dat.gz';
     earthpath = sprintf('%s/lalsuite/lalpulsar/test/earth00-19-DE405.dat.gz', userHomeDirectory);
-%    sunpath = '/home/eilam.morag/lalsuite/lalpulsar/test/sun00-19-DE405.dat.gz';
     sunpath = sprintf('%s/lalsuite/lalpulsar/test/sun00-19-DE405.dat.gz', userHomeDirectory);
     
     
@@ -41,8 +36,6 @@ function lalapps_compute(p, datafiles, date, cumulative, num_days, server)
 
          
     % Actual name of the lalapps_compute script
-%    filename = [basepath, 'scripts/recover_pulsar', suffix];
-%    filename = [basepath, 'scripts/recover_pulsar_restricted', suffix];
     filename = sprintf('%s/%s_%s', getLALScriptsLocation(), getLALComputeNamingConvention(), suffix);
     fileID = fopen(filename, 'w');
     fprintf(fileID, '%s', cmd);

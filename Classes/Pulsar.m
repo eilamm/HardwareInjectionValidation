@@ -90,15 +90,13 @@ classdef Pulsar
         % init: initializes the pulsar injection parameters. 
         % TO RETURN TO O2 DATA:
         function p = init(p)
-            basepath = '/home/eilam.morag/hw_injection/Hardware_Injection_2016/Pulsar-parameters/';
+            basepath = sprintf('%s/Pulsar-parameters/', getProjectHomeLocation());
             file = [basepath, 'O2_H1_test1_injection_params_O2_H1_test1.html'];
-%             file = [basepath, 'ER8B_injection_params_ER8B.html'];
             fileID = fopen(file);
             if (fileID == -1)
                 error(['file could not be opened: ', file]);
             end
             p = p.getData_O2(fileID);
-%             p = p.getData_O1(fileID);
             fclose(fileID);
         end
         

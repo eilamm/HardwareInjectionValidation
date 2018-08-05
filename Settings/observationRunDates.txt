@@ -1,5 +1,5 @@
 # First day of observation run below
 11-30-2016
-# Last day of observation run below
+# Last day of observation run below. If this date is not yet set, choose a random date months in the future so the program can run, and change it when the actual last date is set.
 08-25-2017
 
