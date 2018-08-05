@@ -63,5 +63,12 @@ echo "Website location: ${WEBSITELOCATION}"
 echo "% Website location below" >> ${SETTINGS}
 echo -e "${WEBSITELOCATION}\n" >> ${SETTINGS}
 
+# Create the runLALScripts bash script
+echo "#!/bin/bash" > ${LALLOCATION}/runLALScripts
+echo "" >> ${LALLOCATION}/runLALScripts
+echo -e "./ComputeDailyRunAllScripts\n./PredictDailyRunAllScripts\n./ComputeCumulativeRunAllScripts\n./PredictCumulativeRunAllScripts\n\n" >> ${LALLOCATION}/runLALScripts
+chmod u+x ${LALLOCATION}/runLALScripts
+echo "Created bash script: ${LALLOCATION}/runLALScripts"
+
 echo ""
 echo "You may change any of these settings by modifying ${SETTINGS}"

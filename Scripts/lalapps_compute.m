@@ -12,15 +12,15 @@ function lalapps_compute(p, datafiles, date, cumulative, num_days, server)
     basepath = getProjectHomeLocation();
     if (cumulative == 1)
     	atomFolder = sprintf('%s/Atoms/cumulative/Pulsar%d/%s', basepath, p.id, date.date2str_nospace);
-    	mkdir(atomFolder);
     	suffix = sprintf('%i_%s_cumulative', p.id, date.date2str_nospace);
-    	atoms = sprintf('%s/ATOM%s', atomFolder, suffix);
     elseif (cumulative == 0)
     	atomFolder = sprintf('%s/Atoms/daily/Pulsar%d/%s/', basepath, p.id, date.date2str_nospace);
-    	mkdir(atomFolder);
     	suffix = sprintf('%i_%s_daily', p.id, date.date2str_nospace);
-    	atoms = sprintf('%s/ATOM%s', atomFolder, suffix);
     end
+    if (~exist(atomFolder, 'dir'))
+        mkdir(atomFolder);
+    end
+    atoms = sprintf('%s/ATOM%s', atomFolder, suffix);
 %    outputPath = sprintf('%soutput/Pulsar%d/%s/', basepath, p.id, date.date2str_nospace()); 
     outputPath = sprintf('%s/Pulsar%d/%s', getFstatFileLocation(), p.id, date.date2str_nospace()); 
     % Names for the output files of the lalapps_compute script
@@ -28,6 +28,7 @@ function lalapps_compute(p, datafiles, date, cumulative, num_days, server)
     loud = sprintf('%s/%s_%s.txt', outputPath, getFstatComputeNamingConvention(), suffix);
 
     [~, userHomeDirectory] = system('echo ~');
+    userHomeDirectory = userHomeDirectory(1:end-1); % Remove newline character
 %    earthpath = '/home/eilam.morag/lalsuite/lalpulsar/test/earth00-19-DE405.dat.gz';
     earthpath = sprintf('%s/lalsuite/lalpulsar/test/earth00-19-DE405.dat.gz', userHomeDirectory);
 %    sunpath = '/home/eilam.morag/lalsuite/lalpulsar/test/sun00-19-DE405.dat.gz';

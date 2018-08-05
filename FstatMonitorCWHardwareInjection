@@ -12,7 +12,7 @@ echo "Stage 1: Creating LAL scripts"
 echo "Stage 2: Running LAL scripts"
 
 cd scripts
-./runAllScripts
+./runLALScripts
 cd ..
 
 echo "Stage 3: Plotting data and updating webpages"
@@ -23,3 +23,7 @@ echo "Stage 3: Plotting data and updating webpages"
 /ldcg/matlab_r2015a/bin/matlab -nodisplay -nodesktop -r log_process
 rm -r WORKING
 echo >> DONE
+
+SERVER=$(hostname)
+EMAIL="eilam@umich.edu"
+mail -s "Finished running LAL on ${SERVER}" ${EMAIL} <<< ""

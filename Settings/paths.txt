@@ -9,19 +9,19 @@
 /home/eilam.morag/hw_injection/Hardware_Injection_2016/scripts
 
 % Naming convention for LAL scripts that call lalapps_ComputeFstatistic_v2 below
-recover_pulsar_restricted
+LALCompute
 
 % Naming convention for LAL scripts that call lalapps_PredictFstat below
-predict_pulsar_restricted
+LALPredict
 
 % Output files containing the F-stat values will print to subdirectories that branch off below path
 /home/eilam.morag/hw_injection/Hardware_Injection_2016/output
 
 % Naming convention for output files of computed F-stat below
-FstatLoudestResampOff_restricted
+FstatComputed
 
 % Naming convention for output files of predicted F-stat below
-FstatPredicted_restricted
+FstatPredicted
 
 % Website location below
 /home/eilam.morag/public_html/HWInjection

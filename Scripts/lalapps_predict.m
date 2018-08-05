@@ -23,6 +23,7 @@ function lalapps_predict(p, datafiles, date, cumulative, server)
 %    sunpath = '/home/eilam.morag/lalsuite/lalpulsar/test/sun00-19-DE405.dat.gz';
     
     [~, userHomeDirectory] = system('echo ~');
+    userHomeDirectory = userHomeDirectory(1:end-1); % Remove newline character
     earthpath = sprintf('%s/lalsuite/lalpulsar/test/earth00-19-DE405.dat.gz', userHomeDirectory);
     sunpath = sprintf('%s/lalsuite/lalpulsar/test/sun00-19-DE405.dat.gz', userHomeDirectory);
 
