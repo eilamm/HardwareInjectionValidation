@@ -48,3 +48,5 @@ function lalapps_predict(p, datafiles, date, cumulative, server)
     fclose(fileID);
     
     file2script = ['chmod u+x ', filename];
+    system(file2script);
+end
