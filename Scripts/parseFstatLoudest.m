@@ -5,25 +5,25 @@
 % cumulative) and for a given pulsar
 % FstatLoudest_9_Jan-17-2016_cumulative.txt
 function [twoF, h0, cosiota, phi0, psi] = parseFstatLoudest(id, date, c)
-    basepath = sprintf('/home/eilam.morag/hw_injection/Hardware_Injection_2016/output/Pulsar%d/%s', id, date.date2str_nospace());
+%    basepath = sprintf('/home/eilam.morag/hw_injection/Hardware_Injection_2016/output/Pulsar%d/%s', id, date.date2str_nospace());
+    basepath = sprintf('%s/Pulsar%d/%s', getFstatFileLocation(), id, date.date2str_nospace());
     if (c == 0)
-%        file = sprintf('%s%s%i%s%s%s', basepath, '/FstatLoudestResampOff_', id, '_', ...
-            file = sprintf('%s%s%i%s%s%s', basepath, '/FstatLoudestResampOff_restricted_', id, '_', ...
-            date2str_nospace(date), '_daily.txt');
+%            file = sprintf('%s%s%i%s%s%s', basepath, '/FstatLoudestResampOff_restricted_', id, '_', ...
+            file = sprintf('%s/%s_%i_%s_%s', basepath, getFstatComputeNamingConvention(), id, date2str_nospace(date), 'daily.txt');
     elseif (c == 1)
-%        file = sprintf('%s%s%i%s%s%s', basepath, '/FstatLoudestResampOff_', id, '_', ...
-            file = sprintf('%s%s%i%s%s%s', basepath, '/FstatLoudestResampOff_restricted_', id, '_', ...
-            date2str_nospace(date), '_cumulative.txt');
+%            file = sprintf('%s%s%i%s%s%s', basepath, '/FstatLoudestResampOff_restricted_', id, '_', ...
+%            date2str_nospace(date), '_cumulative.txt');
+            file = sprintf('%s/%s_%i_%s_%s', basepath, getFstatComputeNamingConvention(), id, date2str_nospace(date), 'cumulative.txt');
     end
     
     fileID = fopen(file);
     % If the file does not exist
     if (fileID == -1)
         twoF = NaN;
-	h0 = NaN;
-	cosiota = NaN;
-	phi0 = NaN;
-	psi = NaN;
+    	h0 = NaN;
+    	cosiota = NaN;
+    	phi0 = NaN;
+    	psi = NaN;
         fprintf('%s%i%s%s\n', 'No loudest data for Pulsar ', id, ' on ', date.date2str());
         return;
     end

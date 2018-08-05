@@ -8,49 +8,41 @@
 % \"ResampBest\" --outputLoudest " << loud << " --outputFstat " << 
 % val << " --outputFstatHist " << hist
 function lalapps_compute(p, datafiles, date, cumulative, num_days, server)
-    basepath = '/home/eilam.morag/hw_injection/Hardware_Injection_2016/'; 
+%    basepath = '/home/eilam.morag/hw_injection/Hardware_Injection_2016/'; 
+    basepath = getProjectHomeLocation();
     if (cumulative == 1)
-	atomFolder = sprintf('%sAtoms/cumulative/Pulsar%d/%s/', basepath, p.id, date.date2str_nospace);
-	mkdir(atomFolder);
-	suffix = sprintf('_%i_%s_cumulative', p.id, date.date2str_nospace);
-	atoms = sprintf('%sATOM%s', atomFolder, suffix);
+    	atomFolder = sprintf('%s/Atoms/cumulative/Pulsar%d/%s', basepath, p.id, date.date2str_nospace);
+    	mkdir(atomFolder);
+    	suffix = sprintf('%i_%s_cumulative', p.id, date.date2str_nospace);
+    	atoms = sprintf('%s/ATOM%s', atomFolder, suffix);
     elseif (cumulative == 0)
-	atomFolder = sprintf('%sAtoms/daily/Pulsar%d/%s/', basepath, p.id, date.date2str_nospace);
-	mkdir(atomFolder);
-	suffix = sprintf('_%i_%s_daily', p.id, date.date2str_nospace);
-	atoms = sprintf('%sATOM%s', atomFolder, suffix);
+    	atomFolder = sprintf('%s/Atoms/daily/Pulsar%d/%s/', basepath, p.id, date.date2str_nospace);
+    	mkdir(atomFolder);
+    	suffix = sprintf('%i_%s_daily', p.id, date.date2str_nospace);
+    	atoms = sprintf('%s/ATOM%s', atomFolder, suffix);
     end
-    outputPath = sprintf('%soutput/Pulsar%d/%s/', basepath, p.id, date.date2str_nospace()); 
+%    outputPath = sprintf('%soutput/Pulsar%d/%s/', basepath, p.id, date.date2str_nospace()); 
+    outputPath = sprintf('%s/Pulsar%d/%s', getFstatFileLocation(), p.id, date.date2str_nospace()); 
     % Names for the output files of the lalapps_compute script
-    loud = sprintf('%sFstatLoudestResampOff_restricted%s.txt', outputPath, suffix);
-    val = sprintf('%s%s%s%s', basepath, 'output/FstatValues_', suffix, '.txt');
-    hist = sprintf('%s%s%s%s', basepath, 'output/FstatHist_', suffix, '.txt');
+%    loud = sprintf('%sFstatLoudestResampOff_restricted%s.txt', outputPath, suffix);
+    loud = sprintf('%s/%s_%s.txt', outputPath, getFstatComputeNamingConvention(), suffix);
 
-    earthpath = '/home/eilam.morag/lalsuite/lalpulsar/test/earth00-19-DE405.dat.gz';
-    sunpath = '/home/eilam.morag/lalsuite/lalpulsar/test/sun00-19-DE405.dat.gz';
+    [~, userHomeDirectory] = system('echo ~');
+%    earthpath = '/home/eilam.morag/lalsuite/lalpulsar/test/earth00-19-DE405.dat.gz';
+    earthpath = sprintf('%s/lalsuite/lalpulsar/test/earth00-19-DE405.dat.gz', userHomeDirectory);
+%    sunpath = '/home/eilam.morag/lalsuite/lalpulsar/test/sun00-19-DE405.dat.gz';
+    sunpath = sprintf('%s/lalsuite/lalpulsar/test/sun00-19-DE405.dat.gz', userHomeDirectory);
     
     
     FreqBand = (5/86400)/num_days;
-    
-    earth = ['" --ephemEarth "', earthpath];
-    sun = ['" --ephemSun "', sunpath];
-    
-    Freq = sprintf('%s%1.15e', '" --Freq=', p.f0);
-    Freqband = sprintf('%s%1.15e', ' --FreqBand=', FreqBand);
-    alpha = sprintf('%s%1.15e', ' --Alpha=', p.alpha);
-    delta = sprintf('%s%1.15e', ' --Delta=', p.delta);
-    f1dot = sprintf('%s%1.15e', ' --f1dot=', p.fdot);
-    refTime = sprintf('%s%d', ' --refTime=', p.reftime);
-    tags = sprintf('%s',  ' --IFO "', server, '" ');
-    outputFiles = sprintf('--outputLoudest %s --outputFstat %s --outputFstatHist %s --outputFstatAtoms %s', loud, val, hist, atoms);
-    
-    
+     
     cmd = sprintf('lalapps_ComputeFstatistic_v2 --DataFiles "%s" \\\n--ephemEarth "%s" --ephemSun "%s" \\\n--Freq=%1.15e --FreqBand=%1.15e --f1dot=%1.15e \\\n--Alpha=%1.15e --Delta=%1.15e --refTime=%d \\\n--IFO "%s" --outputLoudest %s --outputFstatAtoms %s', datafiles, earthpath, sunpath, p.f0, FreqBand, p.fdot, p.alpha, p.delta, p.reftime, server, loud, atoms);
 
          
     % Actual name of the lalapps_compute script
 %    filename = [basepath, 'scripts/recover_pulsar', suffix];
-    filename = [basepath, 'scripts/recover_pulsar_restricted', suffix];
+%    filename = [basepath, 'scripts/recover_pulsar_restricted', suffix];
+    filename = sprintf('%s/%s_%s', getLALScriptsLocation(), getLALComputeNamingConvention(), suffix);
     fileID = fopen(filename, 'w');
     fprintf(fileID, '%s', cmd);
     fclose(fileID);

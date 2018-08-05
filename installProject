@@ -1,21 +1,27 @@
 #!/bin/bash
 
 echo "Setting up..."
-HOME="$(pwd)"
-SETTINGS="${HOME}/Settings/paths.txt"
+PROJECTHOME="$(pwd)"
+SETTINGS="${PROJECTHOME}/Settings/paths.txt"
 
+# Creating MATLAB function that returns project's home directory
+echo "% This returns the path to the project's home directory" > ${PROJECTHOME}/Functions/getProjectHomeLocation.m
+echo "function path = getProjectHomeDirectory()" >> ${PROJECTHOME}/Functions/getProjectHomeLocation.m
+echo "    path = '${PROJECTHOME}';" >> ${PROJECTHOME}/Functions/getProjectHomeLocation.m
+echo "end" >> ${PROJECTHOME}/Functions/getProjectHomeLocation.m   
+ 
 # Create the file ${SETTINGS}, which contains paths to important directories
 echo -e "% This file contains paths to certain directories important to the system's operation\n" > ${SETTINGS}
 
 echo -e "% THE ORDER OF THIS FILE IS VERY IMPORTANT. DO NOT DELETE LINES OR ENTER NEW ONES. You may modify any paths as long as they stay on the same line number. You may add new paths by appending them to the end of the file; do NOT insert them before existing paths\n" >> ${SETTINGS}
 
 # Specify the path for the project directory
-echo "Setting project home directory to: ${HOME}"
+echo "Setting project home directory to: ${PROJECTHOME}"
 echo "% Project home directory below" >> ${SETTINGS}
-echo -e "${HOME}\n" >> ${SETTINGS}
+echo -e "${PROJECTHOME}\n" >> ${SETTINGS}
 
 # Set the location for the LAL scripts (see stage 1 of manual)
-LALLOCATION="${HOME}/scripts"
+LALLOCATION="${PROJECTHOME}/scripts"
 echo "Setting location of LAL scripts to: ${LALLOCATION}"
 echo "% Location of LAL scripts below" >> ${SETTINGS}
 echo -e "${LALLOCATION}\n" >> ${SETTINGS}
@@ -33,7 +39,7 @@ echo "% Naming convention for LAL scripts that call lalapps_PredictFstat below" 
 echo -e "${PREDICTEDNAME}\n" >> ${SETTINGS}
 
 # Set the location for the output of the LAL scripts (see stage 2 of manual)
-FSTATLOCATION="${HOME}/output"
+FSTATLOCATION="${PROJECTHOME}/output"
 echo "Output files containing F-stat values will print to subdirectories: ${FSTATLOCATION}/Pulsar<ID>/<Mmm>-<dd>-<yy>/"
 echo "% Output files containing the F-stat values will print to subdirectories that branch off below path" >> ${SETTINGS}
 echo -e "${FSTATLOCATION}\n" >> ${SETTINGS}
@@ -49,6 +55,13 @@ PREDICTEDFSTATNAME="FstatPredicted_restricted"
 echo "Naming convention for output files of predicted F-stat: ${PREDICTEDFSTATNAME}"
 echo "% Naming convention for output files of predicted F-stat below" >> ${SETTINGS}
 echo -e "${PREDICTEDFSTATNAME}\n" >> ${SETTINGS}
+
+# Set the path for the website directory
+# Variable HOME is predefined
+WEBSITELOCATION="${HOME}/public_html/HWInjection"
+echo "Website location: ${WEBSITELOCATION}"
+echo "% Website location below" >> ${SETTINGS}
+echo -e "${WEBSITELOCATION}\n" >> ${SETTINGS}
 
 echo ""
 echo "You may change any of these settings by modifying ${SETTINGS}"

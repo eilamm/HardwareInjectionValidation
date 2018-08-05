@@ -39,7 +39,8 @@ function firstRunInit()
     end
     clear folder subdir pulsar
     %% If the HWInjection folder does not exist, create it and pulsar subdirs
-    folder = '/home/eilam.morag/public_html/HWInjection';
+%    folder = '/home/eilam.morag/public_html/HWInjection';
+    folder = getWebsiteLocation();
     if (~exist(folder, 'dir'))
         disp(['Creating the folder: ', folder]);
         mkdir(folder);

@@ -23,3 +23,6 @@ FstatLoudestResampOff_restricted
 % Naming convention for output files of predicted F-stat below
 FstatPredicted_restricted
 
+% Website location below
+/home/eilam.morag/public_html/HWInjection
+

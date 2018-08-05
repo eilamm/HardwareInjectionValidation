@@ -6,12 +6,13 @@
 % This is the matlab version of the original C++ file, genScript.cpp.
 
 function HWInjection(today, server) 
+    includePaths;
     %% Load pulsars, create output folder if necessary, and initialize the date range
     load('Pulsar-parameters/pulsars.mat', 'pulsar_list');
-    today = todayDate();
     start = observationRunStartDate();
     for id = 0:14
-        outputFolder = sprintf('/home/eilam.morag/hw_injection/Hardware_Injection_2016/output/Pulsar%d/%s', id, today.date2str_nospace()); 
+        outputFolder = sprintf('%s/Pulsar%d/%s', getFstatFileLocation(), id, today.date2str_nospace());
+%        outputFolder = sprintf('/home/eilam.morag/hw_injection/Hardware_Injection_2016/output/Pulsar%d/%s', id, today.date2str_nospace()); 
         if (~exist(outputFolder, 'dir'))
             fprintf('Creating output folder:\n\t%s\n', outputFolder);
             mkdir(outputFolder);
@@ -22,7 +23,8 @@ function HWInjection(today, server)
     num_days = today - start;
 
     %%%%%%%%%%%%%%%%%%%%% Create links to today's SFTs if none exist %%%%%%%%%%%%%%%%
-    SFTdirToday = sprintf('scripts/_%s', today.date2str_num()); % Folder for symlinks for today's SFTs
+    SFTdirToday = sprintf('%s/_%s', getLALScriptsLocation(), today.date2str_num());
+%    SFTdirToday = sprintf('scripts/_%s', today.date2str_num()); % Folder for symlinks for today's SFTs
     if (~exist(SFTdirToday))
         fprintf('Creating folder\n\t%s\n', SFTdirToday);
         mkdir(SFTdirToday);
@@ -73,7 +75,8 @@ function HWInjection(today, server)
                     % If timespan is within range of any of the injection timespans, then create a symlink to it in the directory for this data
                         if (any((timespan >= injections(:, 1)) & ((timespan + SFTduration) <= injections(:, 2))))
                 SFT_path = sprintf('%s%s', path, SFT);
-                            symlink_path = sprintf('/home/eilam.morag/hw_injection/Hardware_Injection_2016/%s/%s', SFTdirToday, SFT);
+%                            symlink_path = sprintf('/home/eilam.morag/hw_injection/Hardware_Injection_2016/%s/%s', SFTdirToday, SFT);
+                            symlink_path = sprintf('%s/%s', SFTdirToday, SFT);
                             cmd = ['ln -s ', SFT_path, ' ', symlink_path, ' >/dev/null 2>&1'];
                             status = system(cmd);
                         end
@@ -89,26 +92,28 @@ function HWInjection(today, server)
     sfts_daily = '';
     for ii = 1:num_days
         % Symlinks to SFTs for a specific date are stored in subdirectories named after said date.
-    % sfts_cumulative is a string that concatenates the names for each of these directories, separated by a semicolon
-    % Note that the scripts that end up using this string are in the same directory as the subdirectories, so
-    % don't need to get their path, just their filenames
+        % sfts_cumulative is a string that concatenates the names for each of these directories, separated by a semicolon
+        % Note that the scripts that end up using this string are in the same directory as the subdirectories, so
+        % don't need to get their path, just their filenames
 
-    % Check that there are SFTs for this date
-    if (~isempty(dir(sprintf('/home/eilam.morag/hw_injection/Hardware_Injection_2016/scripts/_%s/*.sft', date.date2str_num()))))
-        SFTs_current_date = sprintf('_%s/*.sft', date.date2str_num());
-        % Check if this is the first non-empty SFT directory
-        if (strcmp(sfts_cumulative, '' ) == 1)
-            sfts_cumulative = SFTs_current_date;
-        else
-            sfts_cumulative = sprintf('%s;%s', sfts_cumulative, SFTs_current_date);
+        % Check that there are SFTs for this date
+%    if (~isempty(dir(sprintf('/home/eilam.morag/hw_injection/Hardware_Injection_2016/scripts/_%s/*.sft', date.date2str_num()))))
+        if (~isempty(dir(sprintf('%s/_%s/*.sft', getLALScriptsLocation(), date.date2str_num()))))
+            SFTs_current_date = sprintf('_%s/*.sft', date.date2str_num());
+            % Check if this is the first non-empty SFT directory
+            if (strcmp(sfts_cumulative, '' ) == 1)
+                sfts_cumulative = SFTs_current_date;
+            else
+                sfts_cumulative = sprintf('%s;%s', sfts_cumulative, SFTs_current_date);
+            end
         end
-    end
     
         % Increment the date
         date = date.next_day();
     end
 
-    if (~isempty(dir(sprintf('/home/eilam.morag/hw_injection/Hardware_Injection_2016/scripts/_%s/*.sft', today.date2str_num()))))
+%    if (~isempty(dir(sprintf('/home/eilam.morag/hw_injection/Hardware_Injection_2016/scripts/_%s/*.sft', today.date2str_num()))))
+    if (~isempty(dir(sprintf('%s/_%s/*.sft', getLALScriptsLocation(), today.date2str_num()))))
         sfts_daily = sprintf('_%s/*.sft', today.date2str_num());
     else
         sfts_daily = '';
