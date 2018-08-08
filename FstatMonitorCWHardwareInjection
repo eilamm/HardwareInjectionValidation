@@ -28,5 +28,5 @@ rm -r WORKING
 echo >> DONE
 
 SERVER=$(hostname)
-EMAIL="eilam@umich.edu"
+EMAIL=""
 mail -s "Finished running LAL on ${SERVER}" ${EMAIL} <<< "Started on ${STARTTIME}"
