@@ -3,10 +3,10 @@
 % THE ORDER OF THIS FILE IS VERY IMPORTANT. DO NOT DELETE LINES OR ENTER NEW ONES. You may modify any paths as long as they stay on the same line number. You may add new paths by appending them to the end of the file; do NOT insert them before existing paths
 
 % Project home directory below
-/home/eilam.morag/hw_injection/Hardware_Injection_2016
+/home/eilam.morag/hw_injection/HardwareInjectionValidation
 
 % Location of LAL scripts below
-/home/eilam.morag/hw_injection/Hardware_Injection_2016/scripts
+/home/eilam.morag/hw_injection/HardwareInjectionValidation/scripts
 
 % Naming convention for LAL scripts that call lalapps_ComputeFstatistic_v2 below
 LALCompute
@@ -15,7 +15,7 @@ LALCompute
 LALPredict
 
 % Output files containing the F-stat values will print to subdirectories that branch off below path
-/home/eilam.morag/hw_injection/Hardware_Injection_2016/output
+/home/eilam.morag/hw_injection/HardwareInjectionValidation/output
 
 % Naming convention for output files of computed F-stat below
 FstatComputed

@@ -27,13 +27,13 @@ echo "% Location of LAL scripts below" >> ${SETTINGS}
 echo -e "${LALLOCATION}\n" >> ${SETTINGS}
 
 # Set the naming convention for LAL scripts that call lalapps_ComputeFstatistic_v2
-COMPUTEDNAME="recover_pulsar_restricted"
+COMPUTEDNAME="LALCompute"
 echo "Naming convention for LAL scripts for computed F-stat: ${COMPUTEDNAME}"
 echo "% Naming convention for LAL scripts that call lalapps_ComputeFstatistic_v2 below" >> ${SETTINGS}
 echo -e "${COMPUTEDNAME}\n" >> ${SETTINGS}
 
 # Set the naming convention for LAL scripts that call lalapps_PredictFstat 
-PREDICTEDNAME="predict_pulsar_restricted"
+PREDICTEDNAME="LALPredict"
 echo "Naming convention for LAL scripts for predicted F-stat: ${PREDICTEDNAME}"
 echo "% Naming convention for LAL scripts that call lalapps_PredictFstat below" >> ${SETTINGS}
 echo -e "${PREDICTEDNAME}\n" >> ${SETTINGS}
@@ -45,13 +45,13 @@ echo "% Output files containing the F-stat values will print to subdirectories t
 echo -e "${FSTATLOCATION}\n" >> ${SETTINGS}
 
 # Set the naming convention for the output files containing the computed F-stat
-COMPUTEDFSTATNAME="FstatLoudestResampOff_restricted"
+COMPUTEDFSTATNAME="FstatComputed"
 echo "Naming convention for output files of computed F-stat: ${COMPUTEDFSTATNAME}"
 echo "% Naming convention for output files of computed F-stat below" >> ${SETTINGS}
 echo -e "${COMPUTEDFSTATNAME}\n" >> ${SETTINGS}
 
 # Set the naming convention for the output files containing the predicted F-stat
-PREDICTEDFSTATNAME="FstatPredicted_restricted"
+PREDICTEDFSTATNAME="FstatPredicted"
 echo "Naming convention for output files of predicted F-stat: ${PREDICTEDFSTATNAME}"
 echo "% Naming convention for output files of predicted F-stat below" >> ${SETTINGS}
 echo -e "${PREDICTEDFSTATNAME}\n" >> ${SETTINGS}
